@@ -25,7 +25,7 @@ pipeline {
         */
         stage('Copying Files') {
             steps {
-                sh 'docker cp build/* /var/www/html/'
+                sh 'cp build/* /var/www/html'
             }
         }
     }
