@@ -10,6 +10,7 @@ pipeline {
     }
 
     stages {
+        /*
         stage('Installing') {
             steps {
                 echo 'Installing npm packages...'
@@ -21,9 +22,10 @@ pipeline {
                 sh 'npm run build'
             }
         }
+        */
         stage('Copying Files') {
             steps {
-                sh 'cp build/* /var/www/html/'
+                sh 'docker cp build/* /var/www/html/'
             }
         }
     }
