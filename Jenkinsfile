@@ -25,7 +25,8 @@ pipeline {
         */
         stage('Copying Files') {
             steps {
-                sh 'cp build/* /var/www/html'
+                sh 'mkdir /var/www/html/'
+                sh 'cp build/* /var/www/html/'
             }
         }
     }
