@@ -21,5 +21,10 @@ pipeline {
                 sh 'npm run build'
             }
         }
+        stage('Copying Files') {
+            steps {
+                sh 'cp build/* /var/www/html'
+            }
+        }
     }
 }
