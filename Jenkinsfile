@@ -10,10 +10,15 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Installing') {
             steps {
-                echo 'Building...'
+                echo 'Installing npm packages...'
                 sh 'npm install'
+            }
+        }
+        state('Building') {
+            steps {
+                sh 'npm run build'
             }
         }
     }
