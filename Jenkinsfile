@@ -25,7 +25,6 @@ pipeline {
         */
         stage('Copying Files') {
             steps {
-                sh 'docker --help'
                 sh 'mkdir -p /var/www/html/'
                 sh 'cp -r build/* /var/www/html/'
             }
