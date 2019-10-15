@@ -11,7 +11,7 @@ pipeline {
     
     environment {
         SERVER_IP       = credentials('front-end-server-ip')
-        SERVER PASS     = credentials('front-end-server-pass')
+        SERVER_PASS     = credentials('front-end-server-pass')
     }
 
     stages {
