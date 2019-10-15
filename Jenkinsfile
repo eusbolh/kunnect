@@ -25,8 +25,7 @@ pipeline {
         */
         stage('Copying Files') {
             steps {
-                sh 'mkdir -p /var/www/html/'
-                sh 'cp -r build/* /var/www/html/'
+                echo 'Copying files'
             }
         }
     }
