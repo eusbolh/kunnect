@@ -26,6 +26,7 @@ pipeline {
         stage('Copying Files') {
             steps {
                 echo 'Copying files'
+                sh 'ssh eusbolh@142.93.109.214 "cd /var/www/html; touch test.txt;"'
             }
         }
     }
