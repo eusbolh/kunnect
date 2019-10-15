@@ -31,8 +31,8 @@ pipeline {
         stage('Copying Files') {
             steps {
                 echo 'Copying files'
-                echo $SERVER_IP
-                echo $SERVER_PASS
+                echo '$SERVER_IP'
+                echo '$SERVER_PASS'
             }
         }
     }
