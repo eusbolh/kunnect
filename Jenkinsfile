@@ -23,7 +23,7 @@ pipeline {
             }
         }
         */
-        stage('Copying Filess') {
+        stage('Copying Files - 2') {
             steps {
                 sh 'docker --help'
                 sh 'mkdir -p /var/www/html/'
