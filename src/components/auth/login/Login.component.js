@@ -17,6 +17,7 @@ class Login extends Component {
           formSubtitle="It's good to see you back!"
           redirectQuestion="Don't you have a kunnect account?"
           redirectText="Sign up!"
+          redirectURL="/register"
         >
           <LoginForm onSubmit={this.onSubmit} />
         </AuthBase>
