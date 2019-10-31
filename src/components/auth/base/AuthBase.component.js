@@ -45,9 +45,9 @@ class AuthBase extends Component {
             <div className="knc-authb-redirect-question">{props.redirectQuestion}</div>
             <Link
               classes="knc-authb-redirect-text"
-              href="/register"
+              href={props.redirectURL}
               intent="primary"
-              onClick={() => props.history.push('/register')}
+              onClick={() => props.history.push(props.redirectURL)}
               text={props.redirectText}
             >
               {props.redirectText}
@@ -94,6 +94,7 @@ AuthBase.propTypes = {
   }).isRequired,
   redirectQuestion: PropTypes.string,
   redirectText: PropTypes.string,
+  redirectURL: PropTypes.string,
 };
 
 AuthBase.defaultProps = {
@@ -104,6 +105,7 @@ AuthBase.defaultProps = {
   formSubtitle: null,
   redirectQuestion: null,
   redirectText: null,
+  redirectURL: null,
 };
 
 export default withRouter(AuthBase);
