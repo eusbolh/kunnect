@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {
+  updateRedirectURL,
+} from 'common/auth/auth.actions';
 import EnsureLoggedIn from './EnsureLoggedIn.component';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -9,6 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
+    updateRedirectURL,
   }, dispatch)
 );
 
