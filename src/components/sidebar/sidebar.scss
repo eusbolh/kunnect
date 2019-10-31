@@ -6,6 +6,7 @@
   flex-direction: column;
   height: inherit;
   padding: 24px 0;
+  width: inherit;
 
   .knc-sideb-brand-logo-container {
 
@@ -16,9 +17,32 @@
 
   .knc-sideb-menus {
     margin-top: 96px;
+    width: inherit;
+  }
 
-    .knc-sideb-menu {
-      height: 50px;
-    }
+  .knc-sideb-menu {
+    align-items: center;
+    color: $gray3;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    height: 50px;
+    justify-content: center;
+    width: inherit;
+  }
+
+  .knc-sideb-menu:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  .knc-sideb-menu:hover {
+    background-color: #16eca818;
+    border-left: 3px solid $brand-color;
+    color: $brand-color;
+  }
+
+  .knc-sideb-help-menus {
+    margin-top: auto;
+    width: inherit;
   }
 }

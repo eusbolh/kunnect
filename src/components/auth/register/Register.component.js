@@ -5,7 +5,7 @@ import AuthBase from '../base/AuthBase.component';
 
 class Register extends Component {
   onSubmit = (values) => {
-    console.log('Register credentials', values);
+    this.props.register(values);
   }
 
   render() {
@@ -27,6 +27,7 @@ class Register extends Component {
 }
 
 Register.propTypes = {
+  register: PropTypes.func.isRequired,
 };
 
 Register.defaultProps = {
