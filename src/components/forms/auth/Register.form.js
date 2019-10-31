@@ -37,7 +37,6 @@ class Register extends Component {
           handleBlur={props.handleBlur}
           handleChange={props.handleChange}
           touched={props.touched.email}
-          type="email"
           value={props.values.email || ''}
         />
         <FormTextField
