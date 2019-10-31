@@ -5,7 +5,7 @@ import AuthBase from '../base/AuthBase.component';
 
 class Login extends Component {
   onSubmit = (values) => {
-    console.log('Login credentials', values);
+    this.props.login(values);
   }
 
   render() {
@@ -27,6 +27,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
+  login: PropTypes.func.isRequired,
 };
 
 Login.defaultProps = {

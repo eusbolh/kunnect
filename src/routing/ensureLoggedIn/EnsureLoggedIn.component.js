@@ -6,16 +6,19 @@ import { isTokenExpired } from 'common/auth/auth.utils';
 class EnsureLoggedIn extends Component {
   componentDidMount = () => {
     const { ...props } = this.props;
+    /* TODO: Comment out this block when API is implemented.
     if (isTokenExpired()) {
       props.updateRedirectURL(props.currentURL);
       props.history.push('/login');
     } else {
       props.getUserData();
     }
+    */
   }
 
   render() {
     const { ...props } = this.props;
+    return props.children; // TODO: remove this line when API is implemented.
     if (props.login && props.login.isLoggedIn && !isTokenExpired()) {
       return props.children;
     }
