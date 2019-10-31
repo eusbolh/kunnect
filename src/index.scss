@@ -1,8 +1,9 @@
-@import "common/colors.scss";
-@import "components/components.scss";
-@import "modules/modules.scss";
-@import "~@blueprintjs/core/lib/css/blueprint.css";
-@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import 'common/colors.scss';
+@import 'common/constants.scss';
+@import 'components/components.scss';
+@import 'modules/modules.scss';
+@import '~@blueprintjs/core/lib/css/blueprint.css';
+@import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
 
 html {
   margin: 0;
@@ -14,7 +15,7 @@ html {
 }
 
 body {
-  color: $dark-gray5;
+  color: $dark-gray1;
   font-family: 'Roboto', sans-serif;
   margin: 0;	
   padding: 0;
