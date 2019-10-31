@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import brandLogoGray from 'common/assets/logo_gray.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faList } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCommentAlt, faFlag, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+import brandLogoGray from 'common/assets/logo_gray.png';
+
+library.add(faList, faBell, faCommentAlt, faFlag, faQuestionCircle);
 
 const menus = [
   {
     url: '/feed',
-    icon: 'blabla',
+    icon: ['fas', 'list'],
   }, {
     url: '/messages',
-    icon: 'test',
+    icon: ['far', 'comment-alt'],
   }, {
     url: '/notifications',
-    icon: 'notif',
+    icon: ['far', 'bell'],
+  },
+];
+
+const helpMenus = [
+  {
+    url: '/help',
+    icon: ['far', 'question-circle'],
+  }, {
+    url: '/report',
+    icon: ['far', 'flag'],
   },
 ];
 
 class Sidebar extends Component {
-  renderMenu = (menu, index) => {
-    return (
-      <div className="knc-sideb-menu" key={`knc-sideb-menu-${index}`}>{menu.url}</div>
-    );
-  }
+  renderMenu = (menu, index) => (
+    <div className="knc-sideb-menu" key={`knc-sideb-menu-${index}`}>
+      <FontAwesomeIcon icon={menu.icon} />
+    </div>
+  )
 
   renderMenus = menuList => menuList.map((menu, index) => this.renderMenu(menu, index));
 
@@ -31,6 +47,7 @@ class Sidebar extends Component {
           <img alt="kunnect-brand-logo" className="knc-sideb-brand-logo" src={brandLogoGray} />
         </div>
         <div className="knc-sideb-menus">{this.renderMenus(menus)}</div>
+        <div className="knc-sideb-help-menus">{this.renderMenus(helpMenus)}</div>
       </div>
     );
   }

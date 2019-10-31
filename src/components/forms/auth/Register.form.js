@@ -5,16 +5,10 @@ import { Button } from 'nysa-ui';
 import FormTextField from '../FormTextField.component';
 
 class Register extends Component {
-  state = {
-    loading: false,
-  }
-
   handleSubmit = (e) => {
     const { ...props } = this.props;
     e.preventDefault(); // TODO: Why do we do this?
-    this.setState({ loading: true });
     props.onSubmit(props.values);
-    setTimeout(() => this.setState({ loading: false }), 1000);
   }
 
   render() {
@@ -50,7 +44,7 @@ class Register extends Component {
           value={props.values.password || ''}
         />
         <div className="knc-form-buttons">
-          <Button intent="success" loading={this.state.loading} text="Sign Up" type="submit" />
+          <Button intent="success" text="Sign Up" type="submit" />
         </div>
       </form>
     );
