@@ -1,0 +1,24 @@
+.knc-sideb-component {
+  align-items: center;
+  background-color: #fafafa;
+  border-right: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  padding: 24px 0;
+
+  .knc-sideb-brand-logo-container {
+
+    .knc-sideb-brand-logo {
+      width: 24px;
+    }
+  }
+
+  .knc-sideb-menus {
+    margin-top: 96px;
+
+    .knc-sideb-menu {
+      height: 50px;
+    }
+  }
+}

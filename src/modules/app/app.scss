@@ -1,0 +1,24 @@
+.knc-app-module {
+  display: flex;
+  height: 100%;
+
+  .knc-app-sidebar-container {
+    height: inherit;
+    width: 75px;
+  }
+
+  .knc-app-rest-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 1000px;
+    width: 100%;
+
+    .knc-app-topbar-container {
+      height: 50px;
+    }
+
+    .knc-app-content-container {
+      height: 100%;
+    }
+  }
+}
