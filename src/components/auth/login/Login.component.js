@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import LoginForm from 'components/forms/auth/Login.form';
 import AuthBase from '../base/AuthBase.component';
 
 class Login extends Component {
@@ -13,7 +14,7 @@ class Login extends Component {
           redirectQuestion="Don't you have a kunnect account?"
           redirectText="Sign up!"
         >
-          [login_form]
+          <LoginForm />
         </AuthBase>
       </div>
     );

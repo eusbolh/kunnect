@@ -1,0 +1,36 @@
+@import 'auth/auth.scss';
+
+.knc-ftxtf-component {
+  width: inherit;
+
+  .knc-ftxtf-label {
+
+  }
+
+  .knc-ftxtf-input-container {
+
+    .knc-ftxtf-input {
+      
+      input {
+        border: 2px solid $light-gray3;
+        border-radius: 3px;
+        color: $dark-gray1;
+        font-size: 14px;
+        padding: 8px 32px 8px 12px;
+        width: stretch;
+      }
+    
+      input:focus {
+        border-color: $cobalt5;
+      }
+  
+      ::placeholder {
+        color: $gray1;
+      }
+    }
+  }
+}
+
+.knc-ftxtf-component:not(:last-child) {
+  margin-bottom: 12px;
+}
