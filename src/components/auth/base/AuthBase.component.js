@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { appendClasses } from 'common/common.utils';
 import brandLogoTextWhite from 'common/assets/logotext_white.png';
 import brandLogoWhite from 'common/assets/logo_white.png';
+import {
+  Link,
+} from 'nysa-ui';
 
 class AuthBase extends Component {
   state = {
@@ -39,12 +43,38 @@ class AuthBase extends Component {
           </div>
           <div className="knc-authb-redirect-container">
             <div className="knc-authb-redirect-question">{props.redirectQuestion}</div>
-            <div className="knc-authb-redirect-text">{props.redirectText}</div>
+            <Link
+              classes="knc-authb-redirect-text"
+              href="/register"
+              intent="primary"
+              onClick={() => props.history.push('/register')}
+              text={props.redirectText}
+            >
+              {props.redirectText}
+            </Link>
           </div>
           <div className="knc-authb-footer">
-            <div className="knc-authb-footer-element">Terms</div>
-            <div className="knc-authb-footer-element">Privacy</div>
-            <div className="knc-authb-footer-element">Contact</div>
+            <Link
+              classes="knc-authb-footer-element"
+              href="/terms"
+              intent="primary"
+              onClick={() => props.history.push('/terms')}
+              text="Terms"
+            />
+            <Link
+              classes="knc-authb-footer-element"
+              href="/privacy"
+              intent="primary"
+              onClick={() => props.history.push('/privacy')}
+              text="Privacy"
+            />
+            <Link
+              classes="knc-authb-footer-element"
+              href="/contact"
+              intent="primary"
+              onClick={() => props.history.push('/contact')}
+              text="Contact"
+            />
           </div>
         </div>
       </div>
@@ -59,6 +89,9 @@ AuthBase.propTypes = {
   classes: PropTypes.string,
   formTitle: PropTypes.string,
   formSubtitle: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   redirectQuestion: PropTypes.string,
   redirectText: PropTypes.string,
 };
@@ -73,4 +106,4 @@ AuthBase.defaultProps = {
   redirectText: null,
 };
 
-export default AuthBase;
+export default withRouter(AuthBase);

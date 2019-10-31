@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withFormik } from 'formik';
+import { Button } from 'nysa-ui';
 import FormTextField from '../FormTextField.component';
 
 class Login extends Component {
+  state = {
+    loading: false,
+  }
+
   handleSubmit = (e) => {
     const { ...props } = this.props;
     e.preventDefault(); // TODO: Why do we do this?
+    this.setState({ loading: true });
     props.onSubmit(props.values);
+    setTimeout(() => this.setState({ loading: false }), 1000);
   }
 
   render() {
@@ -21,7 +28,7 @@ class Login extends Component {
           handleBlur={props.handleBlur}
           handleChange={props.handleChange}
           touched={props.touched.username}
-          value={props.values.username}
+          value={props.values.username || ''}
         />
         <FormTextField
           error={props.errors.password}
@@ -31,8 +38,11 @@ class Login extends Component {
           handleChange={props.handleChange}
           touched={props.touched.password}
           type="password"
-          value={props.values.password}
+          value={props.values.password || ''}
         />
+        <div className="knc-form-buttons">
+          <Button intent="primary" loading={this.state.loading} text="Sign In" type="submit" />
+        </div>
       </form>
     );
   }

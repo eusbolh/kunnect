@@ -15,7 +15,7 @@
 
     .knc-authb-brand-logo-container {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       
       .knc-authb-brand-logo {
         height: 20px;
@@ -111,6 +111,7 @@
         font-size: 16px;
         font-weight: 500;
         margin-left: 4px;
+        margin-top: 1px;
       }
     }
 
