@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faList } from '@fortawesome/free-solid-svg-icons';
-import { faBell, faCommentAlt, faFlag, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
-import brandLogoGray from 'common/assets/logo_gray.png';
+import {
+  faBell,
+  faCommentAlt,
+  faFlag,
+  faQuestionCircle,
+} from '@fortawesome/free-regular-svg-icons';
+import brandLogoWhite from 'common/assets/logo_white.png';
 
 library.add(faList, faBell, faCommentAlt, faFlag, faQuestionCircle);
 
@@ -42,9 +47,9 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="knc-sideb-component">
+      <div className="knc-sideb-component --box-shadow-1">
         <div className="knc-sideb-brand-logo-container">
-          <img alt="kunnect-brand-logo" className="knc-sideb-brand-logo" src={brandLogoGray} />
+          <img alt="kunnect-brand-logo" className="knc-sideb-brand-logo" src={brandLogoWhite} />
         </div>
         <div className="knc-sideb-menus">{this.renderMenus(menus)}</div>
         <div className="knc-sideb-help-menus">{this.renderMenus(helpMenus)}</div>

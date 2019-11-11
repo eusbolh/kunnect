@@ -1,7 +1,6 @@
 .knc-sideb-component {
   align-items: center;
-  background-color: #fafafa;
-  border-right: 1px solid $border-color;
+  background-color: $brand-color;
   display: flex;
   flex-direction: column;
   height: inherit;
@@ -22,7 +21,7 @@
 
   .knc-sideb-menu {
     align-items: center;
-    color: $gray3;
+    color: #fff;
     cursor: pointer;
     display: flex;
     font-size: 20px;
@@ -36,9 +35,10 @@
   }
 
   .knc-sideb-menu:hover {
-    background-color: #16eca818;
-    border-left: 3px solid $brand-color;
-    color: $brand-color;
+    background-color: #f0f71750;
+    border-left: 3px solid $brand-color-inverse;
+    color: $brand-color-inverse;
+    padding-right: 3px;
   }
 
   .knc-sideb-help-menus {
