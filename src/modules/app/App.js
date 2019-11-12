@@ -12,7 +12,9 @@ class App extends Component {
             <Topbar />
           </div>
           <div className="knc-app-content-container">
-            content
+            <div className="knc-app-content">
+              test content
+            </div>
           </div>
         </div>
       </div>

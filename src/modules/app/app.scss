@@ -18,7 +18,15 @@
     }
 
     .knc-app-content-container {
-      height: 100%;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      overflow-y: scroll;
+
+      .knc-app-content {
+        margin: 32px;
+        width: 1000px;
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -9,6 +10,9 @@ import {
   faFlag,
   faQuestionCircle,
 } from '@fortawesome/free-regular-svg-icons';
+import {
+  Button,
+} from 'nysa-ui';
 import brandLogoWhite from 'common/assets/logo_white.png';
 
 library.add(faList, faBell, faCommentAlt, faFlag, faQuestionCircle);
@@ -38,9 +42,13 @@ const helpMenus = [
 
 class Sidebar extends Component {
   renderMenu = (menu, index) => (
-    <div className="knc-sideb-menu" key={`knc-sideb-menu-${index}`}>
+    <Button
+      classes="knc-sideb-menu"
+      key={`knc-sideb-menu-${index}`}
+      onClick={() => this.props.history.push(menu.url)}
+    >
       <FontAwesomeIcon icon={menu.icon} />
-    </div>
+    </Button>
   )
 
   renderMenus = menuList => menuList.map((menu, index) => this.renderMenu(menu, index));
@@ -59,9 +67,13 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
+  /* Objects */
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 Sidebar.defaultProps = {
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);
