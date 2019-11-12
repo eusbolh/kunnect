@@ -72,3 +72,22 @@ export const getPosts = () => [ // eslint-disable-line
     vote: 0,
   },
 ];
+
+export const getKulusters = () => [
+  {
+    id: 'adsadjkladas1kjlkasd',
+    name: 'dataisbeautiful',
+    image: 'https://styles.redditmedia.com/t5_2tk95/styles/communityIcon_hrq90p2z27k11.jpg',
+    subscriber_count: '61615',
+  }, {
+    id: 'dasdadsad1sa56dassad',
+    name: 'ProgrammerHumor',
+    image: 'https://b.thumbs.redditmedia.com/4KtrAN4OLE6PG-FY0Xtfn65arqXZrFRrsFDi_JvQCWM.png',
+    subscriber_count: '68415',
+  }, {
+    id: 'g5asa1d53asdas3sadd',
+    name: 'Neverbrokeabone',
+    image: 'https://styles.redditmedia.com/t5_2zvcf/styles/communityIcon_7hn6z91oi9b21.jpg',
+    subscriber_count: '13132',
+  },
+];
