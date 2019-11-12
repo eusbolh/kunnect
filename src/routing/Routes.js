@@ -12,8 +12,7 @@ const Routes = () => (
     <Switch>
       <Route exact path="/login" component={LoginContainer} />
       <Route exact path="/register" component={RegisterContainer} />
-      <Route exact path="/" component={App} />
-      <Route component={NotFound} />
+      <Route component={App} />
     </Switch>
   </RouteControllerContainer>
 );

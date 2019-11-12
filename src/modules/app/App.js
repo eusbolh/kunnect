@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Sidebar from 'components/sidebar/Sidebar.component';
 import Topbar from 'components/topbar/Topbar.component';
+import NotFound from 'modules/notfound/NotFound.component';
+import FeedContainer from 'modules/feed/Feed.container';
 
 class App extends Component {
   render() {
@@ -13,7 +16,10 @@ class App extends Component {
           </div>
           <div className="knc-app-content-container">
             <div className="knc-app-content">
-              test content
+              <Switch>
+                <Route exact path="/feed" component={FeedContainer} />
+                <Route component={NotFound} />
+              </Switch>
             </div>
           </div>
         </div>
