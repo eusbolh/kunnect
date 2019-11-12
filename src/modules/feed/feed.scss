@@ -1,9 +1,15 @@
 .knc-feed-module {
+  padding-bottom: 96px;
 
   .knc-feed-content {
+    display: flex;
 
     .knc-feed-posts {
       
+    }
+
+    .knc-feed-rest-container {
+      margin-left: auto;
     }
   }
 }

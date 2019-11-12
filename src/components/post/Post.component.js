@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'nysa-ui';
+import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCaretSquareUp, faCaretSquareDown, faComment } from '@fortawesome/free-solid-svg-icons';
@@ -51,10 +51,13 @@ class Post extends Component {
               </div>
               <div className="knc-post-info-right">
                 <div className="knc-post-info-kuluster-name">
-                  {`k/${this.getKulusterName(props.data)}`}
+                  <Link href="http://kunnect.co" intent="default" text="hello">{`k/${this.getKulusterName(props.data)}`}</Link>
                 </div>
                 <div className="knc-post-info-user-name-and-posted-at">
-                  {`posted by u/${this.getUserName(props.data)} · ${this.getPostedAt(props.data)}`}
+                  <span>posted by u/</span>
+                  <Link classes="knc-post-info-user-name-and-posted-at-link" href="http://kunnect.co" text="asd">{this.getUserName(props.data)}</Link>
+                  <span>&nbsp;·&nbsp;</span>
+                  <Link classes="knc-post-info-user-name-and-posted-at-link" href="http://kunnect.co" text="bsd">{this.getPostedAt(props.data)}</Link>
                 </div>
               </div>
             </div>
