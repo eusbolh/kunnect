@@ -9,7 +9,77 @@
     }
 
     .knc-feed-rest-container {
-      margin-left: auto;
+      margin-left: 16px;
+      width: 264px;
+
+      .knc-feed-create-kuluster-button {
+        background-color: $brand-color;
+        border-color: $brand-color;
+        color: #fff;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+
+      .knc-feed-create-kuluster-button:hover {
+        background-color: $brand-color-hover;
+        border: 1px solid $brand-color;
+      }
+
+      .knc-feed-trending-kulusters {
+
+        .knc-feed-trending-kuluster {
+          align-items: center;
+          display: flex;
+
+          .knc-feed-trending-kuluster-image-container {
+            
+            .knc-feed-trending-kuluster-image-button {
+              border: 2px solid $border-color;
+              border-radius: 50%;
+              padding: 2px;
+              
+              .knc-feed-trending-kuluster-image {
+                border-radius: 50%;
+                height: 20px;
+              }
+            }
+
+            .knc-feed-trending-kuluster-image-button:hover {
+              border-color: $brand-color;
+            }
+          }
+
+          .knc-feed-trending-kuluster-info {
+            margin-left: 8px;
+            
+            .knc-feed-trending-kuluster-name {
+              color: $text-color;
+              font-size: 14px;
+            }
+
+            .knc-feed-trending-kuluster-subscriber-count {
+              color: $gray5;
+              font-size: 12px;
+              line-height: 12px;
+            }
+          }
+
+          .knc-feed-join-button-container {
+            margin-left: auto;
+
+            .knc-feed-join-button {
+              font-size: 12px;
+              font-weight: 500;
+              height: min-content;
+              text-transform: uppercase;
+            }
+          }
+        }
+
+        .knc-feed-trending-kuluster:not(:last-child) {
+          margin-bottom: 6px;
+        }
+      }
     }
   }
 }
