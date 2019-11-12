@@ -9,8 +9,11 @@ class Feed extends Component {
         <div className="knc-feed-content">
           <div className="knc-feed-posts">
             {
-              getPosts().map(post => <Post data={post} />)
+              getPosts().map(post => <Post data={post} key={`knc-feed-posts-${post.id}`} />)
             }
+          </div>
+          <div className="knc-feed-rest-container">
+            t
           </div>
         </div>
       </div>

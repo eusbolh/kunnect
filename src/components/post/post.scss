@@ -45,9 +45,17 @@
 
           .knc-post-info-user-name-and-posted-at {
             color: $gray5;
+            display: flex;
             font-size: 12px;
             font-weight: 500;
             line-height: 12px;
+
+            .knc-post-info-user-name-and-posted-at-link {
+              color: $gray5;
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 12px;
+            }
           }
         }
       }
@@ -150,4 +158,8 @@
       }
     }
   }
+}
+
+.knc-post-component:not(:last-child) {
+  margin-bottom: 24px;
 }
