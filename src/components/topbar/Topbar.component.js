@@ -4,10 +4,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'nysa-ui';
+import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 
 library.add(faPlusSquare);
 
 class Topbar extends Component {
+  state = {
+    isCreatePostDialogOpen: false,
+  }
+
+  /* Dialog Helpers */
+
+  closeDialog = dialog => this.setState({ [`is${dialog}DialogOpen`]: false })
+
+  openDialog = dialog => this.setState({ [`is${dialog}DialogOpen`]: true })
+
+  /* Create Post Dialog */
+
+  renderCreatePostDialog = () => (
+    <BasicDialog
+      isOpen={this.state.isCreatePostDialogOpen}
+      onClose={() => this.closeDialog('CreatePost')}
+      title="Create Post"
+    >
+      Create
+    </BasicDialog>
+  )
+
   render() {
     return (
       <div className="knc-topbr-component">
@@ -19,6 +42,7 @@ class Topbar extends Component {
             <Button
               classes="knc-topbr-create-post-button"
               minimal={true}
+              onClick={() => this.openDialog('CreatePost')}
             >
               <FontAwesomeIcon icon={['fas', 'plus-square']} />
             </Button>
@@ -37,7 +61,8 @@ class Topbar extends Component {
               </div>
             </div>
           </div>
-        </div>      
+        </div>
+        {this.renderCreatePostDialog()}
       </div>
     );
   }
