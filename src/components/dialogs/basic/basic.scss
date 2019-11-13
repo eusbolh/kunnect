@@ -1,0 +1,194 @@
+.knc-basic-dialog-component {
+  border: none;
+  
+  .knc-basic-dialog-container {
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 24px;
+    width: 600px;
+
+    .knc-basic-dialog-head {
+      display: flex;
+  
+      .knc-basic-dialog-head-left-side {
+        
+        .knc-basic-dialog-head-title {
+          font-size: 20px;
+          font-weight: 500;
+        }
+      }
+  
+      .knc-basic-dialog-head-right-side {
+        margin-left: auto;
+  
+        .knc-basic-dialog-head-right-side-close-button-container {
+  
+          .knc-basic-dialog-head-right-side-close-button {
+            border: none;
+            border-radius: 3px;
+            color: $gray3;
+            font-size: 20px;
+            height: inherit;
+            padding: 4px 6px;
+          }
+
+          .knc-basic-dialog-head-right-side-close-button:hover {
+            background-color: $light-gray3;
+            color: $dark-gray5;
+          }
+        }
+      }
+    }
+  
+    .knc-basic-dialog-content {
+      color: $gray1;
+      font-size: 16px;
+      padding-top: 16px;
+
+      .knc-basic-dialog-text {
+        color: $gray1;
+        font-size: 16px;
+      }
+
+      .knc-basic-dialog-checkbox {
+        display: flex;
+    
+        label {
+          color: $gray5;
+          cursor: pointer;
+    
+          .knc-basic-dialog-checkbox-label {
+            display: flex;
+    
+            .knc-basic-dialog-checkbox-label-checked {
+              border: 1px solid $border-color;
+              border-radius: 2px;
+              height: 20px;
+              margin-right: 8px;
+              width: 20px;
+    
+              .knc-basic-dialog-checkbox-label-checked-content {
+                margin: 3px;
+                height: 12px;
+                width: 12px;
+              }
+            }
+          }
+        }
+    
+        input {
+          display: none;
+        }
+    
+        input:checked + label {
+          color: $text-color;
+    
+          .knc-basic-dialog-checkbox-label {
+    
+            .knc-basic-dialog-checkbox-label-checked {
+    
+              .knc-basic-dialog-checkbox-label-checked-content {
+                background-color: $cobalt5;
+                
+              }
+            }
+          }
+        }
+    
+        input:hover + label {
+    
+          .m-billing-main-module-add-credit-card-option-label {
+    
+            .knc-basic-dialog-label-checked {
+              border-color: $gray5;
+    
+              .knc-basic-dialog-label-checked-content {
+                
+              }
+            }
+          }
+        }
+      }
+
+      .knc-basic-dialog-radio {
+        display: flex;
+        margin-right: 16px;
+    
+        label {
+          color: $gray5;
+          cursor: pointer;
+    
+          .knc-basic-dialog-radio-label {
+            display: flex;
+    
+            .knc-basic-dialog-radio-label-checked {
+              border: 1px solid $border-color;
+              border-radius: 50%;
+              height: 20px;
+              margin-right: 8px;
+              width: 20px;
+    
+              .knc-basic-dialog-radio-label-checked-content {
+                margin: 3px;
+                height: 12px;
+                width: 12px;
+              }
+            }
+          }
+        }
+    
+        input {
+          display: none;
+        }
+    
+        input:checked + label {
+          color: $text-color;
+    
+          .knc-basic-dialog-radio-label {
+    
+            .knc-basic-dialog-radio-label-checked {
+    
+              .knc-basic-dialog-radio-label-checked-content {
+                background-color: $cobalt5;
+                border-radius: 50%;
+              }
+            }
+          }
+        }
+    
+        input:hover + label {
+    
+          .m-billing-main-module-add-credit-card-option-label {
+    
+            .knc-basic-dialog-label-checked {
+              border-color: $gray5;
+    
+              .knc-basic-dialog-label-checked-content {
+                
+              }
+            }
+          }
+        }
+      }
+
+      .knc-basic-dialog-section {
+
+        .knc-basic-dialog-section-title {
+          color: $text-color;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+
+        .knc-basic-dialog-section-content {
+          padding-top: 8px;
+        }
+      }
+
+      .knc-basic-dialog-section:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
