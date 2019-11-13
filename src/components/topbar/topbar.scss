@@ -5,12 +5,34 @@
   height: inherit;
   padding: 0 24px;
 
+  .knc-topbr-divider {
+    background-color: $light-gray4;
+    height: 20px;
+    margin: 0 12px;
+    width: 2px;
+  }
+
   .knc-topbr-left-side {
 
   }
 
   .knc-topbr-right-side {
+    align-items: center;
+    display: flex;
     margin-left: auto;
+
+    .knc-topbr-button-container {
+
+      .knc-topbr-create-post-button {
+        color: $brand-color;
+        font-size: 16px;
+        padding: 8px;
+      }
+
+      .knc-topbr-create-post-button:hover {
+        background-color: $light-gray4;
+      }
+    }
 
     .knc-topbr-user-box-container {
       
