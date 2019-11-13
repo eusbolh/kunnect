@@ -5,6 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'nysa-ui';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
+import CreatePostForm from 'components/forms/feed/createPost/CreatePost.form';
 
 library.add(faPlusSquare);
 
@@ -27,7 +28,7 @@ class Topbar extends Component {
       onClose={() => this.closeDialog('CreatePost')}
       title="Create Post"
     >
-      Create
+      <CreatePostForm />
     </BasicDialog>
   )
 
