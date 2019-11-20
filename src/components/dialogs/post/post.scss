@@ -4,7 +4,7 @@
   .knc-post-dialog-container {
     background-color: #fff;
     border-radius: 6px;
-    width: 800px;
+    width: 1000px;
 
     .knc-post-dialog-top {
       background-color: $light-gray5;
@@ -136,6 +136,7 @@
     .knc-post-dialog-bottom {
       align-items: flex-end;
       display: flex;
+      padding: 0px 16px 12px 16px;
   
       .knc-post-dialog-bottom-left {
   
@@ -176,28 +177,36 @@
       }
   
       .knc-post-dialog-bottom-right {
+        display: flex;
         margin-left: auto;
-  
-        .knc-post-dialog-comment-count-container {
+
+        .knc-post-dialog-bottom-right-section {
           align-items: center;
           border-radius: 3px;
           color: $gray5;
           cursor: pointer;
           display: flex;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 500;
           padding: 4px 6px;
-  
-          .knc-post-dialog-comment-count {
+
+          .knc-post-dialog-bottom-right-section-text {
             margin-left: 6px;
           }
         }
-  
-        .knc-post-dialog-comment-count-container:hover {
+
+        .knc-post-dialog-bottom-right-section:hover {
           background-color: $light-gray4;
           color: $gray3;
         }
       }
+    }
+
+    .knc-post-dialog-comments {
+      background-color: $light-gray5;
+      border-radius: 0 0 5px 5px;
+      border-top: 2px dashed $light-gray1;
+      padding: 16px;
     }
   }
 }

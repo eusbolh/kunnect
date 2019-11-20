@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTimes,
+  faCommentAlt,
+  faShare,
+  faSave,
+  faBan,
+  faFlag,
+} from '@fortawesome/free-solid-svg-icons';
 import { Dialog } from '@blueprintjs/core';
 
-library.add(faTimes);
+library.add(faTimes, faCommentAlt, faShare, faSave, faBan, faFlag);
 
 class PostDialog extends Component {
   /* Post Getters */
@@ -28,6 +35,15 @@ class PostDialog extends Component {
   getUserName = post => post.user && post.user.name;
 
   getVoteCount = post => post.post && post.post.vote_count;
+
+  /* Vote Buttons */
+
+  getVoteButtonClasses = (post, value) => {
+    if (post.vote === value) {
+      return 'knc-post-dialog-vote-button knc-post-dialog-vote-button-selected';
+    }
+    return 'knc-post-dialog-vote-button';
+  }
 
   onClose = () => {
     this.props.onClose();
@@ -100,7 +116,50 @@ class PostDialog extends Component {
               }
             </div>
           </div>
-          <div className="knc-post-dialog-dialog-content">{props.children}</div>
+          <div className="knc-post-dialog-bottom">
+            <div className="knc-post-dialog-bottom-left">
+              <div className="knc-post-dialog-vote-buttons">
+                <Button
+                  classes={this.getVoteButtonClasses(props.data, 1)}
+                  onClick={event => this.onVoteClick(event, 1)}
+                >
+                  <FontAwesomeIcon icon={['fas', 'caret-square-up']} />
+                </Button>
+                <div className="knc-post-dialog-vote-count">{this.getVoteCount(props.data)}</div>
+                <Button
+                  classes={this.getVoteButtonClasses(props.data, -1)}
+                  onClick={event => this.onVoteClick(event, -1)}
+                >
+                  <FontAwesomeIcon icon={['fas', 'caret-square-down']} />
+                </Button>
+              </div>
+            </div>
+            <div className="knc-post-dialog-bottom-right">
+              <div className="knc-post-dialog-bottom-right-section">
+                <FontAwesomeIcon icon={['fas', 'comment-alt']} />
+                <div className="knc-post-dialog-bottom-right-section-text">{`${this.getCommentCount(props.data)} comments`}</div>
+              </div>
+              <div className="knc-post-dialog-bottom-right-section">
+                <FontAwesomeIcon icon={['fas', 'share']} />
+                <div className="knc-post-dialog-bottom-right-section-text">Share</div>
+              </div>
+              <div className="knc-post-dialog-bottom-right-section">
+                <FontAwesomeIcon icon={['fas', 'save']} />
+                <div className="knc-post-dialog-bottom-right-section-text">Save</div>
+              </div>
+              <div className="knc-post-dialog-bottom-right-section">
+                <FontAwesomeIcon icon={['fas', 'ban']} />
+                <div className="knc-post-dialog-bottom-right-section-text">Hide</div>
+              </div>
+              <div className="knc-post-dialog-bottom-right-section">
+                <FontAwesomeIcon icon={['fas', 'flag']} />
+                <div className="knc-post-dialog-bottom-right-section-text">Report</div>
+              </div>
+            </div>
+          </div>
+          <div className="knc-post-dialog-comments">
+            comments
+          </div>
         </div>
       </Dialog>
     );
