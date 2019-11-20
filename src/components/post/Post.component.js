@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCaretSquareUp, faCaretSquareDown, faComment } from '@fortawesome/free-solid-svg-icons';
+import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 
 library.add(faCaretSquareUp, faCaretSquareDown, faComment);
 
 class Post extends Component {
+  state = {
+    isPostDialogOpen: false,
+  }
+
+  /* Post Getters */
+
   getCommentCount = post => post.post && post.post.comment_count;
 
   getKulusterName = post => post.kuluster && post.kuluster.name;
@@ -26,6 +34,12 @@ class Post extends Component {
 
   getVoteCount = post => post.post && post.post.vote_count;
 
+  /* Dialog Helpers */
+
+  closeDialog = dialog => this.setState({ [`is${dialog}DialogOpen`]: false });
+
+  openDialog = dialog => this.setState({ [`is${dialog}DialogOpen`]: true });
+  
   /* Vote Buttons */
 
   getVoteButtonClasses = (post, value) => {
@@ -35,10 +49,33 @@ class Post extends Component {
     return 'knc-post-vote-button';
   }
 
+  /* Post Dialog */
+
+  renderPostDialog = () => (
+    <BasicDialog
+      isOpen={this.state.isPostDialogOpen}
+      onClose={() => this.closeDialog('Post')}
+      title="Hello"
+    >
+      Hello
+    </BasicDialog>
+  )
+
+  /* Event Handlers */
+
+  onLinkClick = (event, linkURL) => {
+    event.stopPropagation();
+    this.props.history.push(linkURL);
+  }
+
+  onVoteClick = (event, vote) => {
+    event.stopPropagation();
+  }
+
   render() {
     const { ...props } = this.props;
     return (
-      <div className="knc-post-component">
+      <div className="knc-post-component" onClick={() => this.openDialog('Post')}>
         <div className="knc-post-top">
           <div className="knc-post-top-left">
             <div className="knc-post-info">
@@ -51,11 +88,23 @@ class Post extends Component {
               </div>
               <div className="knc-post-info-right">
                 <div className="knc-post-info-kuluster-name">
-                  <Link href="http://kunnect.co" intent="default" text="hello">{`k/${this.getKulusterName(props.data)}`}</Link>
+                  <Link
+                    href={`http://kunnect.co/k/${this.getKulusterName(props.data)}`}
+                    intent="default"
+                    onClick={event => this.onLinkClick(event, `/k/${this.getKulusterName(props.data)}`)}
+                    text={`k/${this.getKulusterName(props.data)}`}
+                  />
                 </div>
                 <div className="knc-post-info-user-name-and-posted-at">
-                  <span>posted by u/</span>
-                  <Link classes="knc-post-info-user-name-and-posted-at-link" href="http://kunnect.co" text="asd">{this.getUserName(props.data)}</Link>
+                  <span>posted by</span>
+                  <span>&nbsp;</span>
+                  <Link
+                    classes="knc-post-info-user-name-and-posted-at-link"
+                    href={`http://kunnect.co/u/${this.getUserName(props.data)}`}
+                    intent="default"
+                    onClick={event => this.onLinkClick(event, `/u/${this.getUserName(props.data)}`)}
+                    text={`u/${this.getUserName(props.data)}`}
+                  />
                   <span>&nbsp;·&nbsp;</span>
                   <Link classes="knc-post-info-user-name-and-posted-at-link" href="http://kunnect.co" text="bsd">{this.getPostedAt(props.data)}</Link>
                 </div>
@@ -80,11 +129,17 @@ class Post extends Component {
         <div className="knc-post-bottom">
           <div className="knc-post-bottom-left">
             <div className="knc-post-vote-buttons">
-              <Button classes={this.getVoteButtonClasses(props.data, 1)}>
+              <Button
+                classes={this.getVoteButtonClasses(props.data, 1)}
+                onClick={event => this.onVoteClick(event, 1)}
+              >
                 <FontAwesomeIcon icon={['fas', 'caret-square-up']} />
               </Button>
               <div className="knc-post-vote-count">{this.getVoteCount(props.data)}</div>
-              <Button classes={this.getVoteButtonClasses(props.data, -1)}>
+              <Button
+                classes={this.getVoteButtonClasses(props.data, -1)}
+                onClick={event => this.onVoteClick(event, -1)}
+              >
                 <FontAwesomeIcon icon={['fas', 'caret-square-down']} />
               </Button>
             </div>
@@ -96,6 +151,7 @@ class Post extends Component {
             </div>
           </div>
         </div>
+        {this.renderPostDialog()}
       </div>
     );
   }
@@ -109,4 +165,4 @@ Post.defaultProps = {
 
 };
 
-export default Post;
+export default withRouter(Post);
