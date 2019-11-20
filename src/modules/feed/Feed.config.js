@@ -18,6 +18,31 @@ export const getPosts = () => [ // eslint-disable-line
       name: 'eusbolh',
     },
     vote: 1,
+    comments: [
+      {
+        id: 'ashlakjdladhabdsakdj',
+        user: {
+          name: 'MsFoxxx',
+        },
+        comment: {
+          content: "Worst part of this story? Many kids don't have a Swamp Thing to rescue them from the monsters who look like people",
+          comment_count: 0,
+          vote_count: 1321,
+          posted_at: '3 hours ago',
+        }
+      }, {
+        id: 'qewqadsadada',
+        user: {
+          name: 'my_prolapse',
+        },
+        comment: {
+          content: "And now I'm sad.",
+          comment_count: 0,
+          vote_count: 121,
+          posted_at: '2 hours ago',
+        }
+      }
+    ]
   }, {
     id: 'adsadqweqweqw513asd',
     type: 1,
@@ -48,6 +73,31 @@ export const getPosts = () => [ // eslint-disable-line
       name: 'SuperMarioKDV',
     },
     vote: -1,
+    comments: [
+      {
+        id: 'ashlakjdladhabdsakdj',
+        user: {
+          name: 'MsFoxxx',
+        },
+        comment: {
+          content: "Worst part of this story? Many kids don't have a Swamp Thing to rescue them from the monsters who look like people",
+          comment_count: 0,
+          vote_count: 1321,
+          posted_at: '3 hours ago',
+        }
+      }, {
+        id: 'qewqadsadada',
+        user: {
+          name: 'my_prolapse',
+        },
+        comment: {
+          content: "And now I'm sad.",
+          comment_count: 0,
+          vote_count: 121,
+          posted_at: '2 hours ago',
+        }
+      }
+    ]
   }, {
     id: 'd68qwq1wda32d1asdasd',
     type: 1,
@@ -70,6 +120,31 @@ export const getPosts = () => [ // eslint-disable-line
       name: 'eusbolh',
     },
     vote: 0,
+    comments: [
+      {
+        id: 'ashlakjdladhabdsakdj',
+        user: {
+          name: 'MsFoxxx',
+        },
+        comment: {
+          content: "Worst part of this story? Many kids don't have a Swamp Thing to rescue them from the monsters who look like people",
+          comment_count: 0,
+          vote_count: 1321,
+          posted_at: '3 hours ago',
+        }
+      }, {
+        id: 'qewqadsadada',
+        user: {
+          name: 'my_prolapse',
+        },
+        comment: {
+          content: "And now I'm sad.",
+          comment_count: 0,
+          vote_count: 121,
+          posted_at: '2 hours ago',
+        }
+      }
+    ]
   },
 ];
 

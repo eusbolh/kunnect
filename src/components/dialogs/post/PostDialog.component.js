@@ -12,6 +12,7 @@ import {
   faFlag,
 } from '@fortawesome/free-solid-svg-icons';
 import { Dialog } from '@blueprintjs/core';
+import Comment from 'components/comment/Comment.component';
 
 library.add(faTimes, faCommentAlt, faShare, faSave, faBan, faFlag);
 
@@ -158,7 +159,7 @@ class PostDialog extends Component {
             </div>
           </div>
           <div className="knc-post-dialog-comments">
-            comments
+            {props.data && props.data.comments.map(comment => <Comment data={comment} />)}
           </div>
         </div>
       </Dialog>
