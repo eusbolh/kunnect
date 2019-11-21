@@ -3,8 +3,14 @@ import Post from 'components/post/Post.component';
 import Box from 'components/box/Box.component';
 import { Button, Link } from 'nysa-ui';
 import { getPosts, getKulusters } from './Feed.config';
+import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
+import CreateKulusterForm from 'components/forms/feed/createKuluster/CreateKuluster.form';
 
 class Feed extends Component {
+  state = {
+    isCreateKulusterDialogOpen: false,
+  }
+
   getID = kuluster => kuluster.id;
 
   getImageSrc = kuluster => kuluster.image;
@@ -30,6 +36,26 @@ class Feed extends Component {
     </div>
   )
 
+  /* Dialog Helpers */
+
+  closeDialog = dialog => this.setState({ [`is${dialog}DialogOpen`]: false })
+
+  openDialog = dialog => this.setState({ [`is${dialog}DialogOpen`]: true })
+
+  /* Create Kuluster */
+
+  renderCreateKulusterDialog = () => (
+    <BasicDialog
+      isOpen={this.state.isCreateKulusterDialogOpen}
+      onClose={() => this.closeDialog('CreateKuluster')}
+      title="Create Kuluster"
+    >
+      <CreateKulusterForm
+        kulusterType="public"
+      />
+    </BasicDialog>
+  )
+
   render() {
     return (
       <div className="knc-feed-module">
@@ -42,6 +68,7 @@ class Feed extends Component {
           <div className="knc-feed-rest-container">
             <Button
               classes="knc-feed-create-kuluster-button"
+              onClick={() => this.openDialog('CreateKuluster')}
             >
               Create Kuluster
             </Button>
@@ -53,6 +80,7 @@ class Feed extends Component {
             <Box title="Advertisement">Test</Box>
           </div>
         </div>
+        {this.renderCreateKulusterDialog()}
       </div>
     );
   }
