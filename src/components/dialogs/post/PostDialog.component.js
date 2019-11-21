@@ -160,7 +160,7 @@ class PostDialog extends Component {
             </div>
           </div>
           <div className="knc-post-dialog-comments">
-            {props.data && props.data.comments.map(comment => <Comment data={comment} />)}
+            {props.data && props.data.comments.map(comment => <Comment data={comment} key={`knc-post-dialog-comment-${comment && comment.id}`} />)}
           </div>
         </div>
       </Dialog>

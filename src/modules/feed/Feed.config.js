@@ -46,7 +46,7 @@ export const getPosts = () => [ // eslint-disable-line
             vote: -1,
             comments: [
               {
-                id: 'qewqadsadada',
+                id: 'aadssad',
                 user: {
                   name: 'my_prolapse',
                 },
@@ -58,7 +58,7 @@ export const getPosts = () => [ // eslint-disable-line
                 },
                 vote: -1,
               }, {
-                id: 'qewqadsadada',
+                id: '12313',
                 user: {
                   name: 'my_prolapse',
                 },
@@ -72,7 +72,7 @@ export const getPosts = () => [ // eslint-disable-line
               },
             ],
           }, {
-            id: 'qewqadsadada',
+            id: '5141312',
             user: {
               name: 'my_prolapse',
             },

@@ -1,3 +1,5 @@
+@import 'textarea/commenttextarea.scss';
+
 .knc-comment-component {
   
   .knc-comment-top {
@@ -91,6 +93,11 @@
     }
   }
 
+  .knc-comment-reply {
+    margin-top: 8px;
+    width: 100%;
+  }
+
   .knc-comment-comments {
     margin-top: 16px;
 
@@ -113,6 +120,10 @@
         .knc-comment-comments-comment-left-space-bottom {
           height: 100%;
         }
+      }
+      
+      .knc-comment-comments-comment-content {
+        width: 100%;
       }
     }
     

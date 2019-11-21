@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CommentTextArea from './textarea/CommentTextArea.component';
 
 class Comment extends Component {
+  state = {
+    isReplySectionOpen: false,
+    reply: '',
+  }
+
+  getID = comment => comment && comment.id;
+
   getUserName = comment => comment && comment.user && comment.user.name;
 
   getPostedAt = comment => comment && comment.comment && comment.comment.posted_at;
@@ -22,6 +30,10 @@ class Comment extends Component {
     }
     return 'knc-comment-vote-button';
   }
+
+  /* Reply Helpers */
+
+  onReplyChange = event => this.setState({ reply: event.target.value });
 
   render() {
     const { ...props } = this.props;
@@ -55,7 +67,7 @@ class Comment extends Component {
           <div className="knc-comment-bottom-button-container">
             <Button
               classes="knc-comment-bottom-button"
-              onClick={() => console.log('reply')}
+              onClick={() => this.setState({ isReplySectionOpen: true })}
             >
               <FontAwesomeIcon icon={['fas', 'reply']} />
               <div className="knc-comment-bottom-button-text">Reply</div>
@@ -81,12 +93,28 @@ class Comment extends Component {
           </div>
         </div>
         {
+          this.state.isReplySectionOpen
+            ? (
+              <div className="knc-comment-reply">
+                <CommentTextArea
+                  handleChange={this.onReplyChange}
+                  name="title"
+                  multiline
+                  onCancel={() => this.setState({ isReplySectionOpen: false })}
+                  onConfirm={() => { console.log(this.state.reply); this.setState({ isReplySectionOpen: false, reply: '' }); }}
+                  placeholder="What are your thoughts?"
+                  value={this.state.reply}
+                />
+              </div>
+            ) : null
+        }
+        {
           this.getComments(props.data)
             ? (
               <div className="knc-comment-comments">
                 {
                   this.getComments(props.data).map(comment => (
-                    <div className="knc-comment-comments-comment">
+                    <div className="knc-comment-comments-comment" key={`knc-comment-comments-comment-${this.getID(comment)}`}>
                       <div className="knc-comment-comments-comment-left-space">
                         <div className="knc-comment-comments-comment-left-space-top">&nbsp;</div>
                         <div className="knc-comment-comments-comment-left-space-bottom">&nbsp;</div>
