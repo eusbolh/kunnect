@@ -51,6 +51,26 @@ class PostDialog extends Component {
     this.props.onClose();
   }
 
+  /* className Helpers */
+
+  getPostTopClasses = (post) => {
+    let classes = 'knc-post-dialog-top';
+    switch (post.kuluster.color) {
+      case 'blue':
+        classes += ' knc-post-dialog-top--blue';
+        break;
+      case 'orange':
+        classes += ' knc-post-dialog-top--orange';
+        break;
+      case 'red':
+        classes += ' knc-post-dialog-top--red';
+        break;
+      default:
+        break;
+    }
+    return classes;
+  }
+
   render() {
     const { ...props } = this.props;
     return (
@@ -60,7 +80,7 @@ class PostDialog extends Component {
         onClose={props.onClose}
       >
         <div className="knc-post-dialog-container">
-          <div className="knc-post-dialog-top">
+          <div className={this.getPostTopClasses(props.data)}>
             <div className="knc-post-dialog-top-left">
               <div className="knc-post-dialog-info">
                 <div className="knc-post-dialog-info-left">

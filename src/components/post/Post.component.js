@@ -72,12 +72,35 @@ class Post extends Component {
     event.stopPropagation();
   }
 
+  /* className Helpers */
+
+  getPostTopClasses = (post) => {
+    let classes = 'knc-post-top';
+    switch (post.kuluster.color) {
+      case 'blue':
+        classes += ' knc-post-top--blue';
+        break;
+      case 'orange':
+        classes += ' knc-post-top--orange';
+        break;
+      case 'red':
+        classes += ' knc-post-top--red';
+        break;
+      default:
+        break;
+    }
+    if (this.props.isKulusterPost) {
+      classes += ' knc-post-top--kuluster';
+    }
+    return classes;
+  }
+
   render() {
     const { ...props } = this.props;
     return (
       <>
         <div className="knc-post-component" onClick={() => this.openDialog('Post')}>
-          <div className={`knc-post-top${props.isKulusterPost ? ' knc-post-top--kuluster' : ''}`}>
+          <div className={this.getPostTopClasses(props.data)}>
             <div className="knc-post-top-left">
               <div className="knc-post-info">
                 <div className="knc-post-info-left">

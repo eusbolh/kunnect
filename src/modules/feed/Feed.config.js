@@ -11,6 +11,7 @@ export const getPosts = () => [ // eslint-disable-line
       posted_at: '9 hours ago',
     },
     kuluster: {
+      color: 'blue',
       name: 'explainlikeimfive',
       image: 'https://b.thumbs.redditmedia.com/amUXWXfydWmcNl53gdZtOk9GSFoW5V7OJ-BMkvWedcc.png',
     },
@@ -122,6 +123,7 @@ export const getPosts = () => [ // eslint-disable-line
       posted_at: '12 hours ago',
     },
     kuluster: {
+      color: 'orange',
       name: 'AskProgramming',
       image: 'https://b.thumbs.redditmedia.com/IMuq3QpuUwXjEjXcDgIGgqOJz2j5ft1g9gEnFTFQPgQ.png',
     },
@@ -169,6 +171,7 @@ export const getPosts = () => [ // eslint-disable-line
       posted_at: '2 days ago',
     },
     kuluster: {
+      color: 'red',
       name: 'askscience',
       image: 'https://b.thumbs.redditmedia.com/amUXWXfydWmcNl53gdZtOk9GSFoW5V7OJ-BMkvWedcc.png',
     },
