@@ -10,11 +10,12 @@ import {
   faSave,
   faBan,
   faFlag,
+  faReply,
 } from '@fortawesome/free-solid-svg-icons';
 import { Dialog } from '@blueprintjs/core';
 import Comment from 'components/comment/Comment.component';
 
-library.add(faTimes, faCommentAlt, faShare, faSave, faBan, faFlag);
+library.add(faTimes, faCommentAlt, faShare, faSave, faBan, faFlag, faReply);
 
 class PostDialog extends Component {
   /* Post Getters */

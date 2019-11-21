@@ -29,7 +29,62 @@ export const getPosts = () => [ // eslint-disable-line
           comment_count: 0,
           vote_count: 1321,
           posted_at: '3 hours ago',
-        }
+        },
+        vote: 1,
+        comments: [
+          {
+            id: 'qewqadsadada',
+            user: {
+              name: 'my_prolapse',
+            },
+            comment: {
+              content: "And now I'm sad.",
+              comment_count: 0,
+              vote_count: 121,
+              posted_at: '2 hours ago',
+            },
+            vote: -1,
+            comments: [
+              {
+                id: 'qewqadsadada',
+                user: {
+                  name: 'my_prolapse',
+                },
+                comment: {
+                  content: "And now I'm sad.",
+                  comment_count: 0,
+                  vote_count: 121,
+                  posted_at: '2 hours ago',
+                },
+                vote: -1,
+              }, {
+                id: 'qewqadsadada',
+                user: {
+                  name: 'my_prolapse',
+                },
+                comment: {
+                  content: "And now I'm sad.",
+                  comment_count: 0,
+                  vote_count: 121,
+                  posted_at: '2 hours ago',
+                },
+                vote: -1,
+              },
+            ],
+          }, {
+            id: 'qewqadsadada',
+            user: {
+              name: 'my_prolapse',
+            },
+            comment: {
+              content: "And now I'm sad.",
+              comment_count: 0,
+              vote_count: 121,
+              posted_at: '2 hours ago',
+            },
+            vote: -1,
+          },
+        ],
       }, {
         id: 'qewqadsadada',
         user: {
@@ -40,7 +95,8 @@ export const getPosts = () => [ // eslint-disable-line
           comment_count: 0,
           vote_count: 121,
           posted_at: '2 hours ago',
-        }
+        },
+        vote: -1,
       }
     ]
   }, {

@@ -1,3 +1,141 @@
 .knc-comment-component {
   
+  .knc-comment-top {
+
+    .knc-comment-info {
+      align-items: center;
+      display: flex;
+
+      .knc-comment-info-user {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .knc-comment-info-timestamp {
+        color: $gray3;
+        font-size: 12px;
+        margin-left: 6px;
+      }
+    }
+  }
+
+  .knc-comment-middle {
+
+    .knc-comment-content {
+      font-size: 16px;
+    }
+  }
+
+  .knc-comment-bottom {
+    align-items: center;
+    display: flex;
+
+    .knc-comment-vote-buttons {
+      align-items: center;
+      display: flex;
+      margin-left: -3px;
+      
+      .knc-comment-vote-button {
+        background: inherit;
+        border: none;
+        border-radius: 3px;
+        color: $gray5;
+        font-size: 16px;
+        padding: 3px 4px;
+      }
+
+      .knc-comment-vote-button:hover {
+        background-color: $light-gray3;
+        color: $gray3;
+      }
+
+      .knc-comment-vote-button-selected {
+        color: $brand-color;
+      }
+
+      .knc-comment-vote-button-selected:hover {
+        color: $brand-color;
+      }
+
+      .knc-comment-vote-count {
+        color: $text-color;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
+        margin: 0 4px;
+        margin-top: 0.5px;
+      }
+    }
+
+    .knc-comment-bottom-button-container {
+      margin-left: 8px;
+
+      .knc-comment-bottom-button {
+        align-items: center;
+        background: inherit;
+        border: none;
+        color: $gray3;
+        display: flex;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 2px 4px;
+
+        .knc-comment-bottom-button-text {
+          margin-left: 6px;
+        }
+      }
+
+      .knc-comment-bottom-button:hover {
+        background-color: $light-gray3;
+      }
+    }
+  }
+
+  .knc-comment-comments {
+    margin-top: 16px;
+
+    .knc-comment-comments-comment {
+      border-left: 2px solid $light-gray3;
+      display: flex;
+      margin-left: 8px;
+      height: 100%;
+
+      .knc-comment-comments-comment-left-space {
+        height: 100%;
+        padding-right: 8px;
+        width: 32px;
+
+        .knc-comment-comments-comment-left-space-top {
+          border-bottom: 2px solid $light-gray3;
+          height: 14px;
+        }
+
+        .knc-comment-comments-comment-left-space-bottom {
+          height: 100%;
+        }
+      }
+    }
+    
+    .knc-comment-comments-comment:not(:last-child) {
+
+      .knc-comment-comments-comment-content {
+        margin-bottom: 8px;
+      }
+    }
+
+    .knc-comment-comments-comment:last-child {
+      border-left: none;
+      
+      .knc-comment-comments-comment-left-space {
+        
+        .knc-comment-comments-comment-left-space-top {
+          border-left: 2px solid $light-gray3;
+        }
+      }
+    }
+  }
+}
+
+.knc-comment-component:not(:last-child) {
+  margin-bottom: 16px;
 }
