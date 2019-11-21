@@ -4,6 +4,7 @@ import Sidebar from 'components/sidebar/Sidebar.component';
 import Topbar from 'components/topbar/Topbar.component';
 import NotFound from 'modules/notfound/NotFound.component';
 import FeedContainer from 'modules/feed/Feed.container';
+import KulusterContainer from 'modules/kuluster/Kuluster.container';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
             <div className="knc-app-content">
               <Switch>
                 <Route exact path="/feed" component={FeedContainer} />
+                <Route path="/k/:kulusterName" component={KulusterContainer} />
                 <Route component={NotFound} />
               </Switch>
             </div>

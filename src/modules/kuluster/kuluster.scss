@@ -1,0 +1,88 @@
+.knc-kuluster-module {
+  padding-bottom: 96px;
+
+  .knc-kuluster-info {
+    background: linear-gradient(306deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 33.333%,rgba(85, 85, 85, 0.05) 33.333%, rgba(85, 85, 85, 0.05) 66.666%,rgba(255, 255, 255, 0.05) 66.666%, rgba(255, 255, 255, 0.05) 99.999%),linear-gradient(353deg, rgba(81, 81, 81, 0.05) 0%, rgba(81, 81, 81, 0.05) 33.333%,rgba(238, 238, 238, 0.05) 33.333%, rgba(238, 238, 238, 0.05) 66.666%,rgba(32, 32, 32, 0.05) 66.666%, rgba(32, 32, 32, 0.05) 99.999%),linear-gradient(140deg, rgba(192, 192, 192, 0.05) 0%, rgba(192, 192, 192, 0.05) 33.333%,rgba(109, 109, 109, 0.05) 33.333%, rgba(109, 109, 109, 0.05) 66.666%,rgba(30, 30, 30, 0.05) 66.666%, rgba(30, 30, 30, 0.05) 99.999%),linear-gradient(189deg, rgba(77, 77, 77, 0.05) 0%, rgba(77, 77, 77, 0.05) 33.333%,rgba(55, 55, 55, 0.05) 33.333%, rgba(55, 55, 55, 0.05) 66.666%,rgba(145, 145, 145, 0.05) 66.666%, rgba(145, 145, 145, 0.05) 99.999%),linear-gradient(90deg, rgb(9, 201, 186),rgb(18, 131, 221));
+    border-radius: 3px 3px 0 0;
+    display: flex;
+    height: 64px;
+    padding: 16px 16px 4px 16px;
+
+    .knc-kuluster-info-left {
+
+      .knc-kuluster-image-container {
+        background: transparent;
+        border: 4px solid #fff;
+        border-radius: 50%;
+        height: 104px;
+        padding: 0px;
+  
+        .knc-kuluster-image {
+          background-color: #fff;
+          border-radius: 50%;
+          height: 96px;
+        }
+      }
+    }
+
+    .knc-kuluster-info-right {
+      display: flex;
+      width: 100%;
+
+      .knc-kuluster-info-kuluster-name {
+        color: #fff;
+        font-size: 28px;
+        font-weight: 500;
+        margin-left: 24px;
+      }
+
+      .knc-kuluster-info-subscribe-button-container {
+        margin-left: auto;
+        
+        .knc-kuluster-info-subscribe-button {
+          background: none;
+          border: none;
+          color: #fff;
+          font-size: 16px;
+        }
+
+        .knc-kuluster-info-subscribe-button:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+
+  .knc-kuluster-info-bottom {
+    background-color: $light-gray3;
+
+    .knc-kuluster-info-bottom-content {
+      color: $gray3;
+      display: flex;
+      padding: 6px 16px 6px 144px;
+      width: 100%;
+
+      .knc-kuluster-info-bottom-subscriber-count {
+        
+      }
+
+      .knc-kuluster-info-bottom-created-at {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .knc-kuluster-content {
+    display: flex;
+    padding: 48px 0 16px 0;
+
+    .knc-kuluster-posts {
+
+    }
+
+    .knc-kuluster-rest-container {
+      margin-left: 16px;
+      width: 264px;
+    }
+  }
+}
