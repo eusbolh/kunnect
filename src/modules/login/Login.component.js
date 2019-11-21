@@ -5,7 +5,7 @@ import KunnectLogin from 'components/auth/login/Login.component';
 class Login extends Component {
   login = (values) => {
     console.log('Submitted values are: ', values);
-    this.props.history.push('/');
+    this.props.history.push('/feed');
   }
 
   render() {
