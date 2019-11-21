@@ -18,6 +18,10 @@ export const getPosts = () => [ // eslint-disable-line
       vote_count: 5914,
       posted_at: '9 hours ago',
     },
+    kuluster: {
+      name: 'explainlikeimfive',
+      image: 'https://b.thumbs.redditmedia.com/amUXWXfydWmcNl53gdZtOk9GSFoW5V7OJ-BMkvWedcc.png',
+    },
     user: {
       name: 'eusbolh',
     },
@@ -125,6 +129,10 @@ export const getPosts = () => [ // eslint-disable-line
       vote_count: 1231,
       posted_at: '12 hours ago',
     },
+    kuluster: {
+      name: 'explainlikeimfive',
+      image: 'https://b.thumbs.redditmedia.com/amUXWXfydWmcNl53gdZtOk9GSFoW5V7OJ-BMkvWedcc.png',
+    },
     user: {
       name: 'SuperMarioKDV',
     },
@@ -167,6 +175,10 @@ export const getPosts = () => [ // eslint-disable-line
       comment_count: 1,
       vote_count: 123,
       posted_at: '2 days ago',
+    },
+    kuluster: {
+      name: 'explainlikeimfive',
+      image: 'https://b.thumbs.redditmedia.com/amUXWXfydWmcNl53gdZtOk9GSFoW5V7OJ-BMkvWedcc.png',
     },
     user: {
       name: 'eusbolh',

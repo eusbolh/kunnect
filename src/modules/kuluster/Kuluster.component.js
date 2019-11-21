@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getKulusterInfo } from './Kuluster.config';
-import { getPosts } from 'modules/feed/Feed.config';
+import { getKulusterInfo, getPosts } from './Kuluster.config';
 import { Button } from 'nysa-ui';
 import Post from 'components/post/Post.component';
 
@@ -52,7 +51,7 @@ class Kuluster extends Component {
         <div className="knc-kuluster-content">
           <div className="knc-kuluster-posts">
             {
-              posts.map(post => <Post data={post} key={`knc-kuluster-posts-${post.id}`} />)
+              posts.map(post => <Post data={post} isKulusterPost={true} key={`knc-kuluster-posts-${post.id}`} />)
             }
           </div>
           <div className="knc-kuluster-rest-container">hello</div>

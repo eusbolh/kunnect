@@ -87,6 +87,35 @@
     }
   }
 
+  .knc-post-top--kuluster {
+    background: linear-gradient(306deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 33.333%,rgba(85, 85, 85, 0.05) 33.333%, rgba(85, 85, 85, 0.05) 66.666%,rgba(255, 255, 255, 0.05) 66.666%, rgba(255, 255, 255, 0.05) 99.999%),linear-gradient(353deg, rgba(81, 81, 81, 0.05) 0%, rgba(81, 81, 81, 0.05) 33.333%,rgba(238, 238, 238, 0.05) 33.333%, rgba(238, 238, 238, 0.05) 66.666%,rgba(32, 32, 32, 0.05) 66.666%, rgba(32, 32, 32, 0.05) 99.999%),linear-gradient(140deg, rgba(192, 192, 192, 0.05) 0%, rgba(192, 192, 192, 0.05) 33.333%,rgba(109, 109, 109, 0.05) 33.333%, rgba(109, 109, 109, 0.05) 66.666%,rgba(30, 30, 30, 0.05) 66.666%, rgba(30, 30, 30, 0.05) 99.999%),linear-gradient(189deg, rgba(77, 77, 77, 0.05) 0%, rgba(77, 77, 77, 0.05) 33.333%,rgba(55, 55, 55, 0.05) 33.333%, rgba(55, 55, 55, 0.05) 66.666%,rgba(145, 145, 145, 0.05) 66.666%, rgba(145, 145, 145, 0.05) 99.999%),linear-gradient(90deg, $light-gray5, $light-gray4);
+    border-bottom: 1px solid $border-color;
+    border-radius: 3px 3px 0 0;
+    display: flex;
+    margin-bottom: 16px;
+    padding: 8px 12px 4px 12px;
+          
+    .knc-post-info-kuluster-name {
+      color: $text-color !important;
+      font-weight: 500 !important;
+
+      .knc-post-info-kuluster-name-link {
+        color: $text-color !important;
+        font-weight: 500 !important;
+      }
+    }
+    
+    .knc-post-info-user-name-and-posted-at {
+      color: $text-color !important;
+      font-weight: 500 !important;
+
+      .knc-post-info-user-name-and-posted-at-link {
+        color: $text-color !important;
+        font-weight: 500 !important;
+      }
+    }
+  }
+
   .knc-post-middle {
     padding: 12px 16px;
 

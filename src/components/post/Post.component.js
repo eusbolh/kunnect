@@ -77,7 +77,7 @@ class Post extends Component {
     return (
       <>
         <div className="knc-post-component" onClick={() => this.openDialog('Post')}>
-          <div className="knc-post-top">
+          <div className={`knc-post-top${props.isKulusterPost ? ' knc-post-top--kuluster' : ''}`}>
             <div className="knc-post-top-left">
               <div className="knc-post-info">
                 <div className="knc-post-info-left">
@@ -102,7 +102,6 @@ class Post extends Component {
             </div>
             <div className="knc-post-top-right">
               <div className="knc-post-info-user-name-and-posted-at">
-                <span>&nbsp;·&nbsp;</span>
                 <span>posted by</span>
                 <span>&nbsp;</span>
                 <Link
@@ -162,10 +161,11 @@ class Post extends Component {
 
 Post.propTypes = {
   data: PropTypes.shape({}).isRequired,
+  isKulusterPost: PropTypes.bool,
 };
 
 Post.defaultProps = {
-
+  isKulusterPost: false,
 };
 
 export default withRouter(Post);
