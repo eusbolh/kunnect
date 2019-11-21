@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withFormik } from 'formik';
 import { Button } from 'nysa-ui';
 import FormTextInput from 'components/forms/FormTextInput';
+import Dropdown from 'components/dropdown/Dropdown.component';
 
 class CreatePost extends Component {
   handleSubmit = (e) => {
@@ -20,8 +21,16 @@ class CreatePost extends Component {
     } = this.props;
     return (
       <form autoComplete="off" onSubmit={this.handleSubmit}>
-        <div className="m-edit-address-form">
+        <div className="m-create-post-form">
           <div className="knc-form-section">
+            <div className="knc-form-section-title">Kuluster</div>
+            <div className="knc-form-section-content">
+              <div style={{ width: '100%' }}>
+                <Dropdown
+                  options={['explainlikeimfive', 'AskProgramming', 'askscience']}
+                />
+              </div>
+            </div>
             <div className="knc-form-section-title">Title</div>
             <div className="knc-form-section-content">
               <div style={{ width: '100%' }}>
