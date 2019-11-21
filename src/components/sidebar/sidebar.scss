@@ -1,0 +1,51 @@
+.knc-sideb-component {
+  align-items: center;
+  background-color: $brand-color;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  padding: 24px 0;
+  width: inherit;
+
+  .knc-sideb-brand-logo-container {
+
+    .knc-sideb-brand-logo {
+      width: 24px;
+    }
+  }
+
+  .knc-sideb-menus {
+    margin-top: 96px;
+    width: inherit;
+  }
+
+  .knc-sideb-menu {
+    align-items: center;
+    background-color: inherit;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    height: 50px;
+    justify-content: center;
+    padding: 0;
+    width: inherit;
+  }
+
+  .knc-sideb-menu:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  .knc-sideb-menu:hover {
+    background-color: #f0f71750;
+    border-left: 3px solid $brand-color-inverse;
+    color: $brand-color-inverse;
+    padding-right: 3px;
+  }
+
+  .knc-sideb-help-menus {
+    margin-top: auto;
+    width: inherit;
+  }
+}

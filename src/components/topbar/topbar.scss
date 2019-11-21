@@ -1,0 +1,73 @@
+.knc-topbr-component {
+  align-items: center;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  height: inherit;
+  padding: 0 24px;
+
+  .knc-topbr-divider {
+    background-color: $light-gray4;
+    height: 20px;
+    margin: 0 12px;
+    width: 2px;
+  }
+
+  .knc-topbr-left-side {
+
+  }
+
+  .knc-topbr-right-side {
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+
+    .knc-topbr-button-container {
+
+      .knc-topbr-create-post-button {
+        color: $brand-color;
+        font-size: 16px;
+        padding: 8px;
+      }
+
+      .knc-topbr-create-post-button:hover {
+        background-color: $light-gray4;
+      }
+    }
+
+    .knc-topbr-user-box-container {
+      
+      .knc-topbr-user-box {
+        border-radius: 3px;
+        cursor: pointer;
+        display: flex;
+        padding: 6px;
+
+        .knc-topbr-user-box-left-side {
+          padding-right: 8px;
+          text-align: right;
+
+          .knc-topbr-user-box-user-name {
+            color: $text-color;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 14px;
+          }
+
+          .knc-topbr-user-box-karma {
+            color: $gray3;
+            font-size: 12px;
+            line-height: 12px;
+          }
+        }
+
+        .knc-topbr-user-box-right-side {
+          margin-left: auto;
+        }
+      }
+
+      .knc-topbr-user-box:hover {
+        background-color: $light-gray4;
+      }
+    }
+  }
+}

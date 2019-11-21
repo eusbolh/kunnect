@@ -1,0 +1,133 @@
+.knc-authb-component {
+  background-color: #fafafa;
+  border-radius: 3px;
+  display: flex;
+  height: 750px;
+  width: 1000px;
+
+  .knc-authb-ad-container {
+    border-radius: 3px 0 0 3px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 36px 72px 36px;
+    width: 400px;
+
+    .knc-authb-brand-logo-container {
+      display: flex;
+      justify-content: flex-end;
+      
+      .knc-authb-brand-logo {
+        height: 20px;
+        opacity: .9;
+      }
+    }
+
+    .knc-authb-ad-text-container {
+      margin-top: auto;
+
+      .knc-authb-ad-title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        opacity: .9;
+      }
+
+      .knc-authb-ad-subtitle {
+        font-size: 14px;
+        font-weight: 400;
+        opacity: .7;
+      }
+    }
+  }
+
+  .--background-1 {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 100%), url('/common/assets/authb_image_1.jpg');
+    background-position: top;
+    background-size: cover;
+  }
+
+  .--background-2 {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 100%), url('/common/assets/authb_image_2.jpg');
+    background-position: top;
+    background-size: cover;
+  }
+
+  .knc-authb-form-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 108px 36px 72px 36px;
+    width: 600px;
+
+    .knc-authb-form-head {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 36px;
+     
+      .knc-authb-brand-logo-container {
+        align-items: center;
+        border-radius: 32px;
+        display: flex;
+        height: 64px;
+        margin-bottom: 36px;
+        justify-content: center;
+        width: 64px;
+
+        .knc-authb-brand-logo {
+          height: 40px;
+        }
+      }
+
+      .knc-authb-form-title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .knc-authb-form-subtitle {
+        color: $dark-gray5;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+
+    .knc-authb-form-content {
+      margin-bottom: 36px;
+      width: 400px;
+    }
+
+    .knc-authb-redirect-container {
+      display: flex;
+
+      .knc-authb-redirect-question {
+        color: $dark-gray5;
+        font-size: 16px;
+      }
+
+      .knc-authb-redirect-text {
+        font-size: 16px;
+        font-weight: 500;
+        margin-left: 4px;
+        margin-top: 1px;
+      }
+    }
+
+    .knc-authb-footer {
+      display: flex;
+      margin-top: auto;
+
+      .knc-authb-footer-element {
+        color: $dark-gray5;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      
+      .knc-authb-footer-element:not(:first-child) {
+        margin-left: 12px;
+      }
+    }
+  }
+}

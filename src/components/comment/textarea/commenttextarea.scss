@@ -1,0 +1,117 @@
+.knc-comment-text-area-component {
+  margin-bottom: 12px;
+
+  .knc-comment-text-area-label {
+    display: flex;
+
+    .knc-comment-text-area-container {
+      margin-left: auto;
+      position: relative; 
+
+      .knc-comment-text-area {
+        display: flex;
+        flex-direction: column;
+  
+        input, textarea {
+          border: 1px solid $light-gray3;
+          border-radius: 3px 3px 0 0;
+          color: $text-color;
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          padding: 6px 32px 6px 8px;
+          line-height: 18px;
+        }
+    
+        input:focus, textarea:focus {
+          border-color: $gray5;
+        }
+    
+        ::placeholder {
+          color: $gray1;
+        }
+
+        input:disabled, textarea:disabled {
+          background-color: $light-gray4;
+          border: none;
+          color: $gray5;
+          cursor: not-allowed;
+        }
+      }
+
+      .knc-comment-text-area--error {
+
+        input {
+          border-color: $red4;
+        }
+
+        input:focus {
+          border-color: $red4;
+        }
+      }
+
+      .knc-comment-text-area-icon {
+        position: absolute;
+        right: 10px;
+        top: 6px;
+      }
+
+      .knc-comment-text-area-icon--success {
+        color: $green4;
+      }
+
+      .knc-comment-text-area-icon--error {
+        color: $red4;
+      }
+    }
+
+    .knc-comment-text-area-single {
+      width: 100%;
+    }
+  }
+
+  .knc-comment-text-area-error {
+    align-items: center;
+    color: $red4;
+    display: flex;
+    font-size: 12px;
+    margin-top: 2px;
+
+    .knc-comment-text-area-error-icon {
+      margin-right: 3px;
+      margin-bottom: 2px;
+    }
+  }
+
+  .knc-comment-text-area-buttons {
+    border-radius: 0 0 3px 3px;
+    display: flex;
+    padding: 8px 0;
+
+    .knc-comment-text-area-button-container {
+
+      .knc-comment-text-area-cancel-button {
+        background-color: $gray4;
+        border: 1px solid $gray3;
+        color: #fff;
+        margin-left: 8px;
+        width: 100px;
+      }
+
+      .knc-comment-text-area-cancel-button:hover {
+        background-color: $gray3;
+        border: 1px solid $gray2;
+      }
+      
+      .knc-comment-text-area-reply-button {
+        font-weight: bold;
+        width: 100px;
+      }
+    }
+  }
+}
+
+textarea {
+  box-sizing: border-box;
+  height: 30px;
+  resize: none;
+}
