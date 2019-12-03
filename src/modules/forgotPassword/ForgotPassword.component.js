@@ -4,7 +4,8 @@ import ForgotPasswordForm from 'components/forms/auth/ForgotPassword.form';
 
 class ForgotPassword extends Component {
   sendPasswordResetLink = (values) => {
-    console.log(values);
+    this.props.forgotPassword(values);
+    this.props.history.push('/login');
   }
 
   render() {
@@ -16,7 +17,7 @@ class ForgotPassword extends Component {
             <div className="knc-forgot-password-box-description">Enter your email address and we will send you a password reset link in a couple minutes.</div>
           </div>
           <div className="knc-forgot-password-box-content">
-            <ForgotPasswordForm onConfirm={this.sendPasswordResetLink} />
+            <ForgotPasswordForm onSubmit={this.sendPasswordResetLink} />
           </div>
         </div>
       </div>
@@ -26,6 +27,7 @@ class ForgotPassword extends Component {
 
 ForgotPassword.propTypes = {
   /* Functions */
+  forgotPassword: PropTypes.func.isRequired,
 };
 
 ForgotPassword.defaultProps = {

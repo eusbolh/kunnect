@@ -49,7 +49,12 @@ class ForgotPassword extends Component {
           </div>
         </div>
         <div className="knc-form-buttons">
-          <Button intent="primary" text="Send reset password link" type="submit" />
+          <Button
+            disabled={!(props.values && props.values.username && props.values.email) || Object.keys(props.errors).length !== 0}
+            intent="primary"
+            text="Send reset password link"
+            type="submit"
+          />
         </div>
       </form>
     );
