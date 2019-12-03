@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import NotificationsContainer from 'common/notifications/Notifications.container';
 import App from 'modules/app/App';
 import LoginContainer from 'modules/login/Login.container';
 import RegisterContainer from 'modules/register/Register.container';
@@ -11,13 +12,15 @@ import EnsureLoggedInContainer from './ensureLoggedIn/EnsureLoggedIn.container';
 
 const Routes = () => (
   <RouteControllerContainer>
-    <Switch>
-      <Route exact path="/login" component={LoginContainer} />
-      <Route exact path="/forgot-password" component={ForgotPasswordContainer} />
-      <Route exact path="/reset-password" component={ResetPasswordContainer} />
-      <Route exact path="/register" component={RegisterContainer} />
-      <Route component={App} />
-    </Switch>
+    <NotificationsContainer>
+      <Switch>
+        <Route exact path="/login" component={LoginContainer} />
+        <Route exact path="/forgot-password" component={ForgotPasswordContainer} />
+        <Route exact path="/reset-password" component={ResetPasswordContainer} />
+        <Route exact path="/register" component={RegisterContainer} />
+        <Route component={App} />
+      </Switch>
+    </NotificationsContainer>
   </RouteControllerContainer>
 );
 
