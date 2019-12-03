@@ -18,7 +18,9 @@ const Routes = () => (
         <Route exact path="/forgot-password" component={ForgotPasswordContainer} />
         <Route exact path="/reset-password" component={ResetPasswordContainer} />
         <Route exact path="/register" component={RegisterContainer} />
-        <Route component={App} />
+        <EnsureLoggedInContainer>
+          <Route component={App} />
+        </EnsureLoggedInContainer>
       </Switch>
     </NotificationsContainer>
   </RouteControllerContainer>
