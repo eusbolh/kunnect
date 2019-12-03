@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import Notifications from './Notifications.component';
 
 const mapStateToProps = state => ({
-  notifications: state.common && state.common.notifications,
+  notifications: state.notifications && state.notifications.notifications,
 });
 
 const mapDispatchToProps = dispatch => (

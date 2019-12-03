@@ -4,8 +4,12 @@ import PropTypes from 'prop-types';
 class Notifications extends Component {
   renderNotification = (notification) => {
     switch (notification.type) {
+      case 'login-error':
+        console.log(notification);
+        return null;
       default:
-        return 'default';
+        console.warn(`Unknown notification type is given: ${notification.type}`);
+        return null;
     }
   }
 
