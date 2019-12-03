@@ -1,4 +1,14 @@
-.m-kuluster-list-module {
+.knc-kuluster-list-module {
   padding-bottom: 96px;
-  width: 720px;
+  display: flex;
+  width: 1000px;
+
+  .knc-kuluster-list-posts {
+    width: 720px;
+  }
+
+  .knc-kuluster-list-rest-container {
+    margin-left: 16px;
+    width: 264px;
+  }
 }

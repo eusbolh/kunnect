@@ -59,14 +59,6 @@ class Kuluster extends Component {
               <Route component={KulusterListContainer} />
             </Switch>
           </div>
-          <div className="knc-kuluster-rest-container">
-            <Box title="Kuluster Rules">
-              Be Nice. All submissions must seek objective explanations3. Top-level comments must be written explanations. Explain for laypeople (but not actual 5-year-olds). ELI5 is for factual information, not opinions. Loaded questions are not allowed. Search before posting; don't repeat old posts. Don't guess. Don't try to trick the bot. Posts must begin with "ELI5:"
-            </Box>
-            <Box title="Advertisement">
-              test advertisement
-            </Box>
-          </div>
         </div>
       </div>
     );
