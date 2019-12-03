@@ -6,11 +6,13 @@ import RegisterContainer from 'modules/register/Register.container';
 import NotFound from 'modules/notfound/NotFound.component';
 import RouteControllerContainer from './controller/RouteController.container';
 import EnsureLoggedInContainer from './ensureLoggedIn/EnsureLoggedIn.container';
+import ForgotPasswordContainer from 'modules/forgotPassword/ForgotPassword.container';
 
 const Routes = () => (
   <RouteControllerContainer>
     <Switch>
       <Route exact path="/login" component={LoginContainer} />
+      <Route exact path="/forgot-password" component={ForgotPasswordContainer} />;
       <Route exact path="/register" component={RegisterContainer} />
       <Route component={App} />
     </Switch>
