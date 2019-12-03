@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loginAPI, forgotPasswordAPI } from 'common/api/Api.functions';
+import { loginAPI, forgotPasswordAPI, changePasswordAPI } from 'common/api/Api.functions';
 import { getResponseData } from 'common/api/Api.helpers';
 
 export const USER_ACTIONS = {
@@ -10,6 +10,27 @@ export const USER_ACTIONS = {
   LOGIN: 'U_LOGIN',
   VERIFY_EMAIL: 'U_VERIFY_EMAIL',
 };
+
+/* Change Password */
+
+const changePasswordSuccess = data => ({
+  type: USER_ACTIONS.CHANGE_PASSWORD,
+  payload: data,
+});
+
+export const changePassword = data => dispatch => (
+  axios.put(changePasswordAPI(), {
+    key: data.key,
+    password: data.password,
+    username: data.username,
+  })
+    .then((response) => {
+      dispatch(changePasswordSuccess(getResponseData(response)));
+    })
+    .catch((error) => {
+      throw (error);
+    })
+);
 
 /* Forgot Password */
 
@@ -24,7 +45,7 @@ export const forgotPassword = data => dispatch => (
     username: data.username,
   })
     .then((response) => {
-      dispatch(forgotPasswordSuccess);
+      dispatch(forgotPasswordSuccess(getResponseData(response)));
     })
     .catch((error) => {
       throw (error);

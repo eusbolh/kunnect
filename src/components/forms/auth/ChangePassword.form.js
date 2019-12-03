@@ -5,7 +5,7 @@ import { withFormik } from 'formik';
 import { Button, Link } from 'nysa-ui';
 import FormTextInput from '../FormTextInput';
 
-class ForgotPassword extends Component {
+class ChangePassword extends Component {
   handleSubmit = (e) => {
     const { ...props } = this.props;
     e.preventDefault(); // TODO: Why do we do this?
@@ -17,17 +17,18 @@ class ForgotPassword extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="knc-form-section">
-          <div className="knc-form-section-title">Your Email Address</div>
+          <div className="knc-form-section-title">Your New Password</div>
           <div className="knc-form-section-content">
             <div style={{ width: '100%' }}>
               <FormTextInput
-                error={props.errors.email}
-                name="email"
-                placeholder="Your email address"
+                error={props.errors.password}
+                name="password"
+                placeholder="Your new password"
                 handleBlur={props.handleBlur}
                 handleChange={props.handleChange}
-                touched={props.touched.email}
-                value={props.values.email}
+                touched={props.touched.password}
+                type="password"
+                value={props.values.password}
               />
             </div>
           </div>
@@ -50,7 +51,7 @@ class ForgotPassword extends Component {
         </div>
         <div className="knc-form-buttons">
           <Button
-            disabled={!(props.values && props.values.username && props.values.email) || Object.keys(props.errors).length !== 0}
+            disabled={!(props.values && props.values.username && props.values.password) || Object.keys(props.errors).length !== 0}
             intent="primary"
             text="Send reset password link"
             type="submit"
@@ -61,7 +62,7 @@ class ForgotPassword extends Component {
   }
 }
 
-ForgotPassword.propTypes = {
+ChangePassword.propTypes = {
   /* Functions */
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
@@ -72,23 +73,21 @@ ForgotPassword.propTypes = {
   values: PropTypes.shape({}).isRequired,
 };
 
-ForgotPassword.defaultProps = {
+ChangePassword.defaultProps = {
 };
 
-const ForgotPasswordForm = withFormik({
+const ChangePasswordForm = withFormik({
   validate: (values) => {
     const errors = {};
     if (!values.username) {
       errors.username = 'Username is required!';
     }
-    if (!values.email) {
-      errors.email = 'Email is required!';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
+    if (!values.password) {
+      errors.password = 'New password is required!';
     }
     return errors;
   },
-  displayName: 'ForgotPasswordForm',
-})(ForgotPassword);
+  displayName: 'ChangePasswordForm',
+})(ChangePassword);
 
-export default withRouter(ForgotPasswordForm);
+export default withRouter(ChangePasswordForm);
