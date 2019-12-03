@@ -19,7 +19,10 @@ class Login extends Component {
           redirectText="Sign up!"
           redirectURL="/register"
         >
-          <LoginForm onSubmit={this.onSubmit} />
+          <LoginForm
+            isWaitingResponse={this.props.isWaitingResponse}
+            onSubmit={this.onSubmit}
+          />
         </AuthBase>
       </div>
     );
@@ -27,10 +30,13 @@ class Login extends Component {
 }
 
 Login.propTypes = {
+  /* Objects */
+  isWaitingResponse: PropTypes.bool,
   login: PropTypes.func.isRequired,
 };
 
 Login.defaultProps = {
+  isWaitingResponse: false,
 };
 
 export default Login;

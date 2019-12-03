@@ -34,7 +34,7 @@ class FormTextInput extends Component {
                       placeholder={props.placeholder}
                       rows={props.minLines}
                       style={{ height: `${props.minLines * 16 + 16}px` }}
-                      type="text"
+                      type={props.type}
                       value={props.value}
                     />
                   ) : (
@@ -44,7 +44,7 @@ class FormTextInput extends Component {
                       placeholder={props.placeholder || 'Enter preset name'}
                       onBlur={props.handleBlur}
                       onChange={props.handleChange}
-                      type="text"
+                      type={props.type}
                       value={props.value || ''}
                     />
                   )
@@ -92,6 +92,7 @@ FormTextInput.propTypes = {
   maxLines: PropTypes.number,
   placeholder: PropTypes.string.isRequired,
   touched: PropTypes.bool,
+  type: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -101,6 +102,7 @@ FormTextInput.defaultProps = {
   minLines: 4,
   maxLines: 4,
   touched: null,
+  type: 'text',
   value: undefined,
 };
 

@@ -1,0 +1,17 @@
+.knc-radio-group-component {
+  display: flex;
+  margin-bottom: 16px;
+
+  .bp3-control.bp3-inline {
+    margin-right: 16px;
+  }
+  
+  .bp3-control {
+    margin-bottom: 0;
+  }
+
+  .bp3-control input:checked ~ .bp3-control-indicator {
+    background-color: $green4;
+    box-shadow: none;
+  }
+}

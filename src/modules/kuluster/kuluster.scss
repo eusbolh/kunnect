@@ -78,13 +78,11 @@
     display: flex;
     padding: 48px 0 16px 0;
 
-    .knc-kuluster-posts {
-
-    }
-
-    .knc-kuluster-rest-container {
-      margin-left: 16px;
-      width: 264px;
+    .knc-kuluster-content-container {
+      width: 1000px;
     }
   }
 }
+
+@import './list/kuluster.list.scss';
+@import './post/kuluster.post.scss';

@@ -11,13 +11,24 @@ import {
   faBan,
   faFlag,
   faReply,
+  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { Dialog } from '@blueprintjs/core';
 import Comment from 'components/comment/Comment.component';
+import CommentTextArea from 'components/comment/textarea/CommentTextArea.component';
 
-library.add(faTimes, faCommentAlt, faShare, faSave, faBan, faFlag, faReply);
+library.add(faTimes, faCommentAlt, faShare, faSave, faBan, faFlag, faReply, faChevronDown);
 
 class PostDialog extends Component {
+  state = {
+    isReplySectionOpen: false,
+    reply: '',
+  }
+  
+  /* Reply Helpers */
+
+  onReplyChange = event => this.setState({ reply: event.target.value });
+
   /* Post Getters */
 
   getCommentCount = post => post.post && post.post.comment_count;
@@ -180,7 +191,32 @@ class PostDialog extends Component {
             </div>
           </div>
           <div className="knc-post-dialog-comments">
-            {props.data && props.data.comments.map(comment => <Comment data={comment} key={`knc-post-dialog-comment-${comment && comment.id}`} />)}
+            <div className="knc-post-dialog-comments-post-reply">
+              {
+                this.state.isReplySectionOpen
+                  ? (
+                    <CommentTextArea
+                      handleChange={this.onReplyChange}
+                      name="title"
+                      multiline
+                      onCancel={() => this.setState({ isReplySectionOpen: false })}
+                      onConfirm={() => { console.log(this.state.reply); this.setState({ isReplySectionOpen: false, reply: '' }); }}
+                      placeholder="What are your thoughts?"
+                      value={this.state.reply}
+                    />
+                  ) : (
+                    <Button
+                      classes="knc-post-dialog-comments-post-reply-empty"
+                      onClick={() => this.setState({ isReplySectionOpen: true })}
+                    >
+                      What are your thoughts?
+                    </Button>
+                  )
+              }
+            </div>
+            <div className="knc-post-dialog-comments-content">
+              {props.data && props.data.comments.map(comment => <Comment data={comment} key={`knc-post-dialog-comment-${comment && comment.id}`} />)}
+            </div>
           </div>
         </div>
       </Dialog>
