@@ -1,0 +1,24 @@
+.knc-login-form {
+
+  .knc-login-form-password-section {
+    margin-bottom: 16px;
+
+    .knc-login-form-forgot-password {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 2px;
+
+      .n-link {
+        font-size: 12px;
+      }
+    }
+
+    .knc-login-form-password-input {
+
+    }
+  }
+
+  .knc-form-text-input-component {
+    margin-bottom: 4px;
+  }
+}
