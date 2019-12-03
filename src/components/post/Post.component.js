@@ -45,7 +45,7 @@ class Post extends Component {
 
   openDialog = (dialog) => {
     this.setState({ [`is${dialog}DialogOpen`]: true });
-    window.history.replaceState(null, null, `/feed/${this.getPostID(this.props.data)}`);
+    window.history.replaceState(null, null, `/k/${this.getKulusterName(this.props.data)}/${this.getPostID(this.props.data)}`);
   }
 
   /* Vote Buttons */

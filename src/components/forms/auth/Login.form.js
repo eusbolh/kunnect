@@ -51,7 +51,12 @@ class Login extends Component {
           </div>
         </div>
         <div className="knc-form-buttons">
-          <Button intent="primary" text="Sign In" type="submit" />
+          <Button
+            intent="primary"
+            loading={props.isWaitingResponse}
+            text="Sign In"
+            type="submit"
+          />
         </div>
       </form>
     );
@@ -65,11 +70,13 @@ Login.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   /* Objects */
   errors: PropTypes.shape({}).isRequired,
+  isWaitingResponse: PropTypes.bool,
   touched: PropTypes.shape({}).isRequired,
   values: PropTypes.shape({}).isRequired,
 };
 
 Login.defaultProps = {
+  isWaitingResponse: false,
 };
 
 const LoginForm = withFormik({

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { loginAPI, forgotPasswordAPI, changePasswordAPI } from 'common/api/Api.functions';
-import { getResponseData, getErrorDetails } from 'common/api/Api.helpers';
+import { getResponseData, getErrorDetails, getErrorData } from 'common/api/Api.helpers';
 import { addNotification } from 'common/notifications/Notifications.actions';
 
 export const USER_ACTIONS = {

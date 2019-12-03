@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getKulusterInfo, getPosts } from './Kuluster.config';
 import { Button } from 'nysa-ui';
 import Post from 'components/post/Post.component';
 import Box from 'components/box/Box.component';
+import PostContainer from 'modules/post/Post.container';
+import KulusterListContainer from './list/Kuluster.list.container';
+import KulusterPostContainer from './post/Kuluster.post.container';
 
 class Kuluster extends Component {
   componentDidMount = () => {
@@ -23,7 +27,6 @@ class Kuluster extends Component {
   render() {
     console.log(this.props);
     const kuluster = getKulusterInfo();
-    const posts = getPosts();
     return (
       <div className="knc-kuluster-module">
         <div className="knc-kuluster-info">
@@ -50,10 +53,11 @@ class Kuluster extends Component {
           </div>
         </div>
         <div className="knc-kuluster-content">
-          <div className="knc-kuluster-posts">
-            {
-              posts.map(post => <Post data={post} isKulusterPost={true} key={`knc-kuluster-posts-${post.id}`} />)
-            }
+          <div className="knc-kuluster-content-container">
+            <Switch>
+              <Route exact path="/k/:kulusterName/:postID" component={KulusterPostContainer} />
+              <Route component={KulusterListContainer} />
+            </Switch>
           </div>
           <div className="knc-kuluster-rest-container">
             <Box title="Kuluster Rules">

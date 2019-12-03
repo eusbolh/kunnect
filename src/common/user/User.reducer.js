@@ -5,7 +5,7 @@ export default (state = null, action) => {
     case USER_ACTIONS.FORGOT_PASSWORD:
       return state;
     case USER_ACTIONS.LOGIN:
-      // TODO: Add token to local storage
+      localStorage.setItem('token', action.payload.token);
       return state;
     default:
       return state;

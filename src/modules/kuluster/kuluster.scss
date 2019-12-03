@@ -78,7 +78,7 @@
     display: flex;
     padding: 48px 0 16px 0;
 
-    .knc-kuluster-posts {
+    .knc-kuluster-content-container {
 
     }
 
@@ -88,3 +88,5 @@
     }
   }
 }
+
+@import './post/kuluster.post.scss';
