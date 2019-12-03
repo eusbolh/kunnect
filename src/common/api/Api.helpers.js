@@ -8,11 +8,11 @@ export const makeCancelable = (promise) => {
   let hasCanceled = false;
   const wrappedPromise = new Promise((resolve, reject) => {
     promise.then(
-      (val) => {
+      () => {
         if (hasCanceled) {
           return reject();
         }
-        return resolve(val);
+        return resolve(true);
       },
       () => {
         if (hasCanceled) {

@@ -10,6 +10,13 @@ class Login extends Component {
 
   loginRequestPromise = null;
 
+  componentDidMount = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.props.history.push('/feed');
+    }
+  }
+
   componentWillUnmount = () => {
     if (this.loginRequestPromise && this.loginRequestPromise.cancel) {
       this.loginRequestPromise.cancel();
@@ -21,7 +28,12 @@ class Login extends Component {
     this.loginRequestPromise = makeCancelable(this.props.login(values));
     this.loginRequestPromise
       .promise
-      .then(() => this.setState({ isWaitingResponse: false }))
+      .then((isSucceed) => {
+        this.setState({ isWaitingResponse: false });
+        if (isSucceed) {
+          this.props.history.push('/feed');
+        }
+      })
       .catch(() => null);
   }
 
@@ -40,6 +52,10 @@ class Login extends Component {
 Login.propTypes = {
   /* Functions */
   login: PropTypes.func.isRequired,
+  /* Objects */
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 Login.defaultProps = {
