@@ -26,6 +26,8 @@ class Post extends Component {
 
   getPostContent = post => post.post && post.post.content;
 
+  getPostID = post => post.id;
+
   getPostImage = post => post.post && post.post.image;
 
   getPostTitle = post => post.post && post.post.title;
@@ -36,9 +38,15 @@ class Post extends Component {
 
   /* Dialog Helpers */
 
-  closeDialog = dialog => this.setState({ [`is${dialog}DialogOpen`]: false });
+  closeDialog = dialog => {
+    this.setState({ [`is${dialog}DialogOpen`]: false });
+    window.history.replaceState(null, null, `/feed`);
+  }
 
-  openDialog = dialog => this.setState({ [`is${dialog}DialogOpen`]: true });
+  openDialog = (dialog) => {
+    this.setState({ [`is${dialog}DialogOpen`]: true });
+    window.history.replaceState(null, null, `/feed/${this.getPostID(this.props.data)}`);
+  }
 
   /* Vote Buttons */
 
