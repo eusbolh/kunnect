@@ -12,6 +12,7 @@ import {
   faCaretSquareUp,
   faCheck,
   faChevronDown,
+  faCog,
   faComment,
   faCommentAlt,
   faFlag,
@@ -20,6 +21,7 @@ import {
   faReply,
   faSave,
   faShare,
+  faSignOutAlt,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -36,6 +38,7 @@ library.add(
   faCaretSquareUp,
   faCheck,
   faChevronDown,
+  faCog,
   faComment,
   faCommentAlt,
   farCommentAlt,
@@ -47,6 +50,7 @@ library.add(
   faReply,
   faSave,
   faShare,
+  faSignOutAlt,
   faTimes,
 );
 

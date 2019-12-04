@@ -22,7 +22,9 @@
         "ignoreTemplateLiterals": false
       }],
       "import/no-unresolved": "off",
-      "react/jsx-boolean-value": "off"
+      "react/jsx-boolean-value": "off",
+      "template-curly-spacing" : "off",
+      "indent" : "off"
   },
   "plugins": [
     "cypress"
