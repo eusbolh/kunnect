@@ -5,7 +5,7 @@ import { withFormik } from 'formik';
 import { Button, Link } from 'nysa-ui';
 import FormTextInput from '../FormTextInput';
 
-class ChangePassword extends Component {
+class ResetPassword extends Component {
   handleSubmit = (e) => {
     const { ...props } = this.props;
     e.preventDefault(); // TODO: Why do we do this?
@@ -16,6 +16,23 @@ class ChangePassword extends Component {
     const { ...props } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
+        <div className="knc-form-section">
+          <div className="knc-form-section-title">Token</div>
+          <div className="knc-form-section-content">
+            <div style={{ width: '100%' }}>
+              <FormTextInput
+                disabled
+                error={props.errors.token}
+                name="token"
+                placeholder="Token"
+                handleBlur={props.handleBlur}
+                handleChange={props.handleChange}
+                touched={props.touched.token}
+                value={props.token}
+              />
+            </div>
+          </div>
+        </div>
         <div className="knc-form-section">
           <div className="knc-form-section-title">Your New Password</div>
           <div className="knc-form-section-content">
@@ -53,6 +70,7 @@ class ChangePassword extends Component {
           <Button
             disabled={!(props.values && props.values.username && props.values.password) || Object.keys(props.errors).length !== 0}
             intent="primary"
+            loading={this.props.isWaitingResponse}
             text="Send reset password link"
             type="submit"
           />
@@ -62,21 +80,23 @@ class ChangePassword extends Component {
   }
 }
 
-ChangePassword.propTypes = {
+ResetPassword.propTypes = {
   /* Functions */
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   /* Objects */
   errors: PropTypes.shape({}).isRequired,
+  isWaitingResponse: PropTypes.bool,
   touched: PropTypes.shape({}).isRequired,
   values: PropTypes.shape({}).isRequired,
 };
 
-ChangePassword.defaultProps = {
+ResetPassword.defaultProps = {
+  isWaitingResponse: false,
 };
 
-const ChangePasswordForm = withFormik({
+const ResetPasswordForm = withFormik({
   validate: (values) => {
     const errors = {};
     if (!values.username) {
@@ -87,7 +107,7 @@ const ChangePasswordForm = withFormik({
     }
     return errors;
   },
-  displayName: 'ChangePasswordForm',
-})(ChangePassword);
+  displayName: 'ResetPasswordForm',
+})(ResetPassword);
 
-export default withRouter(ChangePasswordForm);
+export default withRouter(ResetPasswordForm);

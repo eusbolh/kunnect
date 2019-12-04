@@ -13,3 +13,7 @@ export const getUserDataAPI = () => `${API_BASE_URL}/user`;
 export const loginAPI = () => `${API_BASE_URL}/login`;
 
 export const verifyMailAPI = () => `${API_BASE_URL}/user/verify`;
+
+/* Kuluster Endpoints */
+
+export const createKulusterAPI = () => `${API_BASE_URL}/kuluster`;

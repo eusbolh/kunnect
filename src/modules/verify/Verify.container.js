@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  getUserData,
+  verifyMail,
 } from 'common/user/User.actions';
-import EnsureLoggedIn from './EnsureLoggedIn.component';
+import Verify from './Verify.component';
 
 const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    getUserData,
+    verifyMail,
   }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnsureLoggedIn);
+export default connect(mapStateToProps, mapDispatchToProps)(Verify);

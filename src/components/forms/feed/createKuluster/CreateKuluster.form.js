@@ -88,6 +88,14 @@ class CreateKuluster extends Component {
           <div className="knc-form-section">
             <div className="knc-form-section-buttons">
               <Button
+                disabled={
+                  Object.keys(errors).length !== 0
+                  || !(
+                    values.kulusterType
+                    && values.title
+                    && values.content 
+                  )
+                }
                 intent="primary"
                 text="Create Kuluster"
                 type="submit"
@@ -120,20 +128,11 @@ const CreateKulusterForm = withFormik({
   validate: (values) => {
     const errors = {};
 
-    if (!values.addressLine1) {
-      errors.addressLine1 = 'Required!';
+    if (!values.title) {
+      errors.title = 'Required!';
     }
-    if (!values.city) {
-      errors.city = 'Required!';
-    }
-    if (!values['state-province-region']) {
-      errors['state-province-region'] = 'Required!';
-    }
-    if (!values.country) {
-      errors.country = 'Required!';
-    }
-    if (!values['zip-postal-code']) {
-      errors['zip-postal-code'] = 'Required!';
+    if (!values.content) {
+      errors.content = 'Required!';
     }
     return errors;
   },

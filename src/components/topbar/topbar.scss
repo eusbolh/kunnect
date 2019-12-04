@@ -35,38 +35,131 @@
     }
 
     .knc-topbr-user-box-container {
-      
-      .knc-topbr-user-box {
-        border-radius: 3px;
-        cursor: pointer;
-        display: flex;
-        padding: 6px;
 
-        .knc-topbr-user-box-left-side {
-          padding-right: 8px;
-          text-align: right;
+      .knc-topbr-user-box-button {
+        padding: 0;
+        
+        .knc-topbr-user-box {
+          border-radius: 3px;
+          cursor: pointer;
+          display: flex;
+          padding: 6px;
+  
+          .knc-topbr-user-box-left-side {
+            align-items: center;
+            display: flex;
+            padding-right: 8px;
+            text-align: right;
 
-          .knc-topbr-user-box-user-name {
-            color: $text-color;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 14px;
+            .knc-topbr-user-box-profile-image-container {
+              background-color: $brand-color-inverse;
+              border: 1px solid $brand-color-inverse;
+              border-radius: 50%;    
+              height: 24px;
+              width: 24px;
+              
+              .knc-topbr-user-box-profile-image {
+                border-radius: 50%;    
+                height: 22px;
+                width: 22px;
+              }
+            }
+
+            .knc-topbr-user-box-user-info {
+              margin-left: 8px;
+  
+              .knc-topbr-user-box-user-name {
+                color: $text-color;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 14px;
+              }
+    
+              .knc-topbr-user-box-karma {
+                color: $gray3;
+                font-size: 12px;
+                line-height: 12px;
+              }
+            }
           }
-
-          .knc-topbr-user-box-karma {
-            color: $gray3;
-            font-size: 12px;
-            line-height: 12px;
+  
+          .knc-topbr-user-box-right-side {
+            display: flex;
+            margin-left: auto;
+  
+            .knc-topbr-user-box-options-button {
+              align-items: center;
+              display: flex;
+              height: 100%;
+            }
           }
-        }
-
-        .knc-topbr-user-box-right-side {
-          margin-left: auto;
         }
       }
 
       .knc-topbr-user-box:hover {
         background-color: $light-gray4;
+      }
+    }
+  }
+}
+
+.knc-topbr-user-box-popover {
+  min-width: 100px;
+
+  .knc-topbr-user-box-popover-content {
+
+    .knc-topbr-user-box-popover-content-options {
+
+      .knc-topbr-user-box-popover-content-option {
+
+        .knc-topbr-user-box-popover-content-option-button {
+          border: none;
+          justify-content: inherit;
+          width: 100%;
+          
+          .knc-topbr-user-box-popover-content-option-button-icon {
+            margin-left: auto;
+            padding-left: 16px;
+          }
+        }
+
+        .knc-topbr-user-box-popover-content-option-button:not(:disabled) {
+
+          .knc-topbr-user-box-popover-content-option-button-text {
+          }
+          
+          .knc-topbr-user-box-popover-content-option-button-icon {
+            color: $gray1;
+          }
+        }
+
+        .knc-topbr-user-box-popover-content-option-button:hover:not(:disabled) {
+
+          .knc-topbr-user-box-popover-content-option-button-icon {
+            color: $cobalt5;
+          }
+        }
+      }
+
+      .knc-topbr-user-box-popover-content-option:not(:last-child) {
+        
+        .knc-topbr-user-box-popover-content-option-button {
+          border-bottom: 1px solid $border-color;
+        }
+      }
+
+      .knc-topbr-user-box-popover-content-option:first-child {
+        
+        .knc-topbr-user-box-popover-content-option-button {
+          border-radius: 3px 3px 0 0;
+        }
+      }
+
+      .knc-topbr-user-box-popover-content-option:last-child {
+        
+        .knc-topbr-user-box-popover-content-option-button {
+          border-radius: 0 0 3px 3px;
+        }
       }
     }
   }

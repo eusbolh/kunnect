@@ -19,7 +19,10 @@ class Register extends Component {
           redirectText="Sign in!"
           redirectURL="/login"
         >
-          <RegisterForm onSubmit={this.onSubmit} />
+          <RegisterForm
+            isWaitingResponse={this.props.isWaitingResponse}
+            onSubmit={this.onSubmit}
+          />
         </AuthBase>
       </div>
     );
@@ -27,10 +30,14 @@ class Register extends Component {
 }
 
 Register.propTypes = {
+  /* Functions */
   register: PropTypes.func.isRequired,
+  /* Objects */
+  isWaitingResponse: PropTypes.bool,
 };
 
 Register.defaultProps = {
+  isWaitingResponse: false,
 };
 
 export default Register;
