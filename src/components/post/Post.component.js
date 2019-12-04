@@ -3,11 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCaretSquareUp, faCaretSquareDown, faComment } from '@fortawesome/free-solid-svg-icons';
 import PostDialog from 'components/dialogs/post/PostDialog.component';
-
-library.add(faCaretSquareUp, faCaretSquareDown, faComment);
 
 class Post extends Component {
   state = {

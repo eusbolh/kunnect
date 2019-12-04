@@ -3,21 +3,9 @@ import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faTimes,
-  faCommentAlt,
-  faShare,
-  faSave,
-  faBan,
-  faFlag,
-  faReply,
-  faChevronDown,
-} from '@fortawesome/free-solid-svg-icons';
 import { Dialog } from '@blueprintjs/core';
 import Comment from 'components/comment/Comment.component';
 import CommentTextArea from 'components/comment/textarea/CommentTextArea.component';
-
-library.add(faTimes, faCommentAlt, faShare, faSave, faBan, faFlag, faReply, faChevronDown);
 
 class PostDialog extends Component {
   state = {
