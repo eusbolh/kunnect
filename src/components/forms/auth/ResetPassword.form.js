@@ -5,7 +5,7 @@ import { withFormik } from 'formik';
 import { Button, Link } from 'nysa-ui';
 import FormTextInput from '../FormTextInput';
 
-class ChangePassword extends Component {
+class ResetPassword extends Component {
   handleSubmit = (e) => {
     const { ...props } = this.props;
     e.preventDefault(); // TODO: Why do we do this?
@@ -62,7 +62,7 @@ class ChangePassword extends Component {
   }
 }
 
-ChangePassword.propTypes = {
+ResetPassword.propTypes = {
   /* Functions */
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
@@ -73,10 +73,10 @@ ChangePassword.propTypes = {
   values: PropTypes.shape({}).isRequired,
 };
 
-ChangePassword.defaultProps = {
+ResetPassword.defaultProps = {
 };
 
-const ChangePasswordForm = withFormik({
+const ResetPasswordForm = withFormik({
   validate: (values) => {
     const errors = {};
     if (!values.username) {
@@ -87,7 +87,7 @@ const ChangePasswordForm = withFormik({
     }
     return errors;
   },
-  displayName: 'ChangePasswordForm',
-})(ChangePassword);
+  displayName: 'ResetPasswordForm',
+})(ResetPassword);
 
-export default withRouter(ChangePasswordForm);
+export default withRouter(ResetPasswordForm);

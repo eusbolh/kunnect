@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ChangePasswordForm from 'components/forms/auth/ChangePassword.form';
+import ResetPasswordForm from 'components/forms/auth/ResetPassword.form';
 
 class ResetPassword extends Component {
   sendPasswordResetLink = (values) => {
@@ -17,7 +17,7 @@ class ResetPassword extends Component {
             <div className="knc-reset-password-box-description">Enter your new password and username and we will change your password.</div>
           </div>
           <div className="knc-reset-password-box-content">
-            <ChangePasswordForm onSubmit={this.sendPasswordResetLink} />
+            <ResetPasswordForm onSubmit={this.sendPasswordResetLink} />
           </div>
         </div>
       </div>
