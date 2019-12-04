@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Post from 'components/post/Post.component';
 import Box from 'components/box/Box.component';
 import { Button, Link } from 'nysa-ui';
@@ -52,9 +53,14 @@ class Feed extends Component {
     >
       <CreateKulusterForm
         kulusterType="public"
+        onConfirm={this.createKuluster}
       />
     </BasicDialog>
   )
+
+  createKuluster = (values) => {
+    this.props.createKuluster(values);
+  }
 
   render() {
     return (
@@ -85,5 +91,14 @@ class Feed extends Component {
     );
   }
 }
+
+Feed.propTypes = {
+  /* Functions */
+  createKuluster: PropTypes.func.isRequired,
+};
+
+Feed.defaultProps = {
+
+};
 
 export default Feed;
