@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loginAPI, forgotPasswordAPI, changePasswordAPI, createUserAPI } from 'common/api/Api.functions';
+import { loginAPI, forgotPasswordAPI, changePasswordAPI, createUserAPI, verifyMailAPI } from 'common/api/Api.functions';
 import { getResponseData, getErrorDetails, getErrorData } from 'common/api/Api.helpers';
 import { addNotification } from 'common/notifications/Notifications.actions';
 
@@ -91,6 +91,25 @@ export const login = data => dispatch => (
     })
     .catch((error) => {
       dispatch(addNotification(getErrorDetails(error), 'login-error'));
+      throw (error);
+    })
+);
+
+/* Verify Mail */
+
+const verifyMailSuccess = data => ({
+  type: USER_ACTIONS.VERIFY_EMAIL,
+  payload: data,
+});
+
+export const verifyMail = data => dispatch => (
+  axios.post(verifyMailAPI(), {
+    secretKey: data.token,
+  })
+    .then((response) => {
+      dispatch(verifyMailSuccess(getResponseData(response)));
+    })
+    .catch((error) => {
       throw (error);
     })
 );
