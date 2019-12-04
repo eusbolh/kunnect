@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loginAPI, forgotPasswordAPI, changePasswordAPI, createUserAPI, verifyMailAPI } from 'common/api/Api.functions';
+import { loginAPI, forgotPasswordAPI, changePasswordAPI, createUserAPI, verifyMailAPI, getUserDataAPI } from 'common/api/Api.functions';
 import { getResponseData, getErrorDetails, getErrorData } from 'common/api/Api.helpers';
 import { addNotification } from 'common/notifications/Notifications.actions';
 
@@ -73,6 +73,29 @@ export const forgotPassword = data => dispatch => (
       throw (error);
     })
 );
+
+/* Get User Data */
+
+const getUserDataSuccess = data => ({
+  type: USER_ACTIONS.GET_USER_DATA,
+  payload: data,
+});
+
+export const getUserData = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  axios.get(getUserDataAPI(), {
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      dispatch(getUserDataSuccess(getResponseData(response)));
+    })
+    .catch((error) => {
+      throw (error);
+    });
+};
 
 /* Login */
 

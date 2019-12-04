@@ -9,8 +9,7 @@ class EnsureLoggedIn extends Component {
     if (!token) {
       props.history.push('/login');
     } else {
-      // TODO: Pull user data when api is implemented.
-      // props.getUserData();
+      props.getUserData();
     }
   }
 
