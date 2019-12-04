@@ -17,6 +17,23 @@ class ResetPassword extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="knc-form-section">
+          <div className="knc-form-section-title">Token</div>
+          <div className="knc-form-section-content">
+            <div style={{ width: '100%' }}>
+              <FormTextInput
+                disabled
+                error={props.errors.token}
+                name="token"
+                placeholder="Token"
+                handleBlur={props.handleBlur}
+                handleChange={props.handleChange}
+                touched={props.touched.token}
+                value={props.token}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="knc-form-section">
           <div className="knc-form-section-title">Your New Password</div>
           <div className="knc-form-section-content">
             <div style={{ width: '100%' }}>
@@ -53,6 +70,7 @@ class ResetPassword extends Component {
           <Button
             disabled={!(props.values && props.values.username && props.values.password) || Object.keys(props.errors).length !== 0}
             intent="primary"
+            loading={this.props.isWaitingResponse}
             text="Send reset password link"
             type="submit"
           />
@@ -69,11 +87,13 @@ ResetPassword.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   /* Objects */
   errors: PropTypes.shape({}).isRequired,
+  isWaitingResponse: PropTypes.bool,
   touched: PropTypes.shape({}).isRequired,
   values: PropTypes.shape({}).isRequired,
 };
 
 ResetPassword.defaultProps = {
+  isWaitingResponse: false,
 };
 
 const ResetPasswordForm = withFormik({
