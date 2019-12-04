@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'nysa-ui';
 import { Dialog } from '@blueprintjs/core';
-
-library.add(faTimes);
 
 class BasicDialog extends Component {
   onClose = () => {

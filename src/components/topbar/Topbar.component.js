@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'nysa-ui';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import CreatePostForm from 'components/forms/feed/createPost/CreatePost.form';
-
-library.add(faPlusSquare);
 
 class Topbar extends Component {
   state = {
@@ -57,7 +53,7 @@ class Topbar extends Component {
               </div>
               <div className="knc-topbr-user-box-right-side">
                 <div className="knc-topbr-user-box-profile-image">
-                  i
+                  <FontAwesomeIcon icon={['fas', 'plus-square']} />
                 </div>
               </div>
             </div>

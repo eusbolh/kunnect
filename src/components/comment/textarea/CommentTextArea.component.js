@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'nysa-ui';
-
-library.add(faCheck, faTimes);
 
 class CommentTextArea extends Component {
   handleInputChange = (event) => {

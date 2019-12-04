@@ -5,6 +5,50 @@ import Topbar from 'components/topbar/Topbar.component';
 import NotFound from 'modules/notfound/NotFound.component';
 import FeedContainer from 'modules/feed/Feed.container';
 import KulusterContainer from 'modules/kuluster/Kuluster.container';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faBan,
+  faCaretSquareDown,
+  faCaretSquareUp,
+  faCheck,
+  faChevronDown,
+  faComment,
+  faCommentAlt,
+  faFlag,
+  faList,
+  faPlusSquare,
+  faReply,
+  faSave,
+  faShare,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faBell,
+  faCommentAlt as farCommentAlt,
+  faFlag as farFlag,
+  faQuestionCircle,
+} from '@fortawesome/free-regular-svg-icons';
+
+library.add(
+  faBan,
+  faBell,
+  faCaretSquareDown,
+  faCaretSquareUp,
+  faCheck,
+  faChevronDown,
+  faComment,
+  faCommentAlt,
+  farCommentAlt,
+  faFlag,
+  farFlag,
+  faList,
+  faQuestionCircle,
+  faPlusSquare,
+  faReply,
+  faSave,
+  faShare,
+  faTimes,
+);
 
 class App extends Component {
   render() {

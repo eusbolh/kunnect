@@ -2,20 +2,10 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faList } from '@fortawesome/free-solid-svg-icons';
-import {
-  faBell,
-  faCommentAlt,
-  faFlag,
-  faQuestionCircle,
-} from '@fortawesome/free-regular-svg-icons';
 import {
   Button,
 } from 'nysa-ui';
 import brandLogoWhite from 'common/assets/logo_white.png';
-
-library.add(faList, faBell, faCommentAlt, faFlag, faQuestionCircle);
 
 const menus = [
   {
