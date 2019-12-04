@@ -15,19 +15,21 @@ const createKulusterSuccess = data => ({
 
 export const createKuluster = data => (dispatch) => {
   const token = localStorage.getItem('token');
-  axios.post(createKulusterAPI(), {
-    description: data.content,
-    isPrivate: data.kulusterType === 'private',
-    name: data.title,
-  }, {
-    headers: {
-      Authorization: token,
-    },
-  })
-    .then((response) => {
-      dispatch(createKulusterSuccess(getResponseData(response)));
+  return (
+    axios.post(createKulusterAPI(), {
+      description: data.content,
+      isPrivate: data.kulusterType === 'private',
+      name: data.title,
+    }, {
+      headers: {
+        Authorization: token,
+      },
     })
-    .catch((error) => {
-      throw (error);
-    });
+      .then((response) => {
+        dispatch(createKulusterSuccess(getResponseData(response)));
+      })
+      .catch((error) => {
+        throw (error);
+      })
+  );
 };

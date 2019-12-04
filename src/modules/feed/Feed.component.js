@@ -6,10 +6,20 @@ import { Button, Link } from 'nysa-ui';
 import { getPosts, getKulusters } from './Feed.config';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import CreateKulusterForm from 'components/forms/feed/createKuluster/CreateKuluster.form';
+import { makeCancelable } from 'common/api/Api.helpers';
 
 class Feed extends Component {
   state = {
     isCreateKulusterDialogOpen: false,
+    isWaitingKulusterCreation: false,
+  }
+
+  createKulusterPromise = null;
+
+  componentWillUnmount = () => {
+    if (this.createKulusterPromise && this.createKulusterPromise.cancel) {
+      this.createKulusterPromise.cancel();
+    }
   }
 
   getID = kuluster => kuluster.id;
@@ -52,6 +62,7 @@ class Feed extends Component {
       title="Create Kuluster"
     >
       <CreateKulusterForm
+        isWaitingResponse={this.state.isWaitingKulusterCreation}
         kulusterType="public"
         onConfirm={this.createKuluster}
       />
@@ -59,7 +70,17 @@ class Feed extends Component {
   )
 
   createKuluster = (values) => {
-    this.props.createKuluster(values);
+    this.setState({ isWaitingKulusterCreation: true });
+    this.createKulusterPromise = makeCancelable(this.props.createKuluster(values));
+    this.createKulusterPromise
+      .promise
+      .then((isSucceed) => {
+        this.setState({ isWaitingKulusterCreation: false });
+        if (isSucceed) {
+          this.setState({ isCreateKulusterDialogOpen: false });
+        }
+      })
+      .catch(() => null);
   }
 
   render() {

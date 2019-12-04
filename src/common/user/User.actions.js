@@ -89,7 +89,6 @@ export const getUserData = () => (dispatch) => {
     },
   })
     .then((response) => {
-      console.log(response);
       dispatch(getUserDataSuccess(getResponseData(response)));
     })
     .catch((error) => {
