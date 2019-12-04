@@ -44,7 +44,12 @@ class Register extends Component {
           value={props.values.password || ''}
         />
         <div className="knc-form-buttons">
-          <Button intent="success" text="Sign Up" type="submit" />
+          <Button
+            intent="success"
+            loading={this.props.isWaitingResponse}
+            text="Sign Up"
+            type="submit"
+          />
         </div>
       </form>
     );
@@ -58,11 +63,13 @@ Register.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   /* Objects */
   errors: PropTypes.shape({}).isRequired,
+  isWaitingResponse: PropTypes.bool,
   touched: PropTypes.shape({}).isRequired,
   values: PropTypes.shape({}).isRequired,
 };
 
 Register.defaultProps = {
+  isWaitingResponse: false,
 };
 
 const RegisterForm = withFormik({

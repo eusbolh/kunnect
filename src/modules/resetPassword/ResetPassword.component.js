@@ -8,7 +8,7 @@ class ResetPassword extends Component {
   state = {
     isWaitingResponse: false,
     token: null,
-  }
+  };
 
   resetPasswordPromise = null;
 
