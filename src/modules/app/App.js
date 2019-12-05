@@ -33,6 +33,7 @@ import {
   faQuestionCircle,
 } from '@fortawesome/free-regular-svg-icons';
 import SidebarContainer from 'components/sidebar/Sidebar.container';
+import NotificationsContainer from 'modules/notifications/Notifications.container';
 
 library.add(
   faBan,
@@ -74,6 +75,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/feed" component={FeedContainer} />
                 <Route path="/k/:kulusterName" component={KulusterContainer} />
+                <Route exact path="/notifications" component={NotificationsContainer} />
                 <Route component={NotFound} />
               </Switch>
             </div>
