@@ -10,8 +10,16 @@ class Notifications extends Component {
         return <ErrorNotificationContainer />;
       case 'create-kuluster-success':
         return <SuccessNotificationContainer />;
+      case 'create-user-error':
+        return <ErrorNotificationContainer />;
+      case 'create-user-success':
+        return <SuccessNotificationContainer />;
       case 'login-error':
-        return null;
+        return <ErrorNotificationContainer />;
+      case 'verify-error':
+        return <ErrorNotificationContainer />;
+      case 'verify-success':
+        return <SuccessNotificationContainer />;
       default:
         console.warn(`Unknown notification type is given: ${notification.type}`);
         return null;
