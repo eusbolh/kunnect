@@ -136,7 +136,6 @@ class PostDialog extends Component {
 
   render() {
     const { ...props } = this.props;
-    console.log(this.props.data);
     return (
       <Dialog
         className="knc-post-dialog-component"
