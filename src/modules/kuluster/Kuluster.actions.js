@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createKulusterAPI } from 'common/api/Api.functions';
 import { getResponseData } from 'common/api/Api.helpers';
+import { addNotification } from 'common/notifications/Notifications.actions';
 
 export const KULUSTER_ACTIONS = {
   CREATE_KULUSTER: 'K_CREATE_KULUSTER',
@@ -26,9 +27,11 @@ export const createKuluster = data => (dispatch) => {
       },
     })
       .then((response) => {
+        dispatch(addNotification(null, 'create-kuluster-success'));
         dispatch(createKulusterSuccess(getResponseData(response)));
       })
       .catch((error) => {
+        dispatch(addNotification(null, 'create-kuluster-error'));
         throw (error);
       })
   );

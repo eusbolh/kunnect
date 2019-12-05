@@ -1,0 +1,46 @@
+.bp3-dialog {
+  color: $text-color;
+  font-family: 'Roboto', sans-serif;
+  padding: 0 !important;
+  width: max-content !important;
+}
+
+.knc-notification-component {
+  background-color: #fff;
+  border-radius: 3px;
+  color: $dark-gray5;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  padding: 24px;
+  width: 400px;
+}
+
+.knc-notification-icon-component {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+
+  .--success {
+    color: $green4;
+    font-size: 48px;
+  }
+
+  .--error {
+    color: $red4;
+    font-size: 48px;
+  }
+}
+
+.knc-notification-head-component {
+  display: flex;
+  font-size: 24px;
+  font-weight: 500;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.knc-notification-content-component {
+  color: $gray3;
+  text-align: center;
+}
