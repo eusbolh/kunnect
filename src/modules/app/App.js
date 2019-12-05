@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Sidebar from 'components/sidebar/Sidebar.component';
 import Topbar from 'components/topbar/Topbar.component';
 import NotFound from 'modules/notfound/NotFound.component';
 import FeedContainer from 'modules/feed/Feed.container';
@@ -32,6 +31,7 @@ import {
   faFlag as farFlag,
   faQuestionCircle,
 } from '@fortawesome/free-regular-svg-icons';
+import SidebarContainer from 'components/sidebar/Sidebar.container';
 
 library.add(
   faBan,
@@ -62,7 +62,7 @@ class App extends Component {
   render() {
     return (
       <div className="knc-app-module">
-        <div className="knc-app-sidebar-container"><Sidebar /></div>
+        <div className="knc-app-sidebar-container"><SidebarContainer /></div>
         <div className="knc-app-rest-container">
           <div className="knc-app-topbar-container">
             <Topbar />

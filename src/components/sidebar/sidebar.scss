@@ -44,6 +44,13 @@
     padding-right: 3px;
   }
 
+  .knc-sideb-menu--selected {
+    background-color: #f0f71750;
+    border-left: 3px solid $brand-color-inverse;
+    color: $brand-color-inverse;
+    padding-right: 3px;
+  }
+
   .knc-sideb-help-menus {
     margin-top: auto;
     width: inherit;

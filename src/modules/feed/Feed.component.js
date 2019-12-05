@@ -16,6 +16,10 @@ class Feed extends Component {
 
   createKulusterPromise = null;
 
+  componentDidMount = () => {
+    this.props.updateSelectedMenu('/feed');
+  }
+
   componentWillUnmount = () => {
     if (this.createKulusterPromise && this.createKulusterPromise.cancel) {
       this.createKulusterPromise.cancel();
@@ -116,6 +120,7 @@ class Feed extends Component {
 Feed.propTypes = {
   /* Functions */
   createKuluster: PropTypes.func.isRequired,
+  updateSelectedMenu: PropTypes.func.isRequired,
 };
 
 Feed.defaultProps = {

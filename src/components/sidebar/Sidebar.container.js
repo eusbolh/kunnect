@@ -1,21 +1,18 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  createKuluster,
-} from 'modules/kuluster/Kuluster.actions';
-import {
   updateSelectedMenu,
 } from 'common/redux/common.actions';
-import Feed from './Feed.component';
+import Sidebar from './Sidebar.component';
 
 const mapStateToProps = state => ({
+  selectedMenu: state && state.common && state.common.selectedMenu,
 });
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    createKuluster,
     updateSelectedMenu,
   }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
