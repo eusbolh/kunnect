@@ -9,6 +9,7 @@ import { Button } from 'nysa-ui';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import CreatePostForm from 'components/forms/feed/createPost/CreatePost.form';
 import brandLogo from 'common/assets/logo_brandcolor.png';
+import FormTextInput from 'components/forms/FormTextInput';
 
 class Topbar extends Component {
   state = {
@@ -86,7 +87,11 @@ class Topbar extends Component {
     return (
       <div className="knc-topbr-component">
         <div className="knc-topbr-left-side">
-          search bar
+          <div className="knc-topbr-searchbar-container">
+            <FormTextInput
+              placeholder="Search kuluster by name"
+            />
+          </div>
         </div>
         <div className="knc-topbr-right-side">
           <div className="knc-topbr-button-container">

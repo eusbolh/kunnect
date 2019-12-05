@@ -37,7 +37,7 @@ class FormTextInput extends Component {
                     <input
                       disabled={props.disabled}
                       id={props.name}
-                      placeholder={props.placeholder || 'Enter preset name'}
+                      placeholder={props.placeholder || 'Enter input'}
                       onBlur={props.handleBlur}
                       onChange={props.handleChange}
                       type={props.type}

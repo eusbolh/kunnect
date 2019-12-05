@@ -13,7 +13,17 @@
   }
 
   .knc-topbr-left-side {
+    align-items: center;
+    display: flex;
+    height: 100%;
 
+    .knc-topbr-searchbar-container {
+
+      .knc-form-text-input-component {
+        margin-bottom: 0;
+        width: 512px;
+      }
+    }
   }
 
   .knc-topbr-right-side {
