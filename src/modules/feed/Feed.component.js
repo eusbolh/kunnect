@@ -7,20 +7,30 @@ import { getPosts, getKulusters } from './Feed.config';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import CreateKulusterForm from 'components/forms/feed/createKuluster/CreateKuluster.form';
 import { makeCancelable } from 'common/api/Api.helpers';
+import SpinnerPage from 'components/spinnerPage/SpinnerPage.component';
 
 class Feed extends Component {
   state = {
     isCreateKulusterDialogOpen: false,
     isWaitingKulusterCreation: false,
+    isPageLoading: true,
   }
 
   createKulusterPromise = null;
 
+  pageLoadingPromise = null;
+
   componentDidMount = () => {
     this.props.updateSelectedMenu('/feed');
+    this.pageLoadingPromise = makeCancelable(this.props.getFeed());
+    this.pageLoadingPromise
+      .promise
+      .then(() => this.setState({ isPageLoading: false }))
+      .catch(() => null);
   }
 
   componentWillUnmount = () => {
+    this.pageLoadingPromise.cancel();
     if (this.createKulusterPromise && this.createKulusterPromise.cancel) {
       this.createKulusterPromise.cancel();
     }
@@ -88,12 +98,18 @@ class Feed extends Component {
   }
 
   render() {
+    const { ...props } = this.props;
+    if (this.state.isPageLoading) {
+      return <SpinnerPage />;
+    }
     return (
       <div className="knc-feed-module">
         <div className="knc-feed-content">
           <div className="knc-feed-posts">
             {
-              getPosts().map(post => <Post data={post} key={`knc-feed-posts-${post.id}`} />)
+              props.feed
+                ? props.feed.map(post => <Post data={post} key={`knc-feed-posts-${post.id}`} />)
+                : getPosts().map(post => <Post data={post} key={`knc-feed-posts-${post.id}`} />)
             }
           </div>
           <div className="knc-feed-rest-container">
@@ -120,11 +136,14 @@ class Feed extends Component {
 Feed.propTypes = {
   /* Functions */
   createKuluster: PropTypes.func.isRequired,
+  getFeed: PropTypes.func.isRequired,
   updateSelectedMenu: PropTypes.func.isRequired,
+  /* Objects */
+  feed: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 Feed.defaultProps = {
-
+  feed: null,
 };
 
 export default Feed;
