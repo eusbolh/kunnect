@@ -27,6 +27,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faBell,
+  faClone,
   faCommentAlt as farCommentAlt,
   faFlag as farFlag,
   faQuestionCircle,
@@ -41,6 +42,7 @@ library.add(
   faCheck,
   faCheckCircle,
   faChevronDown,
+  faClone,
   faCog,
   faComment,
   faCommentAlt,

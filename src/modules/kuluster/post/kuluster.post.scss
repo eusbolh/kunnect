@@ -201,14 +201,25 @@
           font-weight: 500;
           padding: 4px 6px;
 
+          .knc-kuluster-post-bottom-right-button {
+            align-items: center;
+            border-radius: 3px;
+            color: $gray5;
+            cursor: pointer;
+            display: flex;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 4px 6px;
+          }
+
+          .knc-kuluster-post-bottom-right-button:hover {
+            background-color: $light-gray4;
+            color: $gray3;
+          }
+
           .knc-kuluster-post-bottom-right-section-text {
             margin-left: 6px;
           }
-        }
-
-        .knc-kuluster-post-bottom-right-section:hover {
-          background-color: $light-gray4;
-          color: $gray3;
         }
       }
     }
@@ -272,5 +283,64 @@
 
       }
     }
+  }
+}
+
+.knc-kuluster-post-share-dialog {
+
+  .knc-kuluster-post-share-dialog-description {
+
+  }
+
+  .knc-kuluster-post-share-dialog-share-link-container {
+    align-items: center;
+    background-color: $light-gray5;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    cursor: text;
+    display: flex;
+    margin-top: 4px;
+    padding: 6px 8px;
+
+    .knc-kuluster-post-share-dialog-share-link {
+      color: $text-color;
+      font-weight: 500;
+      
+      textarea {
+        background-color: inherit;
+        border: none;
+        color: $text-color;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
+        height: 18px;
+        overflow: hidden;
+        width: 512px;
+      }
+    }
+
+    .knc-kuluster-post-share-dialog-copy-button-container {
+      color: $gray1;
+      margin-left: auto;
+
+      .knc-kuluster-post-share-dialog-copy-button {
+        color: $gray1;
+        padding: 4px;
+      }
+
+      .knc-kuluster-post-share-dialog-copy-button:hover {
+        background-color: inherit;
+        color: $text-color;
+      }
+    }
+  }
+    
+  .knc-kuluster-post-share-dialog-copied-text {
+    color: $text-color;
+    font-size: 12px;
+    font-weight: 500;
+    height: 20px;
+    padding-top: 4px;
   }
 }
