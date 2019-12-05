@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Dialog } from '@blueprintjs/core';
 import Comment from 'components/comment/Comment.component';
 import CommentTextArea from 'components/comment/textarea/CommentTextArea.component';
-import { getPost } from './Kuluster.post.config';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import ReportPostForm from 'components/forms/post/reportPost/ReportPost.form';
+import { getPost } from './Kuluster.post.config';
 
 
 class KulusterPost extends Component {

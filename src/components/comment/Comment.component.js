@@ -76,15 +76,6 @@ class Comment extends Component {
           <div className="knc-comment-bottom-button-container">
             <Button
               classes="knc-comment-bottom-button"
-              onClick={() => console.log('share')}
-            >
-              <FontAwesomeIcon icon={['fas', 'share']} />
-              <div className="knc-comment-bottom-button-text">Share</div>
-            </Button>
-          </div>
-          <div className="knc-comment-bottom-button-container">
-            <Button
-              classes="knc-comment-bottom-button"
               onClick={() => console.log('report')}
             >
               <FontAwesomeIcon icon={['fas', 'flag']} />

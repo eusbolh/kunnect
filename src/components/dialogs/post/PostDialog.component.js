@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { Dialog } from '@blueprintjs/core';
 import Comment from 'components/comment/Comment.component';
 import CommentTextArea from 'components/comment/textarea/CommentTextArea.component';
+import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
+import ReportPostForm from 'components/forms/post/reportPost/ReportPost.form';
 
 class PostDialog extends Component {
   state = {
+    isLinkCopied: false,
     isReplySectionOpen: false,
     reply: '',
   }
-  
+
   /* Reply Helpers */
 
   onReplyChange = event => this.setState({ reply: event.target.value });
@@ -29,6 +31,8 @@ class PostDialog extends Component {
 
   getPostContent = post => post.post && post.post.content;
 
+  getPostID = post => post.id;
+  
   getPostImage = post => post.post && post.post.image;
 
   getPostTitle = post => post.post && post.post.title;
@@ -70,8 +74,69 @@ class PostDialog extends Component {
     return classes;
   }
 
+  /* Share Dialog */
+
+  renderShareDialog = () => (
+    <BasicDialog
+      isOpen={!!this.state.isShareDialogOpen}
+      onClose={() => this.setState({ isShareDialogOpen: false, isLinkCopied: false })}
+      title="Share"
+    >
+      <div className="knc-kuluster-post-share-dialog">
+        <div className="knc-kuluster-post-share-dialog-description">You can copy the following link and share this post!</div>
+        <div className="knc-kuluster-post-share-dialog-share-link-container">
+          <div className="knc-kuluster-post-share-dialog-share-link">
+            <textarea
+              ref={(textarea) => { this.textArea = textarea; return null; }}
+              value={`http://kunnect.co/k/${this.getKulusterName(this.props.data)}/${this.getPostID(this.props.data)}`}
+            />
+          </div>
+          <div className="knc-kuluster-post-share-dialog-copy-button-container">
+            <Button
+              classes="knc-kuluster-post-share-dialog-copy-button"
+              minimal
+              onClick={(e) => {
+                this.textArea.select();
+                document.execCommand('copy');
+                e.target.focus();
+                this.setState({ isLinkCopied: true });
+              }}
+            >
+              <FontAwesomeIcon icon={['far', 'clone']} />
+            </Button>
+          </div>
+        </div>
+        <div className="knc-kuluster-post-share-dialog-copied-text">
+          {
+            this.state.isLinkCopied
+              ? 'Link is copied!'
+              : null
+          }
+        </div>
+      </div>
+    </BasicDialog>
+  )
+
+  /* Report Dialog */
+
+  renderReportDialog = () => (
+    <BasicDialog
+      isOpen={!!this.state.isReportDialogOpen}
+      onClose={() => this.setState({ isReportDialogOpen: false })}
+      title="Report"
+    >
+      <ReportPostForm
+        onConfirm={(values) => {
+          alert(`Report details: ${values.content}`);
+          this.setState({ isReportDialogOpen: false });
+        }}
+      />
+    </BasicDialog>
+  )
+
   render() {
     const { ...props } = this.props;
+    console.log(this.props.data);
     return (
       <Dialog
         className="knc-post-dialog-component"
@@ -157,24 +222,53 @@ class PostDialog extends Component {
             </div>
             <div className="knc-post-dialog-bottom-right">
               <div className="knc-post-dialog-bottom-right-section">
-                <FontAwesomeIcon icon={['fas', 'comment-alt']} />
-                <div className="knc-post-dialog-bottom-right-section-text">{`${this.getCommentCount(props.data)} comments`}</div>
+                <Button
+                  classes="knc-post-dialog-bottom-right-button"
+                  minimal={true}
+                >
+                  <FontAwesomeIcon icon={['fas', 'comment-alt']} />
+                  <div className="knc-post-dialog-bottom-right-section-text">{`${this.getCommentCount(props.data)} comments`}</div>
+                </Button>
               </div>
               <div className="knc-post-dialog-bottom-right-section">
-                <FontAwesomeIcon icon={['fas', 'share']} />
-                <div className="knc-post-dialog-bottom-right-section-text">Share</div>
+                <Button
+                  classes="knc-post-dialog-bottom-right-button"
+                  minimal={true}
+                  onClick={() => this.setState({ isShareDialogOpen: true })}
+                >
+                  <FontAwesomeIcon icon={['fas', 'share']} />
+                  <div className="knc-post-dialog-bottom-right-section-text">Share</div>
+                </Button>
+                {this.renderShareDialog()}
               </div>
               <div className="knc-post-dialog-bottom-right-section">
-                <FontAwesomeIcon icon={['fas', 'save']} />
-                <div className="knc-post-dialog-bottom-right-section-text">Save</div>
+                <Button
+                  classes="knc-post-dialog-bottom-right-button"
+                  minimal={true}
+                >
+                  <FontAwesomeIcon icon={['fas', 'save']} />
+                  <div className="knc-post-dialog-bottom-right-section-text">Save</div>
+                </Button>
               </div>
               <div className="knc-post-dialog-bottom-right-section">
-                <FontAwesomeIcon icon={['fas', 'ban']} />
-                <div className="knc-post-dialog-bottom-right-section-text">Hide</div>
+                <Button
+                  classes="knc-post-dialog-bottom-right-button"
+                  minimal={true}
+                >
+                  <FontAwesomeIcon icon={['fas', 'ban']} />
+                  <div className="knc-post-dialog-bottom-right-section-text">Hide</div>
+                </Button>
+                {this.renderReportDialog()}
               </div>
               <div className="knc-post-dialog-bottom-right-section">
-                <FontAwesomeIcon icon={['fas', 'flag']} />
-                <div className="knc-post-dialog-bottom-right-section-text">Report</div>
+                <Button
+                  classes="knc-post-dialog-bottom-right-button"
+                  minimal={true}
+                  onClick={() => this.setState({ isReportDialogOpen: true })}
+                >
+                  <FontAwesomeIcon icon={['fas', 'flag']} />
+                  <div className="knc-post-dialog-bottom-right-section-text">Report</div>
+                </Button>
               </div>
             </div>
           </div>

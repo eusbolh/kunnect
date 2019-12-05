@@ -201,14 +201,25 @@
           font-weight: 500;
           padding: 4px 6px;
 
+          .knc-post-dialog-bottom-right-button {
+            align-items: center;
+            border-radius: 3px;
+            color: $gray5;
+            cursor: pointer;
+            display: flex;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 4px 6px;
+          }
+
+          .knc-post-dialog-bottom-right-button:hover {
+            background-color: $light-gray4;
+            color: $gray3;
+          }
+
           .knc-post-dialog-bottom-right-section-text {
             margin-left: 6px;
           }
-        }
-
-        .knc-post-dialog-bottom-right-section:hover {
-          background-color: $light-gray4;
-          color: $gray3;
         }
       }
     }
