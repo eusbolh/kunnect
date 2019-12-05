@@ -2,22 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faTimes,
-  faCommentAlt,
-  faShare,
-  faSave,
-  faBan,
-  faFlag,
-  faReply,
-  faChevronDown,
-} from '@fortawesome/free-solid-svg-icons';
 import { Dialog } from '@blueprintjs/core';
 import Comment from 'components/comment/Comment.component';
 import CommentTextArea from 'components/comment/textarea/CommentTextArea.component';
 import { getPost } from './Kuluster.post.config';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
+import ReportPostForm from 'components/forms/post/reportPost/ReportPost.form';
+
 
 class KulusterPost extends Component {
   state = {
@@ -106,11 +97,26 @@ class KulusterPost extends Component {
     </BasicDialog>
   )
 
+  /* Report Dialog */
+
+  renderReportDialog = () => (
+    <BasicDialog
+      isOpen={!!this.state.isReportDialogOpen}
+      onClose={() => this.setState({ isReportDialogOpen: false })}
+      title="Report"
+    >
+      <ReportPostForm
+        onConfirm={(values) => {
+          alert(`Report details: ${values.content}`);
+          this.setState({ isReportDialogOpen: false });
+        }}
+      />
+    </BasicDialog>
+  )
+
   render() {
     const { ...props } = this.props;
     const postData = getPost();
-    console.log(this.props.match);
-    console.log(this.props.location);
     return (
       <div className="knc-kuluster-post-module">
         <div className="knc-kuluster-post-container">
@@ -228,11 +234,13 @@ class KulusterPost extends Component {
                   <FontAwesomeIcon icon={['fas', 'ban']} />
                   <div className="knc-kuluster-post-bottom-right-section-text">Hide</div>
                 </Button>
+                {this.renderReportDialog()}
               </div>
               <div className="knc-kuluster-post-bottom-right-section">
                 <Button
                   classes="knc-kuluster-post-bottom-right-button"
                   minimal={true}
+                  onClick={() => this.setState({ isReportDialogOpen: true })}
                 >
                   <FontAwesomeIcon icon={['fas', 'flag']} />
                   <div className="knc-kuluster-post-bottom-right-section-text">Report</div>
