@@ -20,4 +20,4 @@ export const createKulusterAPI = () => `${API_BASE_URL}/kuluster`;
 
 /* Feed Endpoints */
 
-export const getFeedAPI = () => `${API_BASE_URL}/feed`;
+export const getFeedAPI = () => `${API_BASE_URL}/user/feed`;
