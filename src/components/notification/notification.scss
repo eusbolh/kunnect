@@ -1,0 +1,59 @@
+.knc-app-notification-component {
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid $border-color;
+  display: flex;
+  padding: 8px;
+  width: 100%;
+
+  .knc-app-notification-image-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+
+    .knc-app-notification-image {
+      height: 22px;
+      margin-bottom: 2px;
+      margin-left: 2px;
+      width: 22px;
+    }
+  }
+
+  .knc-app-notification-image-container--blue {
+    background-color: $blue5;
+    border-radius: 50%;
+  }
+
+  .knc-app-notification-image-container--gold {
+    background-color: $gold5;
+    border-radius: 50%;
+  }
+
+  .knc-app-notification-image-container--red {
+    background-color: $red5;
+    border-radius: 50%;
+  }
+
+  .knc-app-notification-content {
+    margin-left: 12px;
+
+    .knc-app-notification-timestamp {
+      color: $gray3;
+      font-size: 12px;
+    }
+
+    .knc-app-notification-text {
+
+    }
+  }
+}
+
+.knc-app-notification-component:hover {
+  background-color: $light-gray4;
+}
+
+.knc-app-notification-component:not(:last-child) {
+  border-bottom: none;
+}

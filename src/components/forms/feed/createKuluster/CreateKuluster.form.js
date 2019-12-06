@@ -97,6 +97,7 @@ class CreateKuluster extends Component {
                   )
                 }
                 intent="primary"
+                loading={this.props.isWaitingResponse}
                 text="Create Kuluster"
                 type="submit"
               />
@@ -115,11 +116,13 @@ CreateKuluster.propTypes = {
   onConfirm: PropTypes.func,
   /* Objects and Primitives */
   errors: PropTypes.shape({}).isRequired,
+  isWaitingResponse: PropTypes.bool,
   touched: PropTypes.shape({}).isRequired,
   values: PropTypes.shape({}).isRequired,
 };
 
 CreateKuluster.defaultProps = {
+  isWaitingResponse: false,
   onConfirm: () => console.warn('onConfirm() function is not passed.'),
 };
 

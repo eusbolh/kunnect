@@ -1,0 +1,9 @@
+.knc-notifications-module {
+  padding-bottom: 96px;
+  width: 1000px;
+
+  .knc-notifications-content {
+    display: flex;
+    flex-direction: column;
+  }
+}

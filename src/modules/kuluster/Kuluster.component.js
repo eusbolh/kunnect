@@ -11,7 +11,7 @@ import KulusterPostContainer from './post/Kuluster.post.container';
 
 class Kuluster extends Component {
   componentDidMount = () => {
-    // TODO: Make api call to props.match.kulusterName
+    this.props.updateSelectedMenu('/feed');
   }
 
   /* Getters */
@@ -21,7 +21,7 @@ class Kuluster extends Component {
   getImageSrc = kuluster => kuluster && kuluster.image;
 
   getKulusterName = kuluster => kuluster && kuluster.name;
-  
+
   getSubscriberCount = kuluster => kuluster && kuluster.subscriber_count;
 
   render() {
@@ -67,6 +67,7 @@ class Kuluster extends Component {
 
 Kuluster.propTypes = {
   /* Functions */
+  updateSelectedMenu: PropTypes.func.isRequired,
   /* Objects */
   match: PropTypes.shape({
     params: PropTypes.shape({

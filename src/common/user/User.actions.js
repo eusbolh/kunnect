@@ -47,9 +47,11 @@ export const createUser = data => dispatch => (
     username: data.username,
   })
     .then((response) => {
+      dispatch(addNotification(null, 'create-user-success'));
       dispatch(createUserSuccess(getResponseData(response)));
     })
     .catch((error) => {
+      dispatch(addNotification(null, 'create-user-error'));
       throw (error);
     })
 );
@@ -89,7 +91,6 @@ export const getUserData = () => (dispatch) => {
     },
   })
     .then((response) => {
-      console.log(response);
       dispatch(getUserDataSuccess(getResponseData(response)));
     })
     .catch((error) => {
@@ -113,7 +114,7 @@ export const login = data => dispatch => (
       dispatch(loginSuccess(getResponseData(response)));
     })
     .catch((error) => {
-      dispatch(addNotification(getErrorDetails(error), 'login-error'));
+      dispatch(addNotification(null, 'login-error'));
       throw (error);
     })
 );
@@ -130,9 +131,11 @@ export const verifyMail = data => dispatch => (
     secretKey: data.token,
   })
     .then((response) => {
+      dispatch(addNotification(null, 'verify-success'));
       dispatch(verifyMailSuccess(getResponseData(response)));
     })
     .catch((error) => {
+      dispatch(addNotification(null, 'verify-error'));
       throw (error);
     })
 );

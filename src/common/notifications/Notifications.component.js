@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import SuccessNotificationContainer from 'components/notifications/success/SuccessNotification.container';
+import ErrorNotificationContainer from 'components/notifications/error/ErrorNotification.container';
 
 class Notifications extends Component {
   renderNotification = (notification) => {
     switch (notification.type) {
+      case 'create-kuluster-error':
+        return <ErrorNotificationContainer />;
+      case 'create-kuluster-success':
+        return <SuccessNotificationContainer />;
+      case 'create-user-error':
+        return <ErrorNotificationContainer />;
+      case 'create-user-success':
+        return <SuccessNotificationContainer />;
       case 'login-error':
-        console.log(notification);
-        return null;
+        return <ErrorNotificationContainer />;
+      case 'verify-error':
+        return <ErrorNotificationContainer />;
+      case 'verify-success':
+        return <SuccessNotificationContainer />;
       default:
         console.warn(`Unknown notification type is given: ${notification.type}`);
         return null;

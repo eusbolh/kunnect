@@ -33,9 +33,12 @@ const helpMenus = [
 class Sidebar extends Component {
   renderMenu = (menu, index) => (
     <Button
-      classes="knc-sideb-menu"
+      classes={`knc-sideb-menu${this.props.selectedMenu === menu.url ? ' knc-sideb-menu--selected' : ''}`}
       key={`knc-sideb-menu-${index}`}
-      onClick={() => this.props.history.push(menu.url)}
+      onClick={() => {
+        this.props.updateSelectedMenu(menu.url);
+        this.props.history.push(menu.url);
+      }}
     >
       <FontAwesomeIcon icon={menu.icon} />
     </Button>
@@ -57,13 +60,17 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
+  /* Functions */
+  updateSelectedMenu: PropTypes.func.isRequired,
   /* Objects */
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  selectedMenu: PropTypes.string,
 };
 
 Sidebar.defaultProps = {
+  selectedMenu: null,
 };
 
 export default withRouter(Sidebar);

@@ -1,0 +1,147 @@
+.knc-messages-module {
+  height: 100%;
+  padding-bottom: 96px;
+  width: 1000px;
+
+  .knc-messages-content-container {
+    display: flex;
+    height: inherit;
+    width: inherit;
+
+    .knc-messages-left-side {
+      background-color: $light-gray3;
+      border: 1px solid $light-gray3;
+      min-height: 100%;
+      width: 256px;
+
+      .knc-messages-contact {
+        align-items: center;
+        background-color: #fff;
+        cursor: pointer;
+        display: flex;
+        padding: 8px;
+
+        .knc-messages-contact-image-container {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          height: 32px;
+          width: 32px;
+
+          .knc-messages-contact-image {
+            height: 22px;
+            margin-bottom: 2px;
+            margin-left: 2px;
+            width: 22px;
+          }
+        }
+
+        .knc-messages-contact-image-container--blue {
+          background-color: $blue5;
+          border-radius: 50%;
+        }
+
+        .knc-messages-contact-image-container--gold {
+          background-color: $gold5;
+          border-radius: 50%;
+        }
+
+        .knc-messages-contact-image-container--green {
+          background-color: $green5;
+          border-radius: 50%;
+        }
+
+        .knc-messages-contact-content {
+          margin-left: 12px;
+          width: 194px;
+
+          .knc-messages-contact-head {
+            display: flex;
+
+            .knc-messages-contact-username {
+              font-weight: 500;
+            }
+
+            .knc-messages-contact-timestamp {
+              color: $gray3;
+              font-size: 12px;
+              margin-left: auto;
+            }
+          }
+
+          .knc-messages-contact-message {
+            
+          }
+        }
+      }
+
+      .knc-messages-contact:hover {
+        background-color: $light-gray4;
+      }
+
+      .knc-messages-contact:not(:last-child) {
+        border-bottom: 1px solid $light-gray3;
+      }
+    }
+  
+    .knc-messages-right-side {
+      background-color: #fff;
+      border: 1px solid $light-gray3;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 24px;
+      width: 744px;
+
+      .knc-messages-chat {
+        display: flex;
+        flex-direction: column;
+
+        .knc-messages-chat-message {
+          border: 1px solid $border-color;
+          border-radius: 24px;
+          display: flex;
+          flex-direction: column;
+          padding: 8px 16px;
+          width: 512px;
+
+          .knc-messages-chat-message-timestamp {
+            color: $gray3;
+          }
+
+          .knc-messages-chat-message-text {
+            font-size: 16px;
+          }
+        }
+
+        .knc-messages-chat-message--owner {
+          background-color: $cobalt3;
+          color: #fff;
+          margin-left: auto;
+
+          .knc-messages-chat-message-timestamp {
+            color: $cobalt5;
+            margin-left: auto;
+          }
+
+          .knc-messages-chat-message-text {
+            margin-left: auto;
+          }
+        }
+
+        .knc-messages-chat-message:not(:last-child) {
+          margin-bottom: 12px;
+        }
+      }
+
+      .knc-messages-chat-box {
+        background-color: $light-gray5;
+        border: 1px solid $border-color;
+        border-radius: 24px;
+        color: $gray3;
+        margin-top: auto;
+        padding: 8px 16px;
+      }
+    }
+  }
+}
