@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getNotifications } from './Notifications.config';
 import Notification from 'components/notification/Notification.component';
+import { getNotifications } from './Notifications.config';
 
 class Notifications extends Component {
   render() {

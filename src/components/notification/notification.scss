@@ -50,6 +50,10 @@
   }
 }
 
+.knc-app-notification-component:hover {
+  background-color: $light-gray4;
+}
+
 .knc-app-notification-component:not(:last-child) {
-  margin-bottom: 4px;
+  border-bottom: none;
 }
