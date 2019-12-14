@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpService from 'axios';
 import { createKulusterAPI } from 'common/api/Api.functions';
 import { getResponseData } from 'common/api/Api.helpers';
 import { addNotification } from 'common/notifications/Notifications.actions';
@@ -6,6 +6,10 @@ import { addNotification } from 'common/notifications/Notifications.actions';
 export const KULUSTER_ACTIONS = {
   CREATE_KULUSTER: 'K_CREATE_KULUSTER',
 };
+
+const axios = httpService.create({
+  withCredentials: true,
+});
 
 /* Create Kuluster */
 
