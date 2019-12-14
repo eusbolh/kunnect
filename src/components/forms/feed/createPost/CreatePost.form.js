@@ -11,22 +11,24 @@ class CreatePost extends Component {
     this.props.onConfirm(this.props.values);
   }
 
+  handleChange = (name, value) => {
+    this.props.setFieldValue(name, value);
+  }
+
   render() {
-    const {
-      values,
-      errors,
-      touched,
-      handleChange,
-      handleBlur,
-    } = this.props;
+    const { ...props } = this.props;
     return (
       <form autoComplete="off" onSubmit={this.handleSubmit}>
-        <div className="m-create-post-form">
+        <div className="knc-create-post-form">
           <div className="knc-form-section">
             <div className="knc-form-section-title">Kuluster</div>
             <div className="knc-form-section-content">
               <div style={{ width: '100%' }}>
                 <Dropdown
+                  classes="knc-dropdown-dropdown-create-post"
+                  popoverClasses="knc-dropdown-popover-create-post"
+                  handleChange={this.handleChange}
+                  name="kuluster"
                   options={['explainlikeimfive', 'AskProgramming', 'askscience']}
                 />
               </div>
@@ -35,13 +37,13 @@ class CreatePost extends Component {
             <div className="knc-form-section-content">
               <div style={{ width: '100%' }}>
                 <FormTextInput
-                  error={errors.title}
+                  error={props.errors.title}
                   name="title"
                   placeholder="Title"
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                  touched={touched.title}
-                  value={values.title}
+                  handleBlur={props.handleBlur}
+                  handleChange={props.handleChange}
+                  touched={props.touched.title}
+                  value={props.values.title}
                 />
               </div>
             </div>
@@ -49,15 +51,15 @@ class CreatePost extends Component {
             <div className="knc-form-section-content">
               <div style={{ width: '100%' }}>
                 <FormTextInput
-                  error={errors.content}
+                  error={props.errors.content}
                   name="content"
                   placeholder="Text (optional)"
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
+                  handleBlur={props.handleBlur}
+                  handleChange={props.handleChange}
                   multiline
                   minLines={4}
-                  touched={touched.content}
-                  value={values.content}
+                  touched={props.touched.content}
+                  value={props.values.content}
                 />
               </div>
             </div>
@@ -65,6 +67,7 @@ class CreatePost extends Component {
           <div className="knc-form-section">
             <div className="knc-form-section-buttons">
               <Button
+                disabled={!(props.values && props.values.content && props.values.kuluster && props.values.title)}
                 intent="primary"
                 text="Create Post"
                 type="submit"
@@ -82,6 +85,7 @@ CreatePost.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,
   onConfirm: PropTypes.func,
+  setFieldValue: PropTypes.func.isRequired,
   /* Objects and Primitives */
   errors: PropTypes.shape({}).isRequired,
   touched: PropTypes.shape({}).isRequired,
@@ -97,20 +101,15 @@ const CreatePostForm = withFormik({
   validate: (values) => {
     const errors = {};
 
-    if (!values.addressLine1) {
-      errors.addressLine1 = 'Required!';
+
+    if (!values.content) {
+      errors.content = 'Required!';
     }
-    if (!values.city) {
-      errors.city = 'Required!';
+    if (!values.kuluster) {
+      errors.kuluster = 'Required!';
     }
-    if (!values['state-province-region']) {
-      errors['state-province-region'] = 'Required!';
-    }
-    if (!values.country) {
-      errors.country = 'Required!';
-    }
-    if (!values['zip-postal-code']) {
-      errors['zip-postal-code'] = 'Required!';
+    if (!values.title) {
+      errors.title = 'Required!';
     }
     return errors;
   },

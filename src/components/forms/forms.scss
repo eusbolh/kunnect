@@ -84,11 +84,11 @@
 
       .knc-form-text-input--error {
 
-        input {
+        input, textarea {
           border-color: $red4;
         }
 
-        input:focus {
+        input:focus, textarea:focus {
           border-color: $red4;
         }
       }

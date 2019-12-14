@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Dialog, Popover } from '@blueprintjs/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'nysa-ui';
+import { appendClasses } from 'common/common.utils';
 
 class Drodown extends Component {
   state = {
@@ -10,8 +11,13 @@ class Drodown extends Component {
     selectedMenuItem: null,
   }
 
+  selectItem = (item) => {
+    this.setState({ selectedMenuItem: item });
+    this.props.handleChange(this.props.name, item);
+  }
+
   renderPopoverContent = () => (
-    <div className="knc-dropdown-popover">
+    <div className={appendClasses('knc-dropdown-popover', this.props.popoverClasses)}>
       {this.props.options.map(option => this.renderPopoverMenuItem(option))}
     </div>
   )
@@ -20,7 +26,10 @@ class Drodown extends Component {
     <Button
       classes="knc-dropdown-popover-menu-item-button"
       key={`knc-dropdown-popover-menu-item-button-${item}`}
-      onClick={() => this.setState({ isDropdownMenuOpen: false, selectedMenuItem: item })}
+      onClick={() => {
+        this.setState({ isDropdownMenuOpen: false });
+        this.selectItem(item);
+      }}
     >
       <div className="knc-dropdown-popover-menu-item-button-is-selected">
         {
@@ -40,13 +49,17 @@ class Drodown extends Component {
   }
 
   render() {
-    const modifiers = { arrow: { enabled: false } };
+    const modifiers = {
+      arrow: { enabled: false },
+      computeStyle: { gpuAcceleration: false },
+    };
+    const { ...props } = this.props;
     return (
-      <div className="knc-dropdown-component">
+      <div className={appendClasses('knc-dropdown-component', props.classes)}>
         <Popover
           content={this.renderPopoverContent()}
           isOpen={this.state.isDropdownMenuOpen}
-          modifers={modifiers}
+          modifiers={modifiers}
           onInteraction={this.onPopoverInteraction}
           position="bottom-left"
         >
@@ -72,11 +85,19 @@ class Drodown extends Component {
 }
 
 Drodown.propTypes = {
+  /* Functions */
+  handleChange: PropTypes.func.isRequired,
+  /* Objects */
+  classes: PropTypes.string,
+  name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string),
+  popoverClasses: PropTypes.string,
 };
 
 Drodown.defaultProps = {
+  classes: null,
   options: [],
+  popoverClasses: null,
 };
 
 export default Drodown;

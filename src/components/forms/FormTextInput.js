@@ -26,6 +26,7 @@ class FormTextInput extends Component {
                     <textarea
                       disabled={props.disabled}
                       id={props.name}
+                      onBlur={props.handleBlur}
                       onChange={this.handleInputChange}
                       placeholder={props.placeholder}
                       rows={props.minLines}
@@ -37,9 +38,9 @@ class FormTextInput extends Component {
                     <input
                       disabled={props.disabled}
                       id={props.name}
-                      placeholder={props.placeholder || 'Enter input'}
                       onBlur={props.handleBlur}
                       onChange={props.handleChange}
+                      placeholder={props.placeholder || 'Enter input'}
                       type={props.type}
                       value={props.value || ''}
                     />

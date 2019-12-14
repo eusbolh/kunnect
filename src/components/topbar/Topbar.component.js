@@ -31,9 +31,15 @@ class Topbar extends Component {
       onClose={() => this.closeDialog('CreatePost')}
       title="Create Post"
     >
-      <CreatePostForm />
+      <CreatePostForm
+        onConfirm={this.createPost}
+      />
     </BasicDialog>
   )
+
+  createPost = (values) => {
+    console.log(values);
+  }
 
   /* User Box Popover */
 
