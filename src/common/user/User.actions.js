@@ -1,4 +1,4 @@
-import httpService from 'axios';
+import axios from 'axios';
 import { loginAPI, forgotPasswordAPI, changePasswordAPI, createUserAPI, verifyMailAPI, getUserDataAPI } from 'common/api/Api.functions';
 import { getResponseData, getErrorDetails, getErrorData } from 'common/api/Api.helpers';
 import { addNotification } from 'common/notifications/Notifications.actions';
@@ -11,10 +11,6 @@ export const USER_ACTIONS = {
   LOGIN: 'U_LOGIN',
   VERIFY_EMAIL: 'U_VERIFY_EMAIL',
 };
-
-const axios = httpService.create({
-  withCredentials: true,
-});
 
 /* Change Password */
 

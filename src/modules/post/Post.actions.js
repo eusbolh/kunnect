@@ -1,4 +1,4 @@
-import httpService from 'axios';
+import axios from 'axios';
 import { createPostAPI } from 'common/api/Api.functions';
 import { addNotification } from 'common/notifications/Notifications.actions';
 import { getResponseData } from 'common/api/Api.helpers';
@@ -6,10 +6,6 @@ import { getResponseData } from 'common/api/Api.helpers';
 export const POST_ACTIONS = {
   CREATE_POST: 'P_CREATE_POST',
 };
-
-const axios = httpService.create({
-  withCredentials: true,
-});
 
 /* Create Post */
 

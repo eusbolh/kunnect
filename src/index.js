@@ -6,12 +6,17 @@ import { Provider } from 'react-redux';
 import ReduxStore from 'state/store/ReduxStore';
 import Routes from 'routing/Routes';
 import { IntlProvider } from 'react-intl';
-import localeEN from 'common/i18n/en.json'
+import localeEN from 'common/i18n/en.json';
+import httpService from 'common/httpService';
 import './index.scss';
 
 export const history = createBrowserHistory({ //eslint-disable-line
   basename: '',
 });
+
+const { store } = ReduxStore;
+
+httpService.setupInterceptors(store, history);
 
 const locale = 'en';
 
@@ -21,7 +26,7 @@ const languages = {
 
 ReactDOM.render(
   <IntlProvider locale={locale} messages={languages[locale]}>
-    <Provider store={ReduxStore.store}>
+    <Provider store={store}>
       <Router history={history}>
         <Route component={Routes} />
       </Router>
