@@ -1,7 +1,7 @@
 .knc-suggestbar {
   display: flex;
   font-family: 'Roboto', sans-serif;
-  width: 500px;
+  width: 568px;
 
   .bp3-popover-wrapper {
     width: -webkit-fill-available;
@@ -17,26 +17,24 @@
 
   .bp3-input {
     box-shadow: none;
-    border: 1px solid $gray5;
+    border: 1px solid $border-color;
     border-radius: 3px 0 0 3px;
-    background-color: #f6f7f8;
     color: $gray1;
     font-family: 'Roboto', sans-serif;
   }
   
   .bp3-input:hover {
     cursor: text;
-    border-color: $gray4;
   }
 
   .bp3-input:focus {
     box-shadow: none;
-    border: 1px solid $gray4;
+    border: 1px solid $light-gray1;
   }
 }
 
 .bp3-menu {
-  height: 200px;
+  max-height: 200px;
   overflow-y: auto;
 
   li {

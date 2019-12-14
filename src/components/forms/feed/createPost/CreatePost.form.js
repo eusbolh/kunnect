@@ -4,6 +4,7 @@ import { withFormik } from 'formik';
 import { Button } from 'nysa-ui';
 import FormTextInput from 'components/forms/FormTextInput';
 import Dropdown from 'components/dropdown/Dropdown.component';
+import SuggestBar from 'components/suggestBar/SuggestBar.component';
 
 class CreatePost extends Component {
   handleSubmit = (e) => {
@@ -15,6 +16,10 @@ class CreatePost extends Component {
     this.props.setFieldValue(name, value);
   }
 
+  onSuggestBarItemClick = (item) => {
+    this.props.setFieldValue('kuluster', item);
+  }
+
   render() {
     const { ...props } = this.props;
     return (
@@ -23,13 +28,10 @@ class CreatePost extends Component {
           <div className="knc-form-section">
             <div className="knc-form-section-title">Kuluster</div>
             <div className="knc-form-section-content">
-              <div style={{ width: '100%' }}>
-                <Dropdown
-                  classes="knc-dropdown-dropdown-create-post"
-                  popoverClasses="knc-dropdown-popover-create-post"
-                  handleChange={this.handleChange}
-                  name="kuluster"
-                  options={['explainlikeimfive', 'AskProgramming', 'askscience']}
+              <div style={{ marginBottom: '12px', width: '100%' }}>
+                <SuggestBar
+                  onClick={this.onSuggestBarItemClick}
+                  suggest={props.kulusterList}
                 />
               </div>
             </div>
@@ -100,7 +102,6 @@ const CreatePostForm = withFormik({
   // Custom sync validation
   validate: (values) => {
     const errors = {};
-
 
     if (!values.content) {
       errors.content = 'Required!';

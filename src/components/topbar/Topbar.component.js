@@ -53,6 +53,7 @@ class Topbar extends Component {
       title="Create Post"
     >
       <CreatePostForm
+        kulusterList={this.props.kulusterList}
         onConfirm={this.createPost}
       />
     </BasicDialog>
@@ -205,7 +206,7 @@ Topbar.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-  kulusterList: PropTypes.arrayOf(PropTypes.shape({})),
+  kulusterList: PropTypes.arrayOf(PropTypes.string),
   userData: PropTypes.shape({}),
 };
 

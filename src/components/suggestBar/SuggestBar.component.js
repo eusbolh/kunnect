@@ -14,7 +14,7 @@ class SuggestBar extends Component {
   }
 
   handleItemSelect = (item) => {
-    this.setState({ query: '' });
+    this.setState({ query: item });
     this.props.onClick(item);
   }
 
@@ -76,7 +76,7 @@ SuggestBar.propTypes = {
   /* Functions */
   onClick: PropTypes.func.isRequired,
   /* Objects */
-  suggest: PropTypes.arrayOf(PropTypes.shape({})),
+  suggest: PropTypes.arrayOf(PropTypes.string),
 };
 
 SuggestBar.defaultProps = {
