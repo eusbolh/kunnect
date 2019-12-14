@@ -12,6 +12,7 @@ import brandLogo from 'common/assets/logo_white.png';
 import FormTextInput from 'components/forms/FormTextInput';
 import { makeCancelable } from 'common/api/Api.helpers';
 import { hashCode } from 'common/common.utils';
+import SuggestBar from 'components/suggestBar/SuggestBar.component';
 
 class Topbar extends Component {
   state = {
@@ -122,19 +123,23 @@ class Topbar extends Component {
     return classes;
   }
 
+  onSuggestBarItemClick = (item) => {
+    this.props.history.push(`/k/${item}`);
+  }
+
   render() {
     const modifiers = {
       arrow: { enabled: false },
       computeStyle: { gpuAcceleration: false },
     };
     const { ...props } = this.props;
-    console.log(this.props)
     return (
       <div className="knc-topbr-component">
         <div className="knc-topbr-left-side">
           <div className="knc-topbr-searchbar-container">
-            <FormTextInput
-              placeholder="Search kuluster by name"
+            <SuggestBar
+              onClick={this.onSuggestBarItemClick}
+              suggest={this.props.kulusterList}
             />
           </div>
         </div>
