@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { createKulusterAPI, getKulusterListAPI } from 'common/api/Api.functions';
+import { createKulusterAPI, getKulusterListAPI, getKulusterInfoAPI } from 'common/api/Api.functions';
 import { getResponseData } from 'common/api/Api.helpers';
 import { addNotification } from 'common/notifications/Notifications.actions';
 
 export const KULUSTER_ACTIONS = {
   CREATE_KULUSTER: 'K_CREATE_KULUSTER',
+  GET_KULUSTER_INFO: 'K_GET_KULUSTER_INFO',
   GET_KULUSTER_LIST: 'K_GET_KULUSTER_LIST',
 };
 
@@ -38,6 +39,28 @@ export const createKuluster = data => (dispatch) => {
   );
 };
 
+/* Get Kuluster Info */
+
+const getKulusterInfoSuccess = data => ({
+  type: KULUSTER_ACTIONS.GET_KULUSTER_INFO,
+  payload: data,
+});
+
+export const getKulusterInfo = data => (dispatch) => {
+  const token = localStorage.getItem('token');
+  return axios.get(getKulusterInfoAPI(data.kulusterName), {
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      dispatch(getKulusterInfoSuccess(getResponseData(response)));
+    })
+    .catch((error) => {
+      throw (error);
+    });
+};
+
 /* Get Kuluster List */
 
 const getKulusterListSuccess = data => ({
@@ -47,7 +70,7 @@ const getKulusterListSuccess = data => ({
 
 export const getKulusterList = () => (dispatch) => {
   const token = localStorage.getItem('token');
-  axios.get(getKulusterListAPI(), {
+  return axios.get(getKulusterListAPI(), {
     headers: {
       Authorization: token,
     },

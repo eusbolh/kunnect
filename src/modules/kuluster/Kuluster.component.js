@@ -25,7 +25,6 @@ class Kuluster extends Component {
   getSubscriberCount = kuluster => kuluster && kuluster.subscriber_count;
 
   render() {
-    console.log(this.props);
     const kuluster = getKulusterInfo();
     return (
       <div className="knc-kuluster-module">

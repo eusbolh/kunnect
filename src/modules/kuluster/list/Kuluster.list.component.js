@@ -3,10 +3,26 @@ import PropTypes from 'prop-types';
 import { getPosts } from '../Kuluster.config';
 import Post from 'components/post/Post.component';
 import Box from 'components/box/Box.component';
+import { makeCancelable } from 'common/api/Api.helpers';
 
 class KulusterList extends Component {
+  state = {
+    isWaitingGetKulusterInfo: true,
+  }
+
+  getKulusterInfoPromise = null;
+
+  componentDidMount = () => {
+    this.getKulusterInfoPromise = makeCancelable(this.props.getKulusterInfo({ kulusterName: this.props.match.params.kulusterName }));
+    this.getKulusterInfoPromise.promise
+      .then(() => {
+        this.setState({ isWaitingGetKulusterInfo: false });
+      });
+  }
+
   render() {
     const posts = getPosts();
+    console.log(this.props);
     return (
       <div className="knc-kuluster-list-module">
         <div className="knc-kuluster-list-posts">
@@ -34,6 +50,8 @@ class KulusterList extends Component {
 }
 
 KulusterList.propTypes = {
+  /* Functions */
+  getKulusterInfo: PropTypes.func.isRequired,
 };
 
 KulusterList.defaultProps = {

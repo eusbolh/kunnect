@@ -2,6 +2,11 @@ import { KULUSTER_ACTIONS } from 'modules/kuluster/Kuluster.actions';
 
 export default (state = null, action) => {
   switch (action.type) {
+    case KULUSTER_ACTIONS.GET_KULUSTER_INFO:
+      return {
+        ...state,
+        kulusterInfo: action.payload && action.payload.kulusterInfo,
+      };
     case KULUSTER_ACTIONS.GET_KULUSTER_LIST:
       return {
         ...state,
