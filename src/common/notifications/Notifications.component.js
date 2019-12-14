@@ -10,6 +10,10 @@ class Notifications extends Component {
         return <ErrorNotificationContainer />;
       case 'create-kuluster-success':
         return <SuccessNotificationContainer />;
+      case 'create-psot-error':
+        return <ErrorNotificationContainer />;
+      case 'create-post-success':
+        return <SuccessNotificationContainer />;
       case 'create-user-error':
         return <ErrorNotificationContainer />;
       case 'create-user-success':

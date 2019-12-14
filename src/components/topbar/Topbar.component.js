@@ -10,11 +10,20 @@ import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import CreatePostForm from 'components/forms/feed/createPost/CreatePost.form';
 import brandLogo from 'common/assets/logo_brandcolor.png';
 import FormTextInput from 'components/forms/FormTextInput';
+import { makeCancelable } from 'common/api/Api.helpers';
 
 class Topbar extends Component {
   state = {
     isCreatePostDialogOpen: false,
     isUserBoxPopoverOpen: false,
+  }
+
+  createPostPromise = null;
+
+  componentWillUnmount = () => {
+    if (this.createPostPromise && this.createPostPromise.cancel) {
+      this.createPostPromise.cancel();
+    }
   }
 
   /* Dialog Helpers */
@@ -38,7 +47,15 @@ class Topbar extends Component {
   )
 
   createPost = (values) => {
-    console.log(values);
+    this.createPostPromise = makeCancelable(this.props.createPost({
+      content: values.content,
+      kulusterName: values.kuluster,
+      title: values.title,
+    }));
+    this.createPostPromise.promise
+      .then(() => {
+        this.closeDialog('CreatePost');
+      });
   }
 
   /* User Box Popover */
@@ -154,6 +171,8 @@ class Topbar extends Component {
 }
 
 Topbar.propTypes = {
+  /* Functions */
+  createPost: PropTypes.func.isRequired,
   /* Objects */
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

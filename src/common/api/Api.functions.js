@@ -21,3 +21,7 @@ export const createKulusterAPI = () => `${API_BASE_URL}/kuluster`;
 /* Feed Endpoints */
 
 export const getFeedAPI = () => `${API_BASE_URL}/user/feed`;
+
+/* Post Endpoints */
+
+export const createPostAPI = () => `${API_BASE_URL}/post`;

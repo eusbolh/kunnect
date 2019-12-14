@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Topbar from 'components/topbar/Topbar.component';
 import NotFound from 'modules/notfound/NotFound.component';
 import FeedContainer from 'modules/feed/Feed.container';
 import KulusterContainer from 'modules/kuluster/Kuluster.container';
@@ -35,6 +34,7 @@ import {
 import SidebarContainer from 'components/sidebar/Sidebar.container';
 import NotificationsContainer from 'modules/notifications/Notifications.container';
 import MessagesContainer from 'modules/messages/Messages.container';
+import TopbarContainer from 'components/topbar/Topbar.container';
 
 library.add(
   faBan,
@@ -69,7 +69,7 @@ class App extends Component {
         <div className="knc-app-sidebar-container"><SidebarContainer /></div>
         <div className="knc-app-rest-container">
           <div className="knc-app-topbar-container">
-            <Topbar />
+            <TopbarContainer />
           </div>
           <div className="knc-app-content-container">
             <div className="knc-app-content">
