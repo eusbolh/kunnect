@@ -4,6 +4,11 @@ export default (state = null, action) => {
   switch (action.type) {
     case USER_ACTIONS.FORGOT_PASSWORD:
       return state;
+    case USER_ACTIONS.GET_USER_DATA:
+      return {
+        ...state,
+        userData: action.payload,
+      }
     case USER_ACTIONS.LOGIN:
       localStorage.setItem('token', action.payload.token);
       return state;

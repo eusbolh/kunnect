@@ -8,9 +8,10 @@ import {
 import { Button } from 'nysa-ui';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import CreatePostForm from 'components/forms/feed/createPost/CreatePost.form';
-import brandLogo from 'common/assets/logo_brandcolor.png';
+import brandLogo from 'common/assets/logo_white.png';
 import FormTextInput from 'components/forms/FormTextInput';
 import { makeCancelable } from 'common/api/Api.helpers';
+import { hashCode } from 'common/common.utils';
 
 class Topbar extends Component {
   state = {
@@ -29,6 +30,12 @@ class Topbar extends Component {
       this.createPostPromise.cancel();
     }
   }
+
+  /* User Data Getters */
+
+  getKarma = userData => userData && userData.karma;
+
+  getUsername = userData => userData && userData.username;
 
   /* Dialog Helpers */
 
@@ -106,11 +113,22 @@ class Topbar extends Component {
     this.props.history.push('/login');
   }
 
+  getUserProfileImageClasses = () => {
+    let classes = 'knc-topbr-user-box-profile-image-container';
+    const username = this.getUsername(this.props.userData);
+    const hash = hashCode(username);
+    const modulo = hash % 5;
+    classes += ` knc-topbr-user-box-profile-image-container--${modulo}`;
+    return classes;
+  }
+
   render() {
     const modifiers = {
       arrow: { enabled: false },
       computeStyle: { gpuAcceleration: false },
     };
+    const { ...props } = this.props;
+    console.log(this.props)
     return (
       <div className="knc-topbr-component">
         <div className="knc-topbr-left-side">
@@ -146,7 +164,7 @@ class Topbar extends Component {
               >
                 <div className="knc-topbr-user-box">
                   <div className="knc-topbr-user-box-left-side">
-                    <div className="knc-topbr-user-box-profile-image-container">
+                    <div className={this.getUserProfileImageClasses()}>
                       <img
                         alt="kunnect"
                         className="knc-topbr-user-box-profile-image"
@@ -154,8 +172,8 @@ class Topbar extends Component {
                       />
                     </div>
                     <div className="knc-topbr-user-box-user-info">
-                      <div className="knc-topbr-user-box-user-name">eusbolh</div>
-                      <div className="knc-topbr-user-box-karma">20 karma</div>
+                      <div className="knc-topbr-user-box-user-name">{this.getUsername(props.userData)}</div>
+                      <div className="knc-topbr-user-box-karma">{`${this.getKarma(props.userData)} karma`}</div>
                     </div>
                   </div>
                   <div className="knc-topbr-user-box-right-side">
@@ -182,9 +200,13 @@ Topbar.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  kulusterList: PropTypes.arrayOf(PropTypes.shape({})),
+  userData: PropTypes.shape({}),
 };
 
 Topbar.defaultProps = {
+  kulusterList: null,
+  userData: null,
 };
 
 export default withRouter(Topbar);

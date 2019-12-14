@@ -22,3 +22,13 @@ export const getSecondsFromNowToTimeStamp = (timestamp) => {
   const date = new Date(timestamp);
   return (date.getTime() - now.getTime()) / 1000;
 };
+
+export const hashCode = (string) => {
+  let sum = 0;
+  if (string) {
+    for (let i = 0; i < string.length; i += 1) {
+      sum += string.charCodeAt(i);
+    }
+  }
+  return sum;
+};

@@ -62,17 +62,42 @@
             text-align: right;
 
             .knc-topbr-user-box-profile-image-container {
-              background-color: $brand-color-inverse;
-              border: 1px solid $brand-color-inverse;
+              background-color: $dark-gray5;
+              border: 2px solid $dark-gray5;
               border-radius: 50%;    
               height: 24px;
               width: 24px;
               
               .knc-topbr-user-box-profile-image {
                 border-radius: 50%;    
-                height: 22px;
-                width: 22px;
+                height: 20px;
+                width: 20px;
               }
+            }
+            
+            .knc-topbr-user-box-profile-image-container--0 {
+              background-color: $blue5;
+              border-color: $blue5;
+            }
+            
+            .knc-topbr-user-box-profile-image-container--1 {
+              background-color: $red5;
+              border-color: $red5;
+            }
+            
+            .knc-topbr-user-box-profile-image-container--2 {
+              background-color: $green5;
+              border-color: $green5;
+            }
+            
+            .knc-topbr-user-box-profile-image-container--3 {
+              background-color: $gold5;
+              border-color: $gold5;
+            }
+            
+            .knc-topbr-user-box-profile-image-container--4 {
+              background-color: $violet5;
+              border-color: $violet5;
             }
 
             .knc-topbr-user-box-user-info {

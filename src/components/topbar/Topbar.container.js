@@ -7,6 +7,8 @@ import {
 import Topbar from './Topbar.component';
 
 const mapStateToProps = state => ({
+  kulusterList: state && state.kulusters && state.kulusters.kulusterList,
+  userData: state && state.user && state.user.userData,
 });
 
 const mapDispatchToProps = dispatch => (
