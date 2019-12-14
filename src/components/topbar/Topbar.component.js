@@ -20,6 +20,10 @@ class Topbar extends Component {
 
   createPostPromise = null;
 
+  componentDidMount = () => {
+    this.props.getKulusterList();
+  }
+
   componentWillUnmount = () => {
     if (this.createPostPromise && this.createPostPromise.cancel) {
       this.createPostPromise.cancel();
@@ -173,6 +177,7 @@ class Topbar extends Component {
 Topbar.propTypes = {
   /* Functions */
   createPost: PropTypes.func.isRequired,
+  getKulusterList: PropTypes.func.isRequired,
   /* Objects */
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

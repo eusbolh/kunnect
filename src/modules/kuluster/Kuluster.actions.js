@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { createKulusterAPI } from 'common/api/Api.functions';
+import { createKulusterAPI, getKulusterListAPI } from 'common/api/Api.functions';
 import { getResponseData } from 'common/api/Api.helpers';
 import { addNotification } from 'common/notifications/Notifications.actions';
 
 export const KULUSTER_ACTIONS = {
   CREATE_KULUSTER: 'K_CREATE_KULUSTER',
+  GET_KULUSTER_LIST: 'K_GET_KULUSTER_LIST',
 };
 
 /* Create Kuluster */
@@ -35,4 +36,26 @@ export const createKuluster = data => (dispatch) => {
         throw (error);
       })
   );
+};
+
+/* Get Kuluster List */
+
+const getKulusterListSuccess = data => ({
+  type: KULUSTER_ACTIONS.GET_KULUSTER_LIST,
+  payload: data,
+});
+
+export const getKulusterList = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  axios.get(getKulusterListAPI(), {
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      dispatch(getKulusterListSuccess(getResponseData(response)));
+    })
+    .catch((error) => {
+      throw (error);
+    });
 };
