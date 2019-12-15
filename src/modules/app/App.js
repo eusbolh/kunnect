@@ -14,6 +14,7 @@ import {
   faCog,
   faComment,
   faCommentAlt,
+  faEllipsisH,
   faExclamationCircle,
   faFlag,
   faList,
@@ -23,6 +24,7 @@ import {
   faShare,
   faSignOutAlt,
   faTimes,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faBell,
@@ -49,6 +51,7 @@ library.add(
   faComment,
   faCommentAlt,
   farCommentAlt,
+  faEllipsisH,
   faExclamationCircle,
   faFlag,
   farFlag,
@@ -60,6 +63,7 @@ library.add(
   faShare,
   faSignOutAlt,
   faTimes,
+  faTrash,
 );
 
 class App extends Component {

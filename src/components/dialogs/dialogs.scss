@@ -7,3 +7,24 @@
   padding: 0 !important;
   width: max-content !important;
 }
+
+.knc-basic-delete-dialog {
+
+  .knc-basic-delete-dialog-description {
+
+  }
+
+  .knc-basic-delete-dialog-buttons {
+    display: flex;
+    margin-top: 16px;
+    width: 100%;
+
+    .knc-basic-delete-dialog-button {
+      width: 268px;
+    }
+
+    .knc-basic-delete-dialog-button:not(:last-child) {
+      margin-right: 16px;
+    }
+  }
+}

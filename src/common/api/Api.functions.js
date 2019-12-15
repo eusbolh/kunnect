@@ -35,3 +35,5 @@ export const getPostInfoAPI = postID => `${API_BASE_URL}/post/${postID}`;
 /* Comment Endpoints */
 
 export const createCommentAPI = () => `${API_BASE_URL}/comment`;
+
+export const deleteCommentAPI = () => `${API_BASE_URL}/comment`;

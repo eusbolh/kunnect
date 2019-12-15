@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { createPostAPI, getPostInfoAPI, createCommentAPI } from 'common/api/Api.functions';
+import { createPostAPI, getPostInfoAPI, createCommentAPI, deleteCommentAPI } from 'common/api/Api.functions';
 import { addNotification } from 'common/notifications/Notifications.actions';
 import { getResponseData } from 'common/api/Api.helpers';
 
 export const POST_ACTIONS = {
   CREATE_COMMENT: 'P_CREATE_COMMENT',
   CREATE_POST: 'P_CREATE_POST',
+  DELETE_COMMENT: 'P_DELETE_COMMENT',
   GET_POST_INFO: 'P_GET_POST_INFO',
   GET_POST_INFO_ERROR: 'P_GET_POST_INFO_ERROR',
 };
@@ -65,6 +66,35 @@ export const createPost = data => (dispatch) => {
       })
       .catch((error) => {
         dispatch(addNotification(null, 'create-post-error'));
+        throw (error);
+      })
+  );
+};
+
+/* Delete Comment */
+
+const deleteCommentSuccess = data => ({
+  type: POST_ACTIONS.DELETE_COMMENT,
+  payload: data,
+});
+
+export const deleteComment = data => (dispatch) => {
+  const token = localStorage.getItem('token');
+  return (
+    axios.delete(deleteCommentAPI(), {
+      headers: {
+        Authorization: token,
+      },
+      data: {
+        commentId: data.commentID,
+      }
+    })
+      .then((response) => {
+        dispatch(addNotification(null, 'delete-comment-success'));
+        dispatch(deleteCommentSuccess(getResponseData(response)));
+      })
+      .catch((error) => {
+        dispatch(addNotification(null, 'delete-comment-error'));
         throw (error);
       })
   );

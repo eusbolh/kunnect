@@ -306,8 +306,10 @@ class KulusterPost extends Component {
                   <Comment
                     createComment={props.createComment}
                     data={comment}
+                    deleteComment={props.deleteComment}
                     key={`knc-kuluster-post-comment-${comment && comment.commentId}`}
                     postID={this.props.match.params.postID}
+                    userData={this.props.userData}
                   />
                 ))}
               </div>
@@ -323,13 +325,16 @@ class KulusterPost extends Component {
 KulusterPost.propTypes = {
   /* Functions */
   createComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
   getPostInfo: PropTypes.func.isRequired,
   /* Objects */
   postDetails: PropTypes.shape({}),
+  userData: PropTypes.shape({}),
 };
 
 KulusterPost.defaultProps = {
   postDetails: null,
+  userData: null,
 };
 
 export default KulusterPost;

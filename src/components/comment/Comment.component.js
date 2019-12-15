@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CommentTextArea from './textarea/CommentTextArea.component';
+import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 
 class Comment extends Component {
   state = {
@@ -43,6 +44,38 @@ class Comment extends Component {
       content: reply,
       postID: this.props.postID,
     });
+  }
+
+  renderDeleteDialog = () => (
+    <BasicDialog
+      isOpen={this.state.isDeleteDialogOpen}
+      onClose={() => this.setState({ isDeleteDialogOpen: false })}
+      title="Delete Comment"
+    >
+      <div className="knc-basic-delete-dialog">
+        <div className="knc-basic-delete-dialog-description">Are you sure you want to delete this comment? This action is irreversible.</div>
+        <div className="knc-basic-delete-dialog-buttons">
+          <Button
+            classes="knc-basic-delete-dialog-button"
+            onClick={() => this.setState({ isDeleteDialogOpen: false })}
+            text="Cancel"
+          />
+          <Button
+            classes="knc-basic-delete-dialog-button"
+            intent="danger"
+            onClick={() => {
+              this.setState({ isDeleteDialogOpen: false });
+              this.deleteComment();
+            }}
+            text="Delete Comment"
+          />
+        </div>
+      </div>
+    </BasicDialog>
+  )
+
+  deleteComment = () => {
+    this.props.deleteComment({ commentID: this.getID(this.props.data) });
   }
 
   render() {
@@ -104,6 +137,21 @@ class Comment extends Component {
               <div className="knc-comment-bottom-button-text">Report</div>
             </Button>
           </div>
+          {
+            this.getUserName(this.props.data) === (this.props.userData && this.props.userData.username)
+            ? (
+              <div className="knc-comment-bottom-button-container">
+                <Button
+                  classes="knc-comment-bottom-button"
+                  onClick={() => this.setState({ isDeleteDialogOpen: true })}
+                >
+                  <FontAwesomeIcon icon={['fas', 'trash']} />
+                  <div className="knc-comment-bottom-button-text">Delete</div>
+                </Button>
+              </div>
+            ) : null
+          }
+          {this.renderDeleteDialog()}
         </div>
         {
           this.state.isReplySectionOpen
@@ -140,7 +188,9 @@ class Comment extends Component {
                         <Comment
                           createComment={props.createComment}
                           data={comment}
+                          deleteComment={props.deleteComment}
                           postID={props.postID}
+                          userData={props.userData}
                         />
                       </div>
                     </div>
@@ -157,13 +207,16 @@ class Comment extends Component {
 Comment.propTypes = {
   /* Functions */
   createComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
   /* Objects */
   data: PropTypes.shape({}),
   postID: PropTypes.number.isRequired,
+  userData: PropTypes.shape({}),
 };
 
 Comment.defaultProps = {
   data: null,
+  userData: null,
 };
 
 export default withRouter(Comment);

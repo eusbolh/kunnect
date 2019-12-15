@@ -323,9 +323,11 @@ class PostDialog extends Component {
               {props.data && props.data.comments.map(comment => (
                 <Comment
                   createComment={props.createComment}
+                  deleteComment={props.deleteComment}
                   data={comment}
                   key={`knc-post-dialog-comment-${comment && comment.commentId}`}
                   postID={this.getPostID(props.data)}
+                  userData={props.userData}
                 />
               ))}
             </div>
@@ -339,17 +341,20 @@ class PostDialog extends Component {
 PostDialog.propTypes = {
   /* Functions */
   createComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
   data: PropTypes.shape({}),
   onClose: PropTypes.func.isRequired,
   /* Objects */
   children: PropTypes.node.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  userData: PropTypes.shape({}),
   title: PropTypes.string,
 };
 
 PostDialog.defaultProps = {
   data: null,
   title: 'null',
+  userData: null,
 };
 
 export default withRouter(PostDialog);

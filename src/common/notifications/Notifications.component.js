@@ -22,6 +22,10 @@ class Notifications extends Component {
         return <ErrorNotificationContainer />;
       case 'create-user-success':
         return <SuccessNotificationContainer />;
+      case 'delete-comment-error':
+        return <ErrorNotificationContainer />;
+      case 'delete-comment-success':
+        return <SuccessNotificationContainer />;
       case 'login-error':
         return <ErrorNotificationContainer />;
       case 'verify-error':
