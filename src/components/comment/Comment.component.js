@@ -137,7 +137,7 @@ class Comment extends Component {
               <div className="knc-comment-bottom-button-text">Report</div>
             </Button>
           </div>
-          {
+          {/*
             this.getUserName(this.props.data) === (this.props.userData && this.props.userData.username)
             ? (
               <div className="knc-comment-bottom-button-container">
@@ -150,8 +150,8 @@ class Comment extends Component {
                 </Button>
               </div>
             ) : null
-          }
-          {this.renderDeleteDialog()}
+          */}
+          {/*this.renderDeleteDialog()*/}
         </div>
         {
           this.state.isReplySectionOpen
