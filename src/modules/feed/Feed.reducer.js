@@ -5,7 +5,7 @@ export default (state = null, action) => {
     case FEED_ACTIONS.GET_FEED:
       return {
         ...state,
-        feed: action.payload.data,
+        feed: action.payload && action.payload.posts,
       };
     default:
       return state;

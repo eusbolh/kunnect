@@ -7,6 +7,7 @@ import Comment from 'components/comment/Comment.component';
 import CommentTextArea from 'components/comment/textarea/CommentTextArea.component';
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import ReportPostForm from 'components/forms/post/reportPost/ReportPost.form';
+import { hashCode } from 'common/common.utils';
 
 class PostDialog extends Component {
   state = {
@@ -58,19 +59,10 @@ class PostDialog extends Component {
 
   getPostTopClasses = (post) => {
     let classes = 'knc-post-dialog-top';
-    switch (post.kuluster.color) {
-      case 'blue':
-        classes += ' knc-post-dialog-top--blue';
-        break;
-      case 'orange':
-        classes += ' knc-post-dialog-top--orange';
-        break;
-      case 'red':
-        classes += ' knc-post-dialog-top--red';
-        break;
-      default:
-        break;
-    }
+    const kulusterName = this.getKulusterName(post);
+    const hash = hashCode(kulusterName);
+    const modulo = hash % 5;
+    classes += ` knc-post-dialog-top--${modulo}`;
     return classes;
   }
 

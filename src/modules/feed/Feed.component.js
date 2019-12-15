@@ -99,6 +99,7 @@ class Feed extends Component {
 
   render() {
     const { ...props } = this.props;
+    console.log(this.props);
     if (this.state.isPageLoading) {
       return <SpinnerPage />;
     }
@@ -108,8 +109,8 @@ class Feed extends Component {
           <div className="knc-feed-posts">
             {
               props.feed
-                ? props.feed.map(post => <Post data={post} key={`knc-feed-posts-${post.id}`} />)
-                : getPosts().map(post => <Post data={post} key={`knc-feed-posts-${post.id}`} />)
+                ? props.feed.map(post => <Post data={post} key={`knc-feed-posts-${post.postID}`} />)
+                : null
             }
           </div>
           <div className="knc-feed-rest-container">

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { FormattedDate } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PostDialog from 'components/dialogs/post/PostDialog.component';
+import { hashCode } from 'common/common.utils';
+import brandLogo from 'common/assets/logo_white.png';
 
 class Post extends Component {
   state = {
@@ -12,25 +15,25 @@ class Post extends Component {
 
   /* Post Getters */
 
-  getCommentCount = post => post.post && post.post.comment_count;
+  getCommentCount = post => post && post.commentCount;
 
-  getKulusterName = post => post.kuluster && post.kuluster.name;
+  getKulusterName = post => post && post.kulusterName;
 
   getKulusterImageSrc = post => post.kuluster && post.kuluster.image;
 
-  getPostedAt = post => post.post && post.post.posted_at;
+  getPostedAt = post => post && post.dateCreated;
 
-  getPostContent = post => post.post && post.post.content;
+  getPostContent = post => post && post.content;
 
-  getPostID = post => post.id;
+  getPostID = post => post && post.postID;
 
   getPostImage = post => post.post && post.post.image;
 
-  getPostTitle = post => post.post && post.post.title;
+  getPostTitle = post => post && post.title;
 
-  getUserName = post => post.user && post.user.name;
+  getUserName = post => post && post.creatorName;
 
-  getVoteCount = post => post.post && post.post.vote_count;
+  getVoteCount = post => post && post.likes;
 
   /* Dialog Helpers */
 
@@ -79,28 +82,27 @@ class Post extends Component {
   /* className Helpers */
 
   getPostTopClasses = (post) => {
-    let classes = 'knc-post-top';
-    switch (post.kuluster.color) {
-      case 'blue':
-        classes += ' knc-post-top--blue';
-        break;
-      case 'orange':
-        classes += ' knc-post-top--orange';
-        break;
-      case 'red':
-        classes += ' knc-post-top--red';
-        break;
-      default:
-        break;
-    }
+    let classes = '';
     if (this.props.isKulusterPost) {
+      classes = 'knc-post-top--kuluster';
+      const kulusterName = this.getKulusterName(post);
+      const hash = hashCode(kulusterName);
+      const modulo = hash % 5;
+      classes += ` knc-post-top--kuluster--${modulo}`;
       classes += ' knc-post-top--kuluster';
+    } else {
+      classes = 'knc-post-top';
+      const kulusterName = this.getKulusterName(post);
+      const hash = hashCode(kulusterName);
+      const modulo = hash % 5;
+      classes += ` knc-post-top--${modulo}`;
     }
     return classes;
   }
 
   render() {
     const { ...props } = this.props;
+    const date = this.getPostedAt(props.data);
     return (
       <>
         <div className="knc-post-component" onClick={() => this.openDialog('Post')}>
@@ -110,7 +112,7 @@ class Post extends Component {
                 <div className="knc-post-info-left">
                   <div className="knc-post-info-kuluster-image-container">
                     <Button classes="knc-post-info-kuluster-image-button">
-                      <img alt="kuluster" className="knc-post-info-kuluster-image" src={this.getKulusterImageSrc(props.data)} />
+                      <img alt="kuluster" className="knc-post-info-kuluster-image" src={brandLogo} />
                     </Button>
                   </div>
                 </div>
@@ -139,7 +141,19 @@ class Post extends Component {
                   text={`u/${this.getUserName(props.data)}`}
                 />
                 <span>&nbsp;·&nbsp;</span>
-                <Link classes="knc-post-info-user-name-and-posted-at-link" href="http://kunnect.co" text="bsd">{this.getPostedAt(props.data)}</Link>
+                <Link classes="knc-post-info-user-name-and-posted-at-link" href="http://kunnect.co" text="bsd">
+                  {
+                    this.getPostedAt(props.data)
+                      ? (
+                        <FormattedDate
+                          value={new Date(parseInt(this.getPostedAt(props.data), 10))}
+                          year="numeric"
+                          month="long"
+                          day="2-digit"
+                        />
+                      ) : null
+                  }
+                </Link>
               </div>
             </div>
           </div>
