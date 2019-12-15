@@ -84,12 +84,11 @@ class Post extends Component {
   getPostTopClasses = (post) => {
     let classes = '';
     if (this.props.isKulusterPost) {
-      classes = 'knc-post-top--kuluster';
+      classes = 'knc-post-top knc-post-top--kuluster';
       const kulusterName = this.getKulusterName(post);
       const hash = hashCode(kulusterName);
       const modulo = hash % 5;
-      classes += ` knc-post-top--kuluster--${modulo}`;
-      classes += ' knc-post-top--kuluster';
+      classes += ` knc-post-top--${modulo}`;
     } else {
       classes = 'knc-post-top';
       const kulusterName = this.getKulusterName(post);
