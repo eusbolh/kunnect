@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedDate } from 'react-intl';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dialog } from '@blueprintjs/core';
@@ -8,6 +9,7 @@ import CommentTextArea from 'components/comment/textarea/CommentTextArea.compone
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import ReportPostForm from 'components/forms/post/reportPost/ReportPost.form';
 import { hashCode } from 'common/common.utils';
+import brandLogo from 'common/assets/logo_white.png';
 
 class PostDialog extends Component {
   state = {
@@ -22,25 +24,25 @@ class PostDialog extends Component {
 
   /* Post Getters */
 
-  getCommentCount = post => post.post && post.post.comment_count;
+  getCommentCount = post => post && post.commentCount;
 
-  getKulusterName = post => post.kuluster && post.kuluster.name;
+  getKulusterName = post => post && post.kulusterName;
 
   getKulusterImageSrc = post => post.kuluster && post.kuluster.image;
 
-  getPostedAt = post => post.post && post.post.posted_at;
+  getPostedAt = post => post && post.dateCreated;
 
-  getPostContent = post => post.post && post.post.content;
+  getPostContent = post => post && post.content;
 
-  getPostID = post => post.id;
-  
+  getPostID = post => post && post.postID;
+
   getPostImage = post => post.post && post.post.image;
 
-  getPostTitle = post => post.post && post.post.title;
+  getPostTitle = post => post && post.title;
 
-  getUserName = post => post.user && post.user.name;
+  getUserName = post => post && post.creatorName;
 
-  getVoteCount = post => post.post && post.post.vote_count;
+  getVoteCount = post => post && post.likes;
 
   /* Vote Buttons */
 
@@ -141,7 +143,7 @@ class PostDialog extends Component {
                 <div className="knc-post-dialog-info-left">
                   <div className="knc-post-dialog-info-kuluster-image-container">
                     <Button classes="knc-post-dialog-info-kuluster-image-button">
-                      <img alt="kuluster" className="knc-post-dialog-info-kuluster-image" src={this.getKulusterImageSrc(props.data)} />
+                      <img alt="kuluster" className="knc-post-dialog-info-kuluster-image" src={brandLogo} />
                     </Button>
                   </div>
                 </div>
@@ -170,7 +172,19 @@ class PostDialog extends Component {
                   text={`u/${this.getUserName(props.data)}`}
                 />
                 <span>&nbsp;·&nbsp;</span>
-                <Link classes="knc-post-dialog-info-user-name-and-posted-at-link" href="http://kunnect.co" text="bsd">{this.getPostedAt(props.data)}</Link>
+                <Link classes="knc-post-dialog-info-user-name-and-posted-at-link" href="http://kunnect.co" text="bsd">
+                  {
+                    this.getPostedAt(props.data)
+                      ? (
+                        <FormattedDate
+                          value={new Date(parseInt(this.getPostedAt(props.data), 10))}
+                          year="numeric"
+                          month="long"
+                          day="2-digit"
+                        />
+                      ) : null
+                  }
+                </Link>
               </div>
               <div className="knc-post-dialog-top-right-close-button-container">
                 <Button

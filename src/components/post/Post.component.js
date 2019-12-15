@@ -25,7 +25,7 @@ class Post extends Component {
 
   getPostContent = post => post && post.content;
 
-  getPostID = post => post && post.postID;
+  getPostID = post => post && post.postId;
 
   getPostImage = post => post.post && post.post.image;
 
