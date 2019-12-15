@@ -5,7 +5,12 @@ export default (state = null, action) => {
     case KULUSTER_ACTIONS.GET_KULUSTER_INFO:
       return {
         ...state,
-        kulusterInfo: action.payload && action.payload.kulusterInfo,
+        kulusterInfo: action.payload,
+      };
+    case KULUSTER_ACTIONS.GET_KULUSTER_INFO_ERROR:
+      return {
+        ...state,
+        kulusterInfo: null,
       };
     case KULUSTER_ACTIONS.GET_KULUSTER_LIST:
       return {

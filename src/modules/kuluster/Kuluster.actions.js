@@ -6,6 +6,7 @@ import { addNotification } from 'common/notifications/Notifications.actions';
 export const KULUSTER_ACTIONS = {
   CREATE_KULUSTER: 'K_CREATE_KULUSTER',
   GET_KULUSTER_INFO: 'K_GET_KULUSTER_INFO',
+  GET_KULUSTER_INFO_ERROR: 'K_GET_KULUSTER_INFO_ERROR',
   GET_KULUSTER_LIST: 'K_GET_KULUSTER_LIST',
 };
 
@@ -46,6 +47,11 @@ const getKulusterInfoSuccess = data => ({
   payload: data,
 });
 
+const getKulusterInfoError = data => ({
+  type: KULUSTER_ACTIONS.GET_KULUSTER_INFO_ERROR,
+  payload: data,
+});
+
 export const getKulusterInfo = data => (dispatch) => {
   const token = localStorage.getItem('token');
   return axios.get(getKulusterInfoAPI(data.kulusterName), {
@@ -57,6 +63,7 @@ export const getKulusterInfo = data => (dispatch) => {
       dispatch(getKulusterInfoSuccess(getResponseData(response)));
     })
     .catch((error) => {
+      dispatch(getKulusterInfoError());
       throw (error);
     });
 };
