@@ -66,6 +66,7 @@ class SuggestBar extends Component {
               computeStyle: { gpuAcceleration: false },
             },
           }}
+          query={this.state.query}
         />
       </div>
     );
