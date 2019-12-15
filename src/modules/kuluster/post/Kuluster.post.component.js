@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedDate } from 'react-intl';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Comment from 'components/comment/Comment.component';
@@ -7,17 +8,28 @@ import CommentTextArea from 'components/comment/textarea/CommentTextArea.compone
 import BasicDialog from 'components/dialogs/basic/BasicDialog.component';
 import ReportPostForm from 'components/forms/post/reportPost/ReportPost.form';
 import { getPost } from './Kuluster.post.config';
+import { makeCancelable } from 'common/api/Api.helpers';
+import SpinnerPage from 'components/spinnerPage/SpinnerPage.component';
+import brandLogo from 'common/assets/logo_white.png';
+import { hashCode } from 'common/common.utils';
 
 
 class KulusterPost extends Component {
   state = {
     isLinkCopied: false,
     isReplySectionOpen: false,
+    isWaitingGetPostInfo: true,
     reply: '',
   }
 
+  getPostInfoPromise = null;
+
   componentDidMount = () => {
-    // TODO: Pull post data here
+    this.getPostInfoPromise = makeCancelable(this.props.getPostInfo({ postID: this.props.match.params.postID }));
+    this.getPostInfoPromise.promise
+      .then(() => {
+        this.setState({ isWaitingGetPostInfo: false });
+      });
   }
 
   /* Reply Helpers */
@@ -26,23 +38,27 @@ class KulusterPost extends Component {
 
   /* Post Getters */
 
-  getCommentCount = post => post.post && post.post.comment_count;
+  getCommentCount = post => post && post.commentCount;
 
-  getKulusterName = post => post.kuluster && post.kuluster.name;
+  getKulusterName = post => post && post.kulusterName;
 
   getKulusterImageSrc = post => post.kuluster && post.kuluster.image;
 
-  getPostedAt = post => post.post && post.post.posted_at;
+  getPostedAt = post => post && post.dateCreated;
 
-  getPostContent = post => post.post && post.post.content;
+  getPostContent = post => post && post.content;
+
+  getPostID = post => post && post.postId;
 
   getPostImage = post => post.post && post.post.image;
 
-  getPostTitle = post => post.post && post.post.title;
+  getPostTitle = post => post && post.title;
 
-  getUserName = post => post.user && post.user.name;
+  getUserName = post => post && post.creatorName;
 
-  getVoteCount = post => post.post && post.post.vote_count;
+  getVoteCount = post => post && post.likes;
+
+  getComments = post => post && post.comments;
 
   /* Vote Buttons */
 
@@ -113,178 +129,200 @@ class KulusterPost extends Component {
     </BasicDialog>
   )
 
+  getPostTopClasses = (post) => {
+    let classes = 'knc-kuluster-post-top knc-kuluster-post-top--kuluster';
+    const kulusterName = this.getKulusterName(post);
+    const hash = hashCode(kulusterName);
+    const modulo = hash % 5;
+    classes += ` knc-kuluster-post-top--${modulo}`;
+    return classes;
+  }
+
+  onLinkClick = (event, linkURL) => {
+    event.stopPropagation();
+    this.props.history.push(linkURL);
+  }
+
   render() {
     const { ...props } = this.props;
     const postData = getPost();
-    return (
-      <div className="knc-kuluster-post-module">
-        <div className="knc-kuluster-post-container">
-          <div className="knc-kuluster-post-top knc-kuluster-post-top--kuluster">
-            <div className="knc-kuluster-post-top-left">
-              <div className="knc-kuluster-post-info">
-                <div className="knc-kuluster-post-info-left">
-                  <div className="knc-kuluster-post-info-kuluster-image-container">
-                    <Button classes="knc-kuluster-post-info-kuluster-image-button">
-                      <img alt="kuluster" className="knc-kuluster-post-info-kuluster-image" src={this.getKulusterImageSrc(postData)} />
-                    </Button>
+    if (this.state.isWaitingGetPostInfo) {
+      return <SpinnerPage />;
+    }
+    if (props.postDetails) {
+      return (
+        <div className="knc-kuluster-post-module">
+          <div className="knc-kuluster-post-container">
+            <div className={this.getPostTopClasses(props.postDetails)}>
+              <div className="knc-kuluster-post-top-left">
+                <div className="knc-kuluster-post-info">
+                  <div className="knc-kuluster-post-info-left">
+                    <div className="knc-kuluster-post-info-kuluster-image-container">
+                      <Button classes="knc-kuluster-post-info-kuluster-image-button">
+                        <img alt="kuluster" className="knc-kuluster-post-info-kuluster-image" src={brandLogo} />
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="knc-kuluster-post-info-right">
+                    <div className="knc-kuluster-post-info-kuluster-name">
+                      <Link
+                        classes="knc-kuluster-post-info-kuluster-name-link"
+                        href={`http://kunnect.co/k/${this.getKulusterName(props.postDetails)}`}
+                        intent="default"
+                        onClick={event => this.onLinkClick(event, `/k/${this.getKulusterName(props.postDetails)}`)}
+                        text={`k/${this.getKulusterName(props.postDetails)}`}
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="knc-kuluster-post-info-right">
-                  <div className="knc-kuluster-post-info-kuluster-name">
-                    <Link
-                      classes="knc-kuluster-post-info-kuluster-name-link"
-                      href={`http://kunnect.co/k/${this.getKulusterName(postData)}`}
-                      intent="default"
-                      onClick={event => this.onLinkClick(event, `/k/${this.getKulusterName(postData)}`)}
-                      text={`k/${this.getKulusterName(postData)}`}
-                    />
-                  </div>
+              </div>
+              <div className="knc-kuluster-post-top-right">
+                <div className="knc-kuluster-post-info-user-name-and-posted-at">
+                  <span>posted by</span>
+                  <span>&nbsp;</span>
+                  <Link
+                    classes="knc-kuluster-post-info-user-name-and-posted-at-link"
+                    href={`http://kunnect.co/u/${this.getUserName(props.postDetails)}`}
+                    intent="default"
+                    onClick={event => this.onLinkClick(event, `/u/${this.getUserName(props.postDetails)}`)}
+                    text={`u/${this.getUserName(props.postDetails)}`}
+                  />
+                  <span>&nbsp;·&nbsp;</span>
+                  <Link classes="knc-kuluster-post-info-user-name-and-posted-at-link" href="http://kunnect.co">
+                    {
+                      this.getPostedAt(props.postDetails)
+                        ? (
+                          <FormattedDate
+                            value={new Date(parseInt(this.getPostedAt(props.postDetails), 10))}
+                            year="numeric"
+                            month="long"
+                            day="2-digit"
+                          />
+                        ) : null
+                    }
+                  </Link>
                 </div>
               </div>
             </div>
-            <div className="knc-kuluster-post-top-right">
-              <div className="knc-kuluster-post-info-user-name-and-posted-at">
-                <span>posted by</span>
-                <span>&nbsp;</span>
-                <Link
-                  classes="knc-kuluster-post-info-user-name-and-posted-at-link"
-                  href={`http://kunnect.co/u/${this.getUserName(postData)}`}
-                  intent="default"
-                  onClick={event => this.onLinkClick(event, `/u/${this.getUserName(postData)}`)}
-                  text={`u/${this.getUserName(postData)}`}
-                />
-                <span>&nbsp;·&nbsp;</span>
-                <Link classes="knc-kuluster-post-info-user-name-and-posted-at-link" href="http://kunnect.co" text="bsd">{this.getPostedAt(postData)}</Link>
+            <div className="knc-kuluster-post-middle">
+              <div className="knc-kuluster-post-title">{this.getPostTitle(props.postDetails)}</div>
+              <div className="knc-kuluster-post-content">{this.getPostContent(props.postDetails)}</div>
+            </div>
+            <div className="knc-kuluster-post-bottom">
+              <div className="knc-kuluster-post-bottom-left">
+                <div className="knc-kuluster-post-vote-buttons">
+                  <Button
+                    classes={this.getVoteButtonClasses(props.postDetails, 1)}
+                    onClick={event => this.onVoteClick(event, 1)}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'caret-square-up']} />
+                  </Button>
+                  <div className="knc-kuluster-post-vote-count">{this.getVoteCount(props.postDetails)}</div>
+                  <Button
+                    classes={this.getVoteButtonClasses(props.postDetails, -1)}
+                    onClick={event => this.onVoteClick(event, -1)}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'caret-square-down']} />
+                  </Button>
+                </div>
               </div>
-              <div className="knc-kuluster-post-top-right-close-button-container">
-                <Button
-                  classes="knc-kuluster-post-top-right-close-button"
-                  onClick={() => this.props.history.push(`/k/${this.props.match.params.kulusterName}`)}
-                >
-                  <FontAwesomeIcon icon={['fas', 'times']} />
-                </Button>
+              <div className="knc-kuluster-post-bottom-right">
+                <div className="knc-kuluster-post-bottom-right-section">
+                  <Button
+                    classes="knc-kuluster-post-bottom-right-button"
+                    minimal={true}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'comment-alt']} />
+                    <div className="knc-kuluster-post-bottom-right-section-text">{`${this.getCommentCount(props.postDetails)} comments`}</div>
+                  </Button>
+                </div>
+                <div className="knc-kuluster-post-bottom-right-section">
+                  <Button
+                    classes="knc-kuluster-post-bottom-right-button"
+                    minimal={true}
+                    onClick={() => this.setState({ isShareDialogOpen: true })}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'share']} />
+                    <div className="knc-kuluster-post-bottom-right-section-text">Share</div>
+                  </Button>
+                  {this.renderShareDialog()}
+                </div>
+                <div className="knc-kuluster-post-bottom-right-section">
+                  <Button
+                    classes="knc-kuluster-post-bottom-right-button"
+                    minimal={true}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'save']} />
+                    <div className="knc-kuluster-post-bottom-right-section-text">Save</div>
+                  </Button>
+                </div>
+                <div className="knc-kuluster-post-bottom-right-section">
+                  <Button
+                    classes="knc-kuluster-post-bottom-right-button"
+                    minimal={true}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'ban']} />
+                    <div className="knc-kuluster-post-bottom-right-section-text">Hide</div>
+                  </Button>
+                  {this.renderReportDialog()}
+                </div>
+                <div className="knc-kuluster-post-bottom-right-section">
+                  <Button
+                    classes="knc-kuluster-post-bottom-right-button"
+                    minimal={true}
+                    onClick={() => this.setState({ isReportDialogOpen: true })}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'flag']} />
+                    <div className="knc-kuluster-post-bottom-right-section-text">Report</div>
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="knc-kuluster-post-middle">
-            <div className="knc-kuluster-post-title">{this.getPostTitle(postData)}</div>
-            <div className="knc-kuluster-post-content">{this.getPostContent(postData)}</div>
-            <div className="knc-kuluster-post-image-container">
-              {
-                this.getPostImage(postData)
-                  ? <img alt="kuluster-post-content" className="knc-kuluster-post-image" src={this.getPostImage(postData)} />
-                  : null
-              }
-            </div>
-          </div>
-          <div className="knc-kuluster-post-bottom">
-            <div className="knc-kuluster-post-bottom-left">
-              <div className="knc-kuluster-post-vote-buttons">
-                <Button
-                  classes={this.getVoteButtonClasses(postData, 1)}
-                  onClick={event => this.onVoteClick(event, 1)}
-                >
-                  <FontAwesomeIcon icon={['fas', 'caret-square-up']} />
-                </Button>
-                <div className="knc-kuluster-post-vote-count">{this.getVoteCount(postData)}</div>
-                <Button
-                  classes={this.getVoteButtonClasses(postData, -1)}
-                  onClick={event => this.onVoteClick(event, -1)}
-                >
-                  <FontAwesomeIcon icon={['fas', 'caret-square-down']} />
-                </Button>
+            <div className="knc-kuluster-post-comments">
+              <div className="knc-kuluster-post-comments-post-reply">
+                {
+                  this.state.isReplySectionOpen
+                    ? (
+                      <CommentTextArea
+                        handleChange={this.onReplyChange}
+                        name="title"
+                        multiline
+                        onCancel={() => this.setState({ isReplySectionOpen: false })}
+                        onConfirm={() => { console.log(this.state.reply); this.setState({ isReplySectionOpen: false, reply: '' }); }}
+                        placeholder="What are your thoughts?"
+                        value={this.state.reply}
+                      />
+                    ) : (
+                      <Button
+                        classes="knc-kuluster-post-comments-post-reply-empty"
+                        onClick={() => this.setState({ isReplySectionOpen: true })}
+                      >
+                        What are your thoughts?
+                      </Button>
+                    )
+                }
               </div>
-            </div>
-            <div className="knc-kuluster-post-bottom-right">
-              <div className="knc-kuluster-post-bottom-right-section">
-                <Button
-                  classes="knc-kuluster-post-bottom-right-button"
-                  minimal={true}
-                >
-                  <FontAwesomeIcon icon={['fas', 'comment-alt']} />
-                  <div className="knc-kuluster-post-bottom-right-section-text">{`${this.getCommentCount(postData)} comments`}</div>
-                </Button>
+              <div className="knc-kuluster-post-comments-content">
+                {this.getComments(props.postDetails) && this.getComments(props.postDetails).map(comment => <Comment data={comment} key={`knc-kuluster-post-comment-${comment && comment.id}`} />)}
               </div>
-              <div className="knc-kuluster-post-bottom-right-section">
-                <Button
-                  classes="knc-kuluster-post-bottom-right-button"
-                  minimal={true}
-                  onClick={() => this.setState({ isShareDialogOpen: true })}
-                >
-                  <FontAwesomeIcon icon={['fas', 'share']} />
-                  <div className="knc-kuluster-post-bottom-right-section-text">Share</div>
-                </Button>
-                {this.renderShareDialog()}
-              </div>
-              <div className="knc-kuluster-post-bottom-right-section">
-                <Button
-                  classes="knc-kuluster-post-bottom-right-button"
-                  minimal={true}
-                >
-                  <FontAwesomeIcon icon={['fas', 'save']} />
-                  <div className="knc-kuluster-post-bottom-right-section-text">Save</div>
-                </Button>
-              </div>
-              <div className="knc-kuluster-post-bottom-right-section">
-                <Button
-                  classes="knc-kuluster-post-bottom-right-button"
-                  minimal={true}
-                >
-                  <FontAwesomeIcon icon={['fas', 'ban']} />
-                  <div className="knc-kuluster-post-bottom-right-section-text">Hide</div>
-                </Button>
-                {this.renderReportDialog()}
-              </div>
-              <div className="knc-kuluster-post-bottom-right-section">
-                <Button
-                  classes="knc-kuluster-post-bottom-right-button"
-                  minimal={true}
-                  onClick={() => this.setState({ isReportDialogOpen: true })}
-                >
-                  <FontAwesomeIcon icon={['fas', 'flag']} />
-                  <div className="knc-kuluster-post-bottom-right-section-text">Report</div>
-                </Button>
-              </div>
-            </div>
-          </div>
-          <div className="knc-kuluster-post-comments">
-            <div className="knc-kuluster-post-comments-post-reply">
-              {
-                this.state.isReplySectionOpen
-                  ? (
-                    <CommentTextArea
-                      handleChange={this.onReplyChange}
-                      name="title"
-                      multiline
-                      onCancel={() => this.setState({ isReplySectionOpen: false })}
-                      onConfirm={() => { console.log(this.state.reply); this.setState({ isReplySectionOpen: false, reply: '' }); }}
-                      placeholder="What are your thoughts?"
-                      value={this.state.reply}
-                    />
-                  ) : (
-                    <Button
-                      classes="knc-kuluster-post-comments-post-reply-empty"
-                      onClick={() => this.setState({ isReplySectionOpen: true })}
-                    >
-                      What are your thoughts?
-                    </Button>
-                  )
-              }
-            </div>
-            <div className="knc-kuluster-post-comments-content">
-              {postData && postData.comments.map(comment => <Comment data={comment} key={`knc-kuluster-post-comment-${comment && comment.id}`} />)}
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+    return null;
   }
 }
 
 KulusterPost.propTypes = {
+  /* Functions */
+  getPostInfo: PropTypes.func.isRequired,
+  /* Objects */
+  postDetails: PropTypes.shape({}),
 };
 
 KulusterPost.defaultProps = {
+  postDetails: null,
 };
 
 export default KulusterPost;

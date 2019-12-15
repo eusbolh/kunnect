@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FormattedDate } from 'react-intl';
 import { Button, Link } from 'nysa-ui';
@@ -127,6 +128,11 @@ class PostDialog extends Component {
       />
     </BasicDialog>
   )
+
+  onLinkClick = (event, linkURL) => {
+    event.stopPropagation();
+    this.props.history.push(linkURL);
+  }
 
   render() {
     const { ...props } = this.props;
@@ -326,4 +332,4 @@ PostDialog.defaultProps = {
   title: 'null',
 };
 
-export default PostDialog;
+export default withRouter(PostDialog);

@@ -29,3 +29,5 @@ export const getFeedAPI = () => `${API_BASE_URL}/user/feed`;
 /* Post Endpoints */
 
 export const createPostAPI = () => `${API_BASE_URL}/post`;
+
+export const getPostInfoAPI = postID => `${API_BASE_URL}/post/${postID}`;
