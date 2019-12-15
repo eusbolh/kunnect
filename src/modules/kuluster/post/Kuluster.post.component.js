@@ -13,7 +13,6 @@ import SpinnerPage from 'components/spinnerPage/SpinnerPage.component';
 import brandLogo from 'common/assets/logo_white.png';
 import { hashCode } from 'common/common.utils';
 
-
 class KulusterPost extends Component {
   state = {
     isLinkCopied: false,
@@ -303,7 +302,14 @@ class KulusterPost extends Component {
                 }
               </div>
               <div className="knc-kuluster-post-comments-content">
-                {this.getComments(props.postDetails) && this.getComments(props.postDetails).map(comment => <Comment data={comment} key={`knc-kuluster-post-comment-${comment && comment.id}`} />)}
+                {this.getComments(props.postDetails) && this.getComments(props.postDetails).map(comment => (
+                  <Comment
+                    createComment={props.createComment}
+                    data={comment}
+                    key={`knc-kuluster-post-comment-${comment && comment.commentId}`}
+                    postID={this.props.match.params.postID}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -316,6 +322,7 @@ class KulusterPost extends Component {
 
 KulusterPost.propTypes = {
   /* Functions */
+  createComment: PropTypes.func.isRequired,
   getPostInfo: PropTypes.func.isRequired,
   /* Objects */
   postDetails: PropTypes.shape({}),

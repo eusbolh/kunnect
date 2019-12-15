@@ -6,6 +6,10 @@ import ErrorNotificationContainer from 'components/notifications/error/ErrorNoti
 class Notifications extends Component {
   renderNotification = (notification) => {
     switch (notification.type) {
+      case 'create-comment-error':
+        return <ErrorNotificationContainer />;
+      case 'create-comment-success':
+        return <SuccessNotificationContainer />;
       case 'create-kuluster-error':
         return <ErrorNotificationContainer />;
       case 'create-kuluster-success':

@@ -4,7 +4,7 @@ import { FormattedDate } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Button, Link } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PostDialog from 'components/dialogs/post/PostDialog.component';
+import PostDialogContainer from 'components/dialogs/post/PostDialog.container';
 import { hashCode } from 'common/common.utils';
 import brandLogo from 'common/assets/logo_white.png';
 
@@ -59,13 +59,13 @@ class Post extends Component {
   /* Post Dialog */
 
   renderPostDialog = post => (
-    <PostDialog
+    <PostDialogContainer
       data={post}
       isOpen={this.state.isPostDialogOpen}
       onClose={() => this.closeDialog('Post')}
     >
       Hello
-    </PostDialog>
+    </PostDialogContainer>
   );
 
   /* Event Handlers */

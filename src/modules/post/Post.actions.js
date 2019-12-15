@@ -1,12 +1,43 @@
 import axios from 'axios';
-import { createPostAPI, getPostInfoAPI } from 'common/api/Api.functions';
+import { createPostAPI, getPostInfoAPI, createCommentAPI } from 'common/api/Api.functions';
 import { addNotification } from 'common/notifications/Notifications.actions';
 import { getResponseData } from 'common/api/Api.helpers';
 
 export const POST_ACTIONS = {
+  CREATE_COMMENT: 'P_CREATE_COMMENT',
   CREATE_POST: 'P_CREATE_POST',
   GET_POST_INFO: 'P_GET_POST_INFO',
   GET_POST_INFO_ERROR: 'P_GET_POST_INFO_ERROR',
+};
+
+/* Create Comment */
+
+const createCommentSuccess = data => ({
+  type: POST_ACTIONS.CREATE_COMMENT,
+  payload: data,
+});
+
+export const createComment = data => (dispatch) => {
+  const token = localStorage.getItem('token');
+  return (
+    axios.post(createCommentAPI(), {
+      commentId: data.commentID,
+      content: data.content,
+      postId: parseInt(data.postID, 10),
+    }, {
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((response) => {
+        dispatch(addNotification(null, 'create-comment-success'));
+        dispatch(createCommentSuccess(getResponseData(response)));
+      })
+      .catch((error) => {
+        dispatch(addNotification(null, 'create-comment-error'));
+        throw (error);
+      })
+  );
 };
 
 /* Create Post */

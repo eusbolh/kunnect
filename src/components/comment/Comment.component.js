@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FormattedDate } from 'react-intl';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'nysa-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,15 +12,15 @@ class Comment extends Component {
     reply: '',
   }
 
-  getID = comment => comment && comment.id;
+  getID = comment => comment && comment.commentId;
 
-  getUserName = comment => comment && comment.user && comment.user.name;
+  getUserName = comment => comment && comment.creatorName;
 
-  getPostedAt = comment => comment && comment.comment && comment.comment.posted_at;
+  getPostedAt = comment => comment && comment.dateCreated;
 
-  getContent = comment => comment && comment.comment && comment.comment.content;
+  getContent = comment => comment && comment.content;
 
-  getVoteCount = comment => comment && comment.comment && comment.comment.vote_count;
+  getVoteCount = comment => comment && comment.likes;
 
   getComments = comment => comment && comment.comments;
 
@@ -35,6 +37,14 @@ class Comment extends Component {
 
   onReplyChange = event => this.setState({ reply: event.target.value });
 
+  createComment = (reply) => {
+    this.props.createComment({
+      commentID: this.getID(this.props.data),
+      content: reply,
+      postID: this.props.postID,
+    });
+  }
+
   render() {
     const { ...props } = this.props;
     return (
@@ -42,7 +52,19 @@ class Comment extends Component {
         <div className="knc-comment-top">
           <div className="knc-comment-info">
             <div className="knc-comment-info-user">{this.getUserName(props.data)}</div>
-            <div className="knc-comment-info-timestamp">{this.getPostedAt(props.data)}</div>
+            <div className="knc-comment-info-timestamp">
+              {
+                this.getPostedAt(props.data)
+                  ? (
+                    <FormattedDate
+                      value={new Date(parseInt(this.getPostedAt(props.data), 10))}
+                      year="numeric"
+                      month="long"
+                      day="2-digit"
+                    />
+                  ) : null
+              }
+            </div>
           </div>
         </div>
         <div className="knc-comment-middle">
@@ -92,7 +114,11 @@ class Comment extends Component {
                   name="title"
                   multiline
                   onCancel={() => this.setState({ isReplySectionOpen: false })}
-                  onConfirm={() => { console.log(this.state.reply); this.setState({ isReplySectionOpen: false, reply: '' }); }}
+                  onConfirm={() => {
+                    console.log(this.state.reply);
+                    this.setState({ isReplySectionOpen: false, reply: '' });
+                    this.createComment(this.state.reply);
+                  }}
                   placeholder="What are your thoughts?"
                   value={this.state.reply}
                 />
@@ -111,7 +137,11 @@ class Comment extends Component {
                         <div className="knc-comment-comments-comment-left-space-bottom">&nbsp;</div>
                       </div>
                       <div className="knc-comment-comments-comment-content">
-                        <Comment data={comment} />
+                        <Comment
+                          createComment={props.createComment}
+                          data={comment}
+                          postID={props.postID}
+                        />
                       </div>
                     </div>
                   ))
@@ -126,12 +156,14 @@ class Comment extends Component {
 
 Comment.propTypes = {
   /* Functions */
+  createComment: PropTypes.func.isRequired,
   /* Objects */
   data: PropTypes.shape({}),
+  postID: PropTypes.number.isRequired,
 };
 
 Comment.defaultProps = {
   data: null,
 };
 
-export default Comment;
+export default withRouter(Comment);

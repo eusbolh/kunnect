@@ -35,7 +35,7 @@ class PostDialog extends Component {
 
   getPostContent = post => post && post.content;
 
-  getPostID = post => post && post.postID;
+  getPostID = post => post && post.postId;
 
   getPostImage = post => post.post && post.post.image;
 
@@ -134,8 +134,16 @@ class PostDialog extends Component {
     this.props.history.push(linkURL);
   }
 
+  createComment = (reply) => {
+    this.props.createComment({
+      postID: this.getPostID(this.props.data),
+      content: reply,
+    });
+  }
+
   render() {
     const { ...props } = this.props;
+    console.log(props);
     return (
       <Dialog
         className="knc-post-dialog-component"
@@ -293,7 +301,11 @@ class PostDialog extends Component {
                       name="title"
                       multiline
                       onCancel={() => this.setState({ isReplySectionOpen: false })}
-                      onConfirm={() => { console.log(this.state.reply); this.setState({ isReplySectionOpen: false, reply: '' }); }}
+                      onConfirm={() => {
+                        console.log(this.state.reply);
+                        this.setState({ isReplySectionOpen: false, reply: '' });
+                        this.createComment(this.state.reply);
+                      }}
                       placeholder="What are your thoughts?"
                       value={this.state.reply}
                     />
@@ -308,7 +320,14 @@ class PostDialog extends Component {
               }
             </div>
             <div className="knc-post-dialog-comments-content">
-              {props.data && props.data.comments.map(comment => <Comment data={comment} key={`knc-post-dialog-comment-${comment && comment.id}`} />)}
+              {props.data && props.data.comments.map(comment => (
+                <Comment
+                  createComment={props.createComment}
+                  data={comment}
+                  key={`knc-post-dialog-comment-${comment && comment.commentId}`}
+                  postID={this.getPostID(props.data)}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -319,6 +338,7 @@ class PostDialog extends Component {
 
 PostDialog.propTypes = {
   /* Functions */
+  createComment: PropTypes.func.isRequired,
   data: PropTypes.shape({}),
   onClose: PropTypes.func.isRequired,
   /* Objects */
