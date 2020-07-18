@@ -14,7 +14,7 @@
     "axios": "0.18.1",
     "formik": "1.5.8",
     "history": "4.9.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "node-sass-chokidar": "1.3.5",
     "nysa-ui": "^1.0.4",
     "prop-types": "15.7.2",
