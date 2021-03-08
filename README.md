@@ -1,1 +1,1 @@
-# kunnect - dev
+# kunnect
